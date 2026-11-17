@@ -1,0 +1,108 @@
+# Français — UTF-8. Keep keys, placeholders and formatting tokens unchanged.
+title: CustomTrees
+permission: customtrees.grow
+pages:
+- title: Planter des arbres personnalisés
+  text: |
+    CustomTrees remplace la croissance des jeunes arbres dans les mondes normaux par ses propres formes d'arbres. Par défaut, tous les NORMAL mondes sont activés.
+
+    1. Plantez des jeunes arbres du même genre avec de l'espace libre au-dessus d'eux.
+    2. Un seul arbre devient un arbre à croissance normale ou avec un repas osseux.
+    3. A complet 2×2 carré des mêmes jeunes arbres devient un arbre moyen à grand.
+    4. Le repas désossé déclenche immédiatement la taille configurée et utilise exactement un élément en dehors du mode créatif.
+
+    La croissance nécessite customtrees.grow.
+- title: Arbustes et haies
+  text: |
+    Les jeunes arbres connectés peuvent se transformer en petits paysages.
+
+    1. Connectez deux ou trois jeunes arbres du même genre à la même hauteur, aussi diagonalement, autour des coins ou des ramifications.
+    2. Attendez une tique de croissance normale ou utilisez un repas osseux sur un de ces jeunes arbres.
+    3. Le groupe devient des arbustes.
+    4. Connectez quatre jeunes arbres ou plus du même genre pour obtenir une haie continue.
+
+    Terminé 2×2, 3×3 et 5×5 carrés restent des arbres et ne sont pas traités comme une haie.
+- title: Arbre géant de 3×3
+  text: |
+    A complet 3×3 champ des mêmes jeunes arbres crée un arbre extra-large.
+
+    1. Plantez neuf jeunes arbres du même genre qu'un carré sans espace à une hauteur.
+    2. Laissez assez d'espace libre au-dessus de toute la zone.
+    3. Attendez la croissance naturelle ou utilisez le repas osseux sur l'un des neuf jeunes arbres.
+    4. Taille par défaut : 36 à 48 blocs haut avec un rayon de couronne de 11.
+
+    Croissance des farines naturelles et osseuses pour 3×3 peuvent être activés sur le serveur.
+- title: Colosses à partir de 5×5
+  text: |
+    A complet 5×5 champ des mêmes jeunes arbres crée un arbre colossal avec un tronc rond et une large couronne.
+
+    1. Plantez 25 jeunes arbres du même genre qu'un carré sans espace à une hauteur.
+    2. Gardez l'espace au-dessus de toute la base libre.
+    3. Attendez la croissance naturelle ou utilisez un repas osseux sur un arbre du champ.
+    4. Taille par défaut : 52 à 68 blocs haut avec un rayon de couronne de 17.
+
+    Les deux déclencheurs et les dimensions peuvent être modifiés dans la configuration du serveur.
+- title: Arbre lumineux avec poussière de pierre brillante
+  text: |
+    Le clic droit sur un arbre avec de la poussière de pierre brillante pousse une variante lumineuse protégée. La pierre brillante est placée de préférence dans un feuillage intérieur foncé.
+
+    1. Tenez la poussière de pierre brillante et faites un clic droit sur un arbre valide.
+    2. Assurez-vous que la forme de l'arbre a assez d'espace libre.
+    3. En mode survie, on utilise une poussière de pierre brillante et 100 points réels XP.
+    4. Avec CoreProtect installés, les coffres sont enregistrés comme des emplacements protégés CustomTrees. Le coût et la quantité de lumière sont configurables.
+- title: Charbonnier
+  text: |
+    Avec le charbon, la même forme d'arbre se développe, mais délibérément sans la protection CoreProtect de ses troncs.
+
+    1. Tenez le charbon et faites un clic droit.
+    2. Assurez-vous qu'il y a suffisamment de place et que l'arbre pousse immédiatement.
+    3. En mode de survie, un morceau de charbon est utilisé.
+    4. Utilisez cette variante lorsque les troncs ne doivent pas être enregistrés comme des emplacements protégés CustomTrees.
+- title: Génération mondiale naturelle
+  text: |
+    Outre les arbres cultivés par les joueurs, CustomTrees peuvent remplacer les arbres générés. Par défaut, la chance de remplacement est 100 %.
+
+    1. Explorez de nouvelles zones dans un monde normal.
+    2. Les arbres générés peuvent être remplacés par des arbres personnalisés.
+    3. Une courte passe unique s'exécute après la création d'un morceau, de sorte que les arbres placés en retard (par exemple les objets Iris) sont remplacés aussi.
+    4. Les morceaux existants ne sont jamais réécrits simplement parce qu'ils sont à nouveau chargés.
+- title: 'Admin : paramètres, état et recharge'
+  permission: customtrees.admin
+  text: |
+    La gestion est pour les administrateurs.
+
+    1. /customtrees status montre des mondes, des interrupteurs et des compteurs actifs pour les arbres, les géants, les coloss, les arbustes, les haies, ainsi que les lucarnes et les houillères.
+    2. Changer les commutateurs et les numéros dans le menu Vystorm sous Paramètres → Serveur → CustomTrees (also /vsettings or /vadmin); ils s'appliquent immédiatement.
+    3. Les combinaisons non valides, telles qu'une hauteur minimale supérieure à la hauteur maximale, sont rejetées et remises aux valeurs précédentes.
+    4. Sélection mondiale (enabled-worlds) est seulement en config.yml; /customtrees reload Après. Si la configuration est invalide, les paramètres précédemment actifs restent en vigueur.
+- title: 10x10 arbres du monde et champignons géants
+  text: |
+    Plante 100 appâts ordinaires identiques, red/brown champignons ou crimson/warped champignons dans un carré complet 10x10 à une hauteur.
+    Faites un clic droit sur n'importe quel membre avec un repas osseux. L'arbre est prévu en premier et pousse par étapes après que les plugins de protection l'approuvent. Il consomme un seul repas d'os, non XP; le charbon, les pierres brillantes et les jeunes arbres de profil ne sont pas supportés pour cette taille.
+    Hauteurs par défaut : arbres 160 (rayon de la couronne 44, racines jusqu'à ~30 blocs sortants, environ 110x110 blocs de surface chargée), champignons 80, Autres champignons 48 blocks. Les obstacles n'arrêtent jamais la croissance : les plantes, la neige, les feuilles et le sol mou (dirt, herbe, sable, gravier, argile, boue) sont remplacés, les racines creusent dans le sol et à travers l'eau, les bâtiments et autres blocs sont tout simplement laissés de côté. Les morceaux manquants sont chargés automatiquement; un arbre trop grand pour l'endroit est rétréci pour s'adapter. Les champignons nether ont besoin de nylium assorti sous tous 100 végétaux.
+    Faites un clic-droit avec une main principale vide pour voir les dimensions configurées. Compléter 10x10 carrés ne croissent pas naturellement ou ne retombent pas à 5x5. A arrêt du serveur peut laisser un arbre partiellement cultivé.
+    Admins: paramètres des arbres du monde en config.yml ou /vadmin config CustomTrees. Les changements prennent effet pour les nouveaux emplois en croissance.
+- title: 'Champignons et champignons Nether: toutes tailles'
+  text: |
+    Les champignons rouges/bruns et les champignons cramoisi/marron supportent 1x1, 2x2, 3x3, 5x5 et 10x10 carrés de plantes identiques. Faites un clic droit avec le repas osseux. La plus grande formation complète gagne.
+    Hauteurs des champignons : 8, 16, 28, 44 et 80 blocs. Hauteurs inférieures des champignons: 8, 14, 24, 36 et 48. Toutes les dimensions sont configurables sous world-trees.fungi; 10x10 utilise les valeurs existantes des arbres du monde.
+    Les obstacles sont cultivés et les bâtiments sont préservés; les événements de protection se déroulent avant la consommation. Les petits arbres ordinaires gardent leur comportement existant.
+- title: 'Aide à la plantation: carrés entiers à la fois'
+  text: |
+    Ouvrez l'aide à la plantation /vmenu (Building) ou avec /customtrees plant et choisir 2x2, 3x3, 5x5 ou 10x10.
+    Puis placez un arbre, une propagule, un champignon ou un champignon. Il devient le coin le plus proche de vous; le carré grandit en avant et à votre droite et est rempli de votre inventaire.
+    Si une tache est bloquée ou n'a pas de terrain approprié, rien d'autre n'est planté et les taches sont marquées en rouge. Les aires protégées sont respectées.
+    L'aide s'éteint après un carré (or after 5 minutes unused). /customtrees plant off éteindre immédiatement.
+- title: 'Herbier: collectez chaque formulaire'
+  text: |
+    Chaque forme d'arbre et de champignon que vous cultivez vous-même est enregistrée: neuf espèces comme un seul arbre, 2x2, 3x3, 5x5, haie, arbre lumineux et 10x10 arbre du monde, plus quatre champignons et champignons en cinq tailles.
+    Ouvrez votre herbier /vmenu (Character) ou avec /customtrees herbarium. D'autres formes apportent des grades plus élevés, de Sprout à Keeper of Yggdrasil.
+    Faites un clic droit sur un autre joueur pour regarder leur herbier. /customtrees herbarium top montre les meilleurs forestiers.
+    /customtrees next suggère une forme manquante avec des instructions de plantation, en commençant par de petites formations. Ajouter une plante ID comme cerise à filtrer, ou cliquez sur une espèce dans l'herbier pour votre prochaine tâche. Les paramètres de croissance du serveur s'appliquent toujours.
+- title: 'Bois: arbres entiers à hache'
+  text: |
+    Couper une bûche avec une hache (without sneaking) Et tout l'arbre descend. Cela fonctionne pour les arbres naturels et pour chaque CustomTrees arbres.
+    L'arbre tombe : l'arbre s'éloigne de vous autour de sa souche et se brise en objets où il atterrit. Tout droit : il se brise du bas vers le haut.
+    Selon le serveur, l'arbre tombe au premier log, ou seulement une fois qu'une part de la section transversale du tronc est coupée. La barre d'action montre alors, par exemple, "Trunk 3/8".
+    Dans /vsettings vous pouvez couper le bois pour vous-même ou choisir comment les arbres descendent. Essuyez pour couper les billes. Les constructions de joueurs et les aires protégées ne sont jamais abattues.
+    Les petits arbres sont replantés par eux-mêmes : un appât approprié des gouttes de l'arbre (or your inventory) va où se trouvait le coffre.

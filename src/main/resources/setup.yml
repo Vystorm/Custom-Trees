@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "intro": {
+    "en": "A few quick choices for CustomTrees. Everything else stays on its defaults.",
+    "de": "Ein paar schnelle Entscheidungen für CustomTrees. Alles andere bleibt auf Standard.",
+    "fr": "Quelques choix rapides pour CustomTrees. Le reste garde ses valeurs par défaut.",
+    "it": "Alcune scelte rapide per CustomTrees. Il resto resta predefinito.",
+    "pt_br": "Algumas escolhas rápidas para CustomTrees. O resto fica no padrão.",
+    "ru": "Несколько быстрых решений для CustomTrees. Остальное останется по умолчанию.",
+    "zh_cn": "CustomTrees 的几个快速选项，其余保持默认。"
+  },
+  "questions": [
+    {
+      "id": "generated",
+      "text": {
+        "en": "Replace naturally generated trees in new chunks?",
+        "de": "Natürlich erzeugte Bäume in neuen Chunks ersetzen?",
+        "fr": "Remplacer les arbres générés dans les nouveaux chunks ?",
+        "it": "Sostituire gli alberi generati nei nuovi chunk?",
+        "pt_br": "Substituir árvores geradas em chunks novos?",
+        "ru": "Заменять природные деревья в новых чанках?",
+        "zh_cn": "替换新区块中自然生成的树？"
+      },
+      "type": "choice",
+      "recommended": "on",
+      "options": [
+        {
+          "id": "on",
+          "label": {
+            "en": "On",
+            "de": "An",
+            "fr": "Activé",
+            "it": "Attivo",
+            "pt_br": "Ligado",
+            "ru": "Вкл.",
+            "zh_cn": "开启"
+          },
+          "set": {
+            "config.yml:settings.replace-generated-trees": true
+          }
+        },
+        {
+          "id": "off",
+          "label": {
+            "en": "Off",
+            "de": "Aus",
+            "fr": "Désactivé",
+            "it": "Disattivo",
+            "pt_br": "Desligado",
+            "ru": "Выкл.",
+            "zh_cn": "关闭"
+          },
+          "set": {
+            "config.yml:settings.replace-generated-trees": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "giant",
+      "text": {
+        "en": "Allow giant trees from 3x3 saplings?",
+        "de": "Riesenbäume aus 3x3-Setzlingen erlauben?",
+        "fr": "Autoriser les arbres géants en pousses 3x3 ?",
+        "it": "Consentire alberi giganti da germogli 3x3?",
+        "pt_br": "Permitir árvores gigantes de mudas 3x3?",
+        "ru": "Разрешить гигантские деревья из саженцев 3x3?",
+        "zh_cn": "允许 3x3 树苗长成巨树？"
+      },
+      "type": "choice",
+      "recommended": "on",
+      "options": [
+        {
+          "id": "on",
+          "label": {
+            "en": "On",
+            "de": "An",
+            "fr": "Activé",
+            "it": "Attivo",
+            "pt_br": "Ligado",
+            "ru": "Вкл.",
+            "zh_cn": "开启"
+          },
+          "set": {
+            "config.yml:settings.giant-3x3-saplings": true
+          }
+        },
+        {
+          "id": "off",
+          "label": {
+            "en": "Off",
+            "de": "Aus",
+            "fr": "Désactivé",
+            "it": "Disattivo",
+            "pt_br": "Desligado",
+            "ru": "Выкл.",
+            "zh_cn": "关闭"
+          },
+          "set": {
+            "config.yml:settings.giant-3x3-saplings": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "colossal",
+      "text": {
+        "en": "Allow colossal trees from 5x5 saplings?",
+        "de": "Kolossale Bäume aus 5x5-Setzlingen erlauben?",
+        "fr": "Autoriser les arbres colossaux en pousses 5x5 ?",
+        "it": "Consentire alberi colossali da germogli 5x5?",
+        "pt_br": "Permitir árvores colossais de mudas 5x5?",
+        "ru": "Разрешить колоссальные деревья из саженцев 5x5?",
+        "zh_cn": "允许 5x5 树苗长成超巨树？"
+      },
+      "type": "choice",
+      "recommended": "on",
+      "options": [
+        {
+          "id": "on",
+          "label": {
+            "en": "On",
+            "de": "An",
+            "fr": "Activé",
+            "it": "Attivo",
+            "pt_br": "Ligado",
+            "ru": "Вкл.",
+            "zh_cn": "开启"
+          },
+          "set": {
+            "config.yml:settings.colossal-5x5-saplings": true
+          }
+        },
+        {
+          "id": "off",
+          "label": {
+            "en": "Off",
+            "de": "Aus",
+            "fr": "Désactivé",
+            "it": "Disattivo",
+            "pt_br": "Desligado",
+            "ru": "Выкл.",
+            "zh_cn": "关闭"
+          },
+          "set": {
+            "config.yml:settings.colossal-5x5-saplings": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "world",
+      "text": {
+        "en": "Enable world trees?",
+        "de": "Weltbäume aktivieren?",
+        "fr": "Activer les arbres-mondes ?",
+        "it": "Attivare gli alberi del mondo?",
+        "pt_br": "Ativar árvores-mundo?",
+        "ru": "Включить мировые деревья?",
+        "zh_cn": "启用世界树？"
+      },
+      "type": "choice",
+      "recommended": "on",
+      "options": [
+        {
+          "id": "on",
+          "label": {
+            "en": "On",
+            "de": "An",
+            "fr": "Activé",
+            "it": "Attivo",
+            "pt_br": "Ligado",
+            "ru": "Вкл.",
+            "zh_cn": "开启"
+          },
+          "set": {
+            "config.yml:world-trees.enabled": true
+          }
+        },
+        {
+          "id": "off",
+          "label": {
+            "en": "Off",
+            "de": "Aus",
+            "fr": "Désactivé",
+            "it": "Disattivo",
+            "pt_br": "Desligado",
+            "ru": "Выкл.",
+            "zh_cn": "关闭"
+          },
+          "set": {
+            "config.yml:world-trees.enabled": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "regrowth",
+      "text": {
+        "en": "Let felled wild trees grow back by themselves after a while?",
+        "de": "Gefällte wilde Bäume nach einer Weile von selbst nachwachsen lassen?",
+        "fr": "Laisser repousser seuls les arbres sauvages abattus après un moment ?",
+        "it": "Far ricrescere da sole le piante selvatiche abbattute dopo un po'?",
+        "pt_br": "Deixar árvores selvagens cortadas crescerem de novo sozinhas depois de um tempo?",
+        "ru": "Позволить срубленным диким деревьям со временем вырастать снова?",
+        "zh_cn": "让被砍伐的野生树木在一段时间后自行重新长出？"
+      },
+      "type": "choice",
+      "recommended": "on",
+      "options": [
+        {
+          "id": "on",
+          "label": {
+            "en": "On",
+            "de": "An",
+            "fr": "Activé",
+            "it": "Attivo",
+            "pt_br": "Ligado",
+            "ru": "Вкл.",
+            "zh_cn": "开启"
+          },
+          "set": {
+            "config.yml:regrowth.enabled": true
+          }
+        },
+        {
+          "id": "off",
+          "label": {
+            "en": "Off",
+            "de": "Aus",
+            "fr": "Désactivé",
+            "it": "Disattivo",
+            "pt_br": "Desligado",
+            "ru": "Выкл.",
+            "zh_cn": "关闭"
+          },
+          "set": {
+            "config.yml:regrowth.enabled": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "fruit",
+      "text": {
+        "en": "Allow fruit trees (saplings planted with a fruit bear visible fruit)?",
+        "de": "Obstbäume erlauben (mit Obst gepflanzte Setzlinge tragen sichtbare Früchte)?",
+        "fr": "Autoriser les arbres fruitiers (jeunes arbres plantés avec un fruit) ?",
+        "it": "Consentire gli alberi da frutto (arbusti piantati con un frutto)?",
+        "pt_br": "Permitir árvores frutíferas (mudas plantadas com uma fruta)?",
+        "ru": "Разрешить плодовые деревья (саженцы, посаженные с плодом)?",
+        "zh_cn": "允许果树（用果实种下的树苗会结出果实）？"
+      },
+      "type": "choice",
+      "recommended": "on",
+      "options": [
+        {
+          "id": "on",
+          "label": {
+            "en": "On",
+            "de": "An",
+            "fr": "Activé",
+            "it": "Attivo",
+            "pt_br": "Ligado",
+            "ru": "Вкл.",
+            "zh_cn": "开启"
+          },
+          "set": {
+            "config.yml:fruit-trees.enabled": true
+          }
+        },
+        {
+          "id": "off",
+          "label": {
+            "en": "Off",
+            "de": "Aus",
+            "fr": "Désactivé",
+            "it": "Disattivo",
+            "pt_br": "Desligado",
+            "ru": "Выкл.",
+            "zh_cn": "关闭"
+          },
+          "set": {
+            "config.yml:fruit-trees.enabled": false
+          }
+        }
+      ]
+    }
+  ]
+}

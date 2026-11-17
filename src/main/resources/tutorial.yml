@@ -1,0 +1,107 @@
+title: 'CustomTrees'
+permission: customtrees.grow
+pages:
+  - title: 'Eigene Bäume pflanzen'
+    text: |
+      CustomTrees ersetzt das Wachstum konfigurierter Setzlinge in normalen Welten durch eigene Baumformen. Standardmäßig sind alle NORMAL-Welten aktiv.
+
+      1. Pflanze gleichartige Setzlinge mit freiem Raum darüber.
+      2. Ein einzelner Setzling wird beim normalen Wachstum oder mit Knochenmehl zum eigenen Baum.
+      3. Ein vollständiges 2×2-Quadrat gleicher Setzlinge wird zu einem mittleren bis großen Baum.
+      4. Knochenmehl löst die konfigurierte Größe sofort aus und verbraucht außerhalb Kreativmodus genau ein Stück.
+
+      Das Wachsen verlangt customtrees.grow.
+  - title: 'Sträucher und Hecken'
+    text: |
+      Verbundene Setzlinge können als kleine Landschaftsformen wachsen.
+
+      1. Verbinde zwei oder drei gleiche Setzlinge auf derselben Höhe, auch diagonal, über Ecken oder verzweigt.
+      2. Nutze einen normalen Wachstumstick oder Knochenmehl auf einem dieser Setzlinge.
+      3. Die Gruppe wird zu Sträuchern.
+      4. Verbinde vier oder mehr gleiche Setzlinge, um eine durchgehende Hecke zu erhalten.
+
+      Vollständige 2×2-, 3×3- und 5×5-Quadrate bleiben dabei Baumgrößen und werden nicht als Hecke behandelt.
+  - title: 'Riesenbaum aus 3×3'
+    text: |
+      Ein vollständiges 3×3-Feld gleicher Setzlinge erzeugt einen extra großen Baum.
+
+      1. Pflanze neun gleiche Setzlinge als lückenloses Quadrat auf einer Höhe.
+      2. Lasse über der gesamten Fläche ausreichend Platz frei.
+      3. Warte auf natürliches Wachstum oder benutze Knochenmehl auf einem der neun Setzlinge.
+      4. Standardgröße: 36 bis 48 Blöcke Höhe und Kronenradius 11.
+
+      Natürliches und Knochenmehl-Wachstum für 3×3 sind jeweils serverseitig einstellbar.
+  - title: 'Koloss aus 5×5'
+    text: |
+      Ein vollständiges 5×5-Feld gleicher Setzlinge erzeugt einen kolossalen Baum mit rundem Stamm und breiter Krone.
+
+      1. Pflanze 25 gleiche Setzlinge als lückenloses Quadrat auf einer Höhe.
+      2. Sorge über der ganzen Grundfläche für freien Bauplatz.
+      3. Warte auf natürliches Wachstum oder verwende Knochenmehl auf einem Mitglied des Felds.
+      4. Standardgröße: 52 bis 68 Blöcke Höhe und Kronenradius 17.
+
+      Beide Auslöser und die Maße sind in der Serverkonfiguration veränderbar.
+  - title: 'Leuchtbaum mit Glühsteinstaub'
+    text: |
+      Ein Rechtsklick mit Glühsteinstaub auf einen Setzling lässt eine geschützte leuchtende Variante wachsen. Der Leuchtstein wird bevorzugt in dunklem Innenlaub verteilt.
+
+      1. Halte Glühsteinstaub und rechtsklicke einen gültigen Setzling.
+      2. Stelle sicher, dass die Baumform genug freien Raum hat.
+      3. Im Überlebensmodus werden ein Glühsteinstaub und 100 echte XP-Punkte verbraucht.
+      4. Bei aktivem CoreProtect werden die Stämme als geschützte CustomTrees-Platzierungen erfasst. Kosten und Leuchtmenge sind konfigurierbar.
+  - title: 'Kohlebaum'
+    text: |
+      Mit Kohle wächst dieselbe eigene Baumform, aber bewusst ohne den CoreProtect-Schutz der Baumstämme.
+
+      1. Halte Kohle und rechtsklicke einen gültigen Setzling.
+      2. Sorge für genügend Platz und warte auf die direkte Erzeugung.
+      3. Im Überlebensmodus wird ein Stück Kohle verbraucht.
+      4. Nutze diese Variante nur, wenn die Stämme nicht als geschützte CustomTrees-Platzierungen registriert werden sollen.
+  - title: 'Natürliche Weltgeneration'
+    text: |
+      Neben Spielerbäumen kann CustomTrees generierte Bäume ersetzen. Standardmäßig beträgt die Ersatzchance 100 %.
+
+      1. Erkunde neue Gebiete in einer aktivierten normalen Welt.
+      2. Generierte Bäume können durch die eigenen Baumformen ersetzt werden.
+      3. Bei Iris-Welten läuft nach der Chunk-Erzeugung einmalig ein kurzer Nachlauf, damit Iris-Objektbäume ebenfalls ersetzt werden können.
+      4. Bereits existierende Chunks werden dadurch nicht beim erneuten Laden umgeschrieben.
+  - title: 'Admin: Einstellungen, Status und Reload'
+    permission: customtrees.admin
+    text: |
+      Die Verwaltung ist für Administratoren.
+
+      1. /customtrees status zeigt aktive Welten, Schalter und Zähler für Bäume, Riesen, Kolosse, Sträucher, Hecken sowie Glühstein- und Kohlebäume.
+      2. Schalter und Zahlen änderst du im Vystorm-Menü unter Einstellungen → Server → CustomTrees (auch /einstellungen oder /vadmin); sie greifen sofort.
+      3. Ungültige Kombinationen, etwa eine Mindesthöhe über der Maximalhöhe, werden abgelehnt und auf die vorherigen Werte zurückgesetzt.
+      4. Welt-Freigaben (enabled-worlds) stehen nur in der config.yml; danach /customtrees reload ausführen. Bei ungültiger Konfiguration bleibt die zuvor aktive Einstellung erhalten.
+  - title: '10x10-Weltenbäume und Riesenpilze'
+    text: |
+      Pflanze 100 gleiche normale Setzlinge, rote/braune Pilze oder Karmesin-/Wirrpilze als vollständiges 10x10-Quadrat auf gleicher Höhe.
+      Rechtsklick auf eine Pflanze mit Knochenmehl. Erst wird geplant und der Schutz geprüft, dann wächst der Baum schrittweise. Verbrauch: ein Knochenmehl, keine XP. Kohle, Glowstone und Profilsetzlinge sind für diese Größe nicht vorgesehen.
+      Standardhöhen: Bäume 160 (Kronenradius 44, Wurzeln bis etwa 30 Blöcke weit, rund 110x110 Blöcke geladene Fläche), Pilze 80, Netherpilze 48 Blöcke. Hindernisse stoppen das Wachstum nie: Pflanzen, Schnee, Laub und weicher Boden (Erde, Gras, Sand, Kies, Ton, Schlamm) werden ersetzt, Wurzeln graben sich in den Boden und durch Wasser, Bauwerke und andere Blöcke werden einfach ausgelassen. Fehlende Chunks werden automatisch geladen; ist der Platz zu niedrig, wächst der Baum passend kleiner. Netherpilze brauchen unter allen 100 Pflanzen das passende Nylium.
+      Schleichen und Rechtsklick mit leerer Haupthand zeigt die eingestellten Maße. Vollständige 10x10-Felder wachsen nicht zufällig und werden nicht als 5x5 behandelt. Ein Serverstopp kann einen teilweise aufgebauten Baum hinterlassen.
+      Admins: world-trees in config.yml oder /vadmin config CustomTrees. Änderungen gelten für neue Wachstumsaufträge.
+  - title: 'Pilze und Netherbäume: alle Größen'
+    text: |
+      Rote/braune Pilze und Karmesin-/Wirrpilze unterstützen 1x1, 2x2, 3x3, 5x5 und 10x10 mit gleichen Pflanzen. Rechtsklick mit Knochenmehl. Die größte vollständige Formation gewinnt.
+      Pilzhöhen: 8, 16, 28, 44 und 80 Blöcke. Nether-Höhen: 8, 14, 24, 36 und 48. Maße unter world-trees.fungi einstellbar; 10x10 nutzt die bisherigen Weltenbaum-Werte.
+      Hindernisse werden umwachsen, Bauten bleiben erhalten; Schutzprüfung vor dem Verbrauch. Kleinere normale Bäume behalten ihr bisheriges Verhalten.
+  - title: 'Pflanzhilfe: ganze Quadrate auf einmal'
+    text: |
+      Öffne die Pflanzhilfe im /vmenu (Bauen) oder mit /customtrees plant und wähle 2x2, 3x3, 5x5 oder 10x10.
+      Setz dann einen Setzling, Mangroven-Keimling, Pilz oder Netherpilz. Er wird die Ecke, die dir am nächsten ist; das Quadrat wächst nach vorn und nach rechts und wird aus deinem Inventar gefüllt.
+      Ist ein Feld belegt oder ohne passenden Boden, wird sonst nichts gepflanzt und die Felder werden rot markiert. Geschützte Gebiete werden beachtet.
+      Die Pflanzhilfe schaltet sich nach einem Quadrat aus (oder nach 5 Minuten ohne Nutzung). /customtrees plant off schaltet sie sofort aus.
+  - title: 'Herbarium: jede Form sammeln'
+    text: |
+      Jede Baum- und Pilzform, die du selbst ziehst, wird eingetragen: neun Baumarten als Einzelbaum, 2x2, 3x3, 5x5, Hecke, Leuchtbaum und 10x10-Weltbaum, dazu vier Pilze in fünf Größen.
+      Öffne dein Herbarium im /vmenu (Charakter) oder mit /customtrees herbarium. Mehr Formen bringen höhere Ränge, vom Keimling bis zum Hüter von Yggdrasil.
+      Schleichen und Rechtsklick auf einen anderen Spieler zeigt sein Herbarium. /customtrees herbarium top zeigt die besten Förster.
+      /customtrees next schlägt eine fehlende Form mit Pflanzanleitung vor, beginnend mit kleinen Formationen. Ergänze eine Pflanzen-ID wie cherry als Filter oder klicke eine Art im Herbarium für deine eigene nächste Aufgabe. Die Wachstumseinstellungen des Servers gelten weiterhin.
+  - title: 'Baumfällen: ganze Bäume mit der Axt'
+    text: |
+      Baue einen Stamm mit der Axt ab (ohne zu schleichen) und der ganze Baum fällt. Das klappt bei natürlichen Bäumen und bei allen CustomTrees-Bäumen.
+      Baumfall: Der Baum kippt von dir weg um seinen Stumpf und zerfällt beim Aufprall in Items. Gerade nach unten: Er zerfällt von unten nach oben.
+      Je nach Server fällt der Baum schon beim ersten Stamm oder erst, wenn ein Teil des Stammquerschnitts abgeschlagen ist. Die Aktionsleiste zeigt dann zum Beispiel "Stamm 3/8".
+      In /vsettings kannst du das Baumfällen für dich ausschalten oder die Art des Falls wählen. Schleiche, um einzelne Stämme abzubauen. Spielerbauten und geschützte Gebiete werden nie gefällt.
+      Kleine Bäume werden von selbst nachgepflanzt: Ein passender Setzling aus den Drops des Baums (oder deinem Inventar) kommt dorthin, wo der Stamm stand.

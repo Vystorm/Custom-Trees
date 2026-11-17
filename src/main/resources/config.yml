@@ -1,0 +1,299 @@
+# Language of CustomTrees messages: auto = follow Vystorm Core (each player's
+# Minecraft language; the console uses English), or a fixed code such as en or de.
+# Texts are in plugins/CustomTrees/lang/<code>.yml.
+language: auto
+
+settings:
+  # Natural surface patches around 2x2/3x3/5x5 spruce growth and generated spruces.
+  # Only grass/dirt/podzol/coarse dirt are replaced; existing snow is preserved.
+  spruce-ground: true
+  spruce-snow: true
+  # Set false for decorative snow around spruces in warm biomes too.
+  spruce-snow-cold-only: true
+  # Exact markers are recorded only for newly generated custom trees.
+  fire-protect-trunks: false
+  fire-protect-crowns: false
+  # Registered profile saplings: crown pruning regrows after 10..86400 seconds.
+  garden-regrowth-seconds: 300
+  # Empty means every NORMAL world, including Iris overworlds.
+  enabled-worlds: []
+  # Replaces trees grown by players or natural sapling ticks. This is the main
+  # feature; 1x1 becomes custom, 2x2 of every species becomes medium-large,
+  # and 3x3 becomes extra-large.
+  custom-player-grown-trees: true
+  # Two or three connected equal saplings become a shrub group. Four or more
+  # become a continuous hedge. Connections may run straight, diagonally, around
+  # corners or branch; complete 2x2 and 3x3 squares still remain trees.
+  connected-shrubs-and-hedges: true
+  # Allows connected hedges (four or more saplings) to mix tree species.
+  # The setting does not affect shrub groups or square tree formations.
+  mixed-hedges: false
+  replace-generated-trees: true
+  replacement-chance: 1.0
+  generated-tree-scan-depth: 80
+  # One-time pass over newly generated chunks (vanilla and Iris) that replaces
+  # their trees with the same species generator used by saplings. It runs a few
+  # ticks after generation, so Iris objects placed late are caught as well.
+  # replace-generated-trees needs this pass. Existing chunks are never
+  # rewritten merely because they are loaded again.
+  new-chunk-post-processing: true
+  new-chunk-post-process-delay-ticks: 2
+  # Worlds made by these generator plugins are skipped by the pass, because the
+  # generator places its own trees (Vystorm Strata's world trees and 5x5 giants
+  # span many chunks and would be cut apart).
+  skip-generator-plugins:
+    - VystormStrata
+
+  # A complete 3x3 square of the same sapling grows into an extra-large tree.
+  giant-3x3-saplings: true
+  giant-min-height: 36
+  giant-max-height: 48
+  giant-canopy-radius: 11
+
+  # Natural 3x3 growth occurs when one of the nine saplings receives a normal
+  # growth tick. Bone meal triggers the giant immediately and consumes one item.
+  # These switches affect only 3x3 giants; custom-player-grown-trees controls
+  # regular 1x1 and large 2x2 growth with natural ticks. Bone meal grows every
+  # configured sapling size immediately and consumes exactly one item.
+  natural-3x3-growth: true
+  bonemeal-3x3-growth: true
+
+  # A complete 5x5 square creates a colossal tree with a rounded trunk and a
+  # broader crown. Its logs are registered as CustomTrees placements in
+  # CoreProtect, just like 3x3 trees, so SmoothTimber ignores them.
+  colossal-5x5-saplings: true
+  colossal-min-height: 52
+  colossal-max-height: 68
+  colossal-canopy-radius: 17
+  natural-5x5-growth: true
+  bonemeal-5x5-growth: true
+
+  # Right-clicking a sapling with glowstone dust grows a protected luminous
+  # variant. One dust and this many spendable XP points are consumed. Glowstone
+  # is distributed through the foliage, preferring dark interior positions.
+  glowstone-growth: true
+  glowstone-xp-cost: 100
+  glowstone-leaves-per-block: 80
+  glowstone-max-blocks: 32
+  glowstone-dark-light-level: 7
+  # Per-player controls; zero disables that control.
+  glowstone-growth-cooldown-seconds: 0
+  glowstone-growth-daily-limit: 0
+
+  # Right-clicking with coal grows the same custom tree, but deliberately does
+  # not register its logs in CoreProtect for SmoothTimber protection.
+  coal-growth: true
+  # Planned configurable prices for coal-triggered formations. Values are validated but do not
+  # change coal consumption until the catalyst integration is complete. Missing entries default to 1.
+  # Each value is a whole number from 1 to 64 (one held stack); charcoal is not accepted.
+  coal-costs:
+    normal: 1
+    medium: 1
+    giant: 1
+    colossal: 1
+    hedge: 1
+  # Per-player controls; zero disables that control.
+  coal-growth-cooldown-seconds: 0
+  coal-growth-daily-limit: 0
+
+# Optional, explicit biome overrides. Empty by default, so existing tree
+# generation behavior is unchanged. Requires Vystorm Core 0.26.5+.
+# Biomes must be namespaced keys and may belong to only one profile.
+# biome-profiles:
+#   open-meadow:
+#     biomes: [minecraft:plains, minecraft:meadow]
+#     height-scale: 1.1
+#     crown-scale: 1.2
+#     crown-form: OPEN_GROWN # RANDOM, OPEN_GROWN, FOREST, WINDSWEPT, ANCIENT
+#     replacement-chance: 0.8 # optional override for natural trees in new chunks
+
+# Complete 10x10 formations of 100 identical plants; trigger explicitly with one bone meal.
+# Includes all nine sapling types, red/brown mushrooms and crimson/warped fungi.
+# Height includes crown; radius is measured from the centre. Obstacles never stop the growth: air, plants,
+# leaves, snow and soft natural ground (dirt, grass, sand, gravel, clay, mud) are replaced, roots also grow
+# through water; everything else (buildings, containers, other trees, fluids, bedrock) is left out.
+# Missing chunks of the footprint are loaded for the duration of the growth. Too tall trees are shrunk to fit.
+world-trees:
+  enabled: true
+  tree-height: 160
+  mushroom-height: 80
+  nether-height: 48
+  tree-radius: 44
+  mushroom-radius: 24
+  nether-radius: 18
+  blocks-per-tick: 512
+  # Also replace natural stone (stone, deepslate, andesite, diorite, granite, tuff, calcite, sandstone,
+  # terracotta). Ores are never replaced.
+  replace-stone: false
+  # Refuse a growth when more than this share of planned blocks would be left out (100 = never refuse).
+  max-skipped-percent: 100
+  fungi:
+    1x1:
+      mushroom-height: 8
+      mushroom-radius: 3
+      nether-height: 8
+      nether-radius: 3
+    2x2:
+      mushroom-height: 16
+      mushroom-radius: 5
+      nether-height: 14
+      nether-radius: 5
+    3x3:
+      mushroom-height: 28
+      mushroom-radius: 9
+      nether-height: 24
+      nether-radius: 8
+    5x5:
+      mushroom-height: 44
+      mushroom-radius: 15
+      nether-height: 36
+      nether-radius: 12
+
+# Shake a tree: right-click a trunk with an empty hand (not sneaking). A few apples, sticks, saplings or the
+# species' own fruit fall out of the crown (cocoa beans, cherry petals, sweet berries, propagules, pale moss),
+# rarely a golden apple from oaks. One roll per 40 leaves, at most max-rolls. Each tree rests cooldown-seconds.
+# Permission customtrees.shake (default: everyone); protection plugins that cancel the click block it.
+shaking:
+  enabled: true
+  cooldown-seconds: 300
+  max-rolls: 6
+  min-leaves: 8
+  # Oak and dark oak crowns may very rarely drop a golden apple. Set false if your economy needs it.
+  golden-apples: true
+  # Core loot table or category id (Vystorm Core 0.44+). Empty = category:gathering_find with this plugin's own list
+  # per species (customtrees:shaking/<species>, same odds as before). The player's luck counts.
+  loot-table: ''
+
+# Herbarium: every tree and fungus form a player grows (9 species x 7 forms, 4 fungi x 5 sizes) is collected in
+# /customtrees herbarium (also in /vmenu and Core's player menu). Ranks for the number of forms; data in herbarium.yml.
+herbarium:
+  enabled: true
+  # Tell everyone online when a player reaches a new rank.
+  announce-ranks: true
+  # Optional console commands per rank (sprout, gardener, forester, arborist, warden, elder, keeper); {player} = name.
+  # Example: forester: ["give {player} bone_meal 16"]
+  rank-commands: {}
+
+# Planting helper: pick a square (2x2, 3x3, 5x5, 10x10) with /customtrees plant or in /vmenu, then place one sapling
+# or fungus: the whole square is planted from your inventory. Every plant fires a normal block-place event.
+planting-helper:
+  enabled: true
+  # Largest square offered: 2, 3, 5 or 10.
+  max-size: 10
+  # Maximum hedge row length (4..32); 0..3 disables hedge planting.
+  max-hedge-length: 16
+  # Stay active after a square was planted (false = one square per activation).
+  keep-active: false
+  # An unused helper switches itself off after this many seconds (10..3600).
+  timeout-seconds: 300
+
+# Built-in timber: chop a log of a tree with an axe and the whole tree comes down. Works for natural trees and every
+# CustomTrees tree (custom shapes, 3x3 giants, 5x5 colossi, 10x10 world trees, huge mushrooms, Nether fungi).
+# Player builds are left alone: logs next to planks, glass, torches and other built blocks, lying trunks, trunks that
+# do not stand on natural ground and "trees" without natural leaves are never felled. Every block fires a block-break
+# event first, so claim plugins (CityClaim, Estates, WorldGuard) can refuse it and CoreProtect logs it.
+# Permission customtrees.timber (default: everyone).
+timber:
+  enabled: true
+  # fall = a real tree fall: the tree topples away from you around its stump and turns into items where it lands.
+  # drop = straight down: the tree breaks layer by layer from the bottom up, the items land under it.
+  mode: fall
+  # first-log = breaking any log of the tree fells the whole tree.
+  # percent = the tree falls once trunk-percent of the trunk cross-section at the chopped height is cut
+  #           (the action bar shows "Trunk 3/8"); the stump below stays.
+  trigger: first-log
+  trunk-percent: 80
+  # standing = only while not sneaking (sneak to chop single logs), sneaking = only while sneaking, any = always.
+  sneaking: standing
+  require-axe: true
+  # Worlds where the timber works; empty = every world.
+  worlds: []
+  # Players may switch the timber off for themselves and pick drop or fall in /vsettings.
+  player-choice: true
+  # Per tree type: server-mode (server or player mode), fall, drop or disabled.
+  # small = single and 2x2 trees, shrubs, hedges; giant = 3x3; colossal = 5x5; world = 10x10 world trees.
+  tree-types:
+    small: server-mode
+    giant: server-mode
+    colossal: server-mode
+    world: server-mode
+  tool:
+    # Durability points per felled log (0..10); Unbreaking applies as usual.
+    durability-per-log: 1.0
+    # Do not fell when the axe would break; then only the chopped log breaks.
+    spare-tool: true
+  drops:
+    # vanilla = leaves drop like vanilla with your tool (saplings, sticks, apples; Fortune helps, Silk Touch keeps the
+    # leaves); none = leaves drop nothing.
+    leaves: vanilla
+    # Put the items straight into the inventory (what does not fit lands on the ground).
+    into-inventory: false
+  # After a small tree (single or 2x2 trunk) falls, put a fitting sapling where its trunk stood (four for a 2x2 trunk),
+  # when the ground fits. Saplings come from the tree's own drops first, then from the player's inventory; nothing is
+  # planted when there are not enough. Each sapling fires a block-place event (claims, CoreProtect).
+  replant: true
+  detection:
+    # Upper limits of one tree (logs plus crown); bigger trees are not felled.
+    max-blocks: 150000
+    max-radius: 64
+    max-height: 200
+    # A tree needs at least this many natural leaves (or caps for mushrooms and fungi).
+    min-leaves: 4
+    # The trunk must stand on natural ground (dirt, grass, sand, stone, nylium, ...).
+    natural-ground: true
+    # With CoreProtect: never fell logs a player placed.
+    coreprotect-check: true
+    # Only fell trees CustomTrees grew or generated (or, with CoreProtect, trees no player placed).
+    only-generated-trees: false
+  fall:
+    # Display entities per falling tree; bigger trees are shown with merged cubes.
+    max-displays: 400
+    # Duration of a full fall in ticks (20 = 1 second).
+    fall-ticks: 40
+  performance:
+    # Blocks removed and protection checks run per tick, shared by all running fells.
+    blocks-per-tick: 1500
+    checks-per-tick: 1000
+    # Trees falling at the same time per world and per player.
+    falls-per-world: 4
+    falls-per-player: 1
+  # pause = switch the built-in timber off while SmoothTimber or another timber plugin is installed;
+  # run-both = keep it running anyway (both may react to the same chop).
+  other-timber-plugins: pause
+  # How long a half-chopped trunk remembers its cuts (percent trigger), in seconds.
+  percent-memory-seconds: 600
+  # Vystorm Core region kinds where the timber never removes blocks. A region flag "timber" (true/false) overrides it.
+  protected-region-kinds: [spawn, safe, arena, arena-zone, market, dungeon, structure]
+
+fruit-trees:
+  # Fruit trees: right-click a sapling with a fruit to make it a fruit sapling (one fruit is used). The tree that
+  # grows from it bears that fruit: ripe fruit hangs under the leaves and is picked by right-clicking the leaves with
+  # an empty hand. Shaking the trunk still works as before. Permission customtrees.fruit (default: everyone).
+  enabled: true
+  # Fruits that can be planted (item names).
+  fruits: [apple, sweet_berries, glow_berries, cocoa_beans]
+  # Minutes until one more fruit ripens (1-1440).
+  grow-minutes: 15
+  # Most ripe fruit on one tree (1-16).
+  max-fruit: 6
+
+regrowth:
+  # Forest regrowth: a wild tree felled with timber that was not replanted by the player grows back by itself. After
+  # the delay, saplings of the same wood are put where its trunk stood – one or 2x2 for small trees, a 3x3 or 5x5
+  # square for giants and colossi so they can grow to their old size. Only free, plantable spots are used; if someone
+  # built there in the meantime, nothing is planted. Pending plantings survive restarts (regrowth.yml).
+  enabled: true
+  # Minutes until the saplings appear (1-10080).
+  delay-minutes: 20
+  # Chance that a felled tree grows back (0.0-1.0).
+  chance: 1.0
+  # Worlds with regrowth; empty = all worlds where timber works.
+  worlds: []
+  # Also small trees (single and 2x2 trunks) that the player did not replant.
+  small-trees: true
+
+breeding:
+  enabled: true
+  cooldown-seconds: 30
+  # Maximum accepted value is 0.25. Mutations stay within existing size/crown variants.
+  mutation-chance: 0.1

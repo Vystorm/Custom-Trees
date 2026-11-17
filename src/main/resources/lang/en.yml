@@ -1,0 +1,884 @@
+# CustomTrees – English texts (final fallback for every language).
+# MiniMessage formatting (<red>, <gold>, …); legacy &c codes work too. {name} are placeholders.
+# Copy this file to <code>.yml (e.g. fr.yml) in the same folder to add a language, then /customtrees reload.
+
+compat:
+  missing-pale-oak: "Pale oak and its decoration are unavailable on this server; the herbarium uses only available species."
+
+growth:
+  not-allowed: "<red>CustomTrees: This tree may not grow here."
+  no-room: "<red>CustomTrees: There is not enough room directly above the trunk."
+  refunded: "<yellow>CustomTrees: Growth cancelled, costs refunded."
+  glowstone-missing-xp: "<red>Luminous tree: You need {xp} XP points."
+  glowstone-xp-used: "<gold>Luminous tree: {xp} XP points used."
+  catalyst-limited: "<red>CustomTrees: This catalyst's player limit has been reached."
+  coal-class:
+    normal: "normal tree"
+    medium: "medium tree"
+    giant: "giant tree"
+    colossal: "colossal tree"
+    hedge: "hedge"
+  coal-cost-preview: "<gray>This {formation} growth costs <white>{coal} coal<gray>. Click the same formation again with coal within 10 seconds to confirm."
+  coal-cost-confirm: "<gold>Confirmed: this growth will use {coal} coal if it succeeds."
+  coal-missing: "<red>You need {coal} coal in the hand used to trigger this growth."
+  preview-disabled: "<red>CustomTrees: Tree growth is disabled in this world."
+  preview-no-pattern: "<yellow>CustomTrees: No enabled sapling pattern is available here."
+  preview-pattern-unverified: "<yellow>CustomTrees: Adjacent chunks are unloaded, so the sapling formation cannot be determined yet."
+  preview: "<gold>CustomTrees preview ({certainty}): {formation} {species}; ground {ground}; clearance {space}; Core protected region {protection}."
+  preview-note: "<gray>The outline is a conservative clearance estimate, not the final tree shape. Biome profiles can change tree height and crown; other protection plugins decide during actual growth."
+  preview-confidence-detected: "detected"
+  preview-confidence-unverified: "may be incomplete"
+  preview-ground-ok: "supported by CustomTrees soil"
+  preview-ground-bad: "not on a known CustomTrees soil"
+  preview-space-ok: "clear"
+  preview-space-bad: "blocked"
+  preview-space-unloaded: "not checked (chunk unloaded)"
+  preview-protected: "overlaps"
+  preview-unprotected: "none detected"
+  preview-pattern:
+    single: "single sapling"
+    square: "2×2 saplings"
+    shrub: "shrub group"
+    hedge: "hedge"
+    giant: "3×3 giant"
+    colossal: "5×5 colossus"
+growth-sapling:
+  name: "<green>{species} sapling"
+  form: "<gray>Crown form: <white>{form}"
+  size: "<gray>Growth size: <white>{growthClass}"
+  species:
+    oak: "Oak"
+    birch: "Birch"
+    spruce: "Spruce"
+    jungle: "Jungle"
+    acacia: "Acacia"
+    dark_oak: "Dark oak"
+    mangrove: "Mangrove"
+    cherry: "Cherry"
+    pale_oak: "Pale oak"
+  crown:
+    random: "Random"
+    open_grown: "Open-grown"
+    forest: "Forest"
+    windswept: "Windswept"
+    ancient: "Ancient"
+  class:
+    normal: "Normal"
+    medium: "Medium"
+    giant: "Giant"
+    colossal: "Colossal"
+
+tutorial-hint: "<gray>[CustomTrees] How saplings grow into trees: "
+
+action:
+  settings: "Settings"
+  tutorial: "Tutorial"
+  web-guide: "<aqua><u>[Tree guide]</u>"
+
+command:
+  reloaded: "CustomTrees configuration reloaded."
+  reload-failed: "<red>CustomTrees reload failed; the previous settings remain active: {error}"
+  all-worlds: "all normal worlds"
+  no-permission: "<red>You do not have permission for this."
+  usage: "<gray>Usage: /customtrees [guide [species|admin]], plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off], herbarium [player|top] – admins also: status, reload"
+  players-only: "Only players can open the tree guide."
+  guide-unavailable: "<red>The tree guide is not available right now."
+
+validation:
+  replacement-chance: "replacement-chance must be between {min} and {max}."
+  giant-heights: "Giant heights must satisfy {min} <= min <= max <= {max}."
+  giant-canopy-radius: "giant-canopy-radius must be between {min} and {max}."
+  colossal-heights: "Colossal heights must satisfy {min} <= min <= max <= {max}."
+  colossal-canopy-radius: "colossal-canopy-radius must be between {min} and {max}."
+  glowstone-xp-cost: "glowstone-xp-cost must be between {min} and {max}."
+  generated-tree-scan-depth: "generated-tree-scan-depth must be between {min} and {max}."
+  glowstone-leaves-per-block: "glowstone-leaves-per-block must be between {min} and {max}."
+  glowstone-max-blocks: "glowstone-max-blocks must be between {min} and {max}."
+  glowstone-dark-light-level: "glowstone-dark-light-level must be between {min} and {max}."
+  new-chunk-post-process-delay-ticks: "new-chunk-post-process-delay-ticks must be between {min} and {max}."
+  catalyst-cooldown: "{catalyst}-growth-cooldown-seconds must be between {min} and {max}."
+  catalyst-daily-limit: "{catalyst}-growth-daily-limit must be between {min} and {max}."
+  coal-costs-section: "settings.coal-costs must be a YAML section."
+  coal-growth-cost: "coal-costs.{growthClass} must be a whole number from {min} to {max}."
+  biome-profiles-root: "biome-profiles must be a YAML section."
+  biome-profiles-limit: "At most {max} biome profile groups are allowed."
+  biome-profiles-biome-limit: "At most {max} biome assignments are allowed."
+  biome-profile-id: "Invalid biome profile id: {id}."
+  biome-profile-group: "Biome profile {id} must be a YAML section."
+  biome-profile-biomes: "Biome profile {id} must list at least one biome."
+  biome-profile-number: "Biome profile {id} has an invalid numeric value for {field}."
+  biome-profile-scale: "Biome profile {id}: {field} must be between {min} and {max}."
+  biome-profile-form: "Biome profile {id} has an unknown crown form: {form}."
+  biome-profile-chance: "Biome profile {id}: replacement-chance must be between {min} and {max}."
+  biome-profile-biome-key: "Biome profile {id} has an invalid biome key: {biome}."
+  biome-profile-unknown-biome: "Biome profile {id} references an unknown biome: {biome}."
+  biome-profile-duplicate-biome: "Biome {biome} is assigned to more than one profile."
+  biome-profiles-core: "Non-empty biome-profiles require Vystorm Core 0.26.5 or newer with TREE_GROWTH_PROFILES."
+
+settings:
+  spruce-ground:
+    label: "Spruce forest floor"
+    description: "Podzol and coarse dirt around large planted and newly generated spruces."
+  spruce-snow:
+    label: "Snow around spruces"
+    description: "Place a snow layer on empty ground without replacing existing snow or plants."
+  spruce-snow-cold-only:
+    label: "Spruce snow only in cold locations"
+    description: "Disable to allow decorative snow around spruces in warm biomes too."
+  applied: "<green>CustomTrees settings applied."
+  rejected: "<red>Invalid combination: {error} – the previous values were restored."
+  section-description: "Tree growth, world generation, catalyst costs, fire markers and garden regrowth. World selection (enabled-worlds) only in config.yml."
+  custom-player-grown-trees:
+    label: "Custom trees from saplings"
+    description: "Replaces the growth of 1×1 and 2×2 saplings with custom tree shapes"
+  connected-shrubs-and-hedges:
+    label: "Shrubs and hedges"
+    description: "2–3 connected saplings become shrubs, 4 or more a hedge"
+  replace-generated-trees:
+    label: "Replace generated trees"
+    description: "Replaces trees from world generation (new chunks only)"
+  replacement-chance:
+    label: "Replacement chance"
+    description: "Share of generated trees that are replaced (0 = none, 1 = all)"
+  generated-tree-scan-depth:
+    label: "Scan depth"
+    description: "How many blocks below the surface generated trees are searched for"
+  new-chunk-post-processing:
+    label: "New-chunk post-processing"
+    description: "One-time pass over newly generated chunks that replaces their trees (also catches late Iris objects)"
+  new-chunk-post-process-delay-ticks:
+    label: "Post-processing delay"
+    description: "Ticks until a new chunk is post-processed"
+  giant-3x3-saplings:
+    label: "Giant trees from 3×3"
+    description: "3×3 saplings create extra-large trees"
+  natural-3x3-growth:
+    label: "3×3 natural growth"
+    description: "Giant trees also grow from normal growth ticks"
+  bonemeal-3x3-growth:
+    label: "3×3 with bone meal"
+    description: "Bone meal triggers giant trees immediately"
+  giant-min-height:
+    label: "Giant: min. height"
+    description: "Must be ≤ max. height"
+  giant-max-height:
+    label: "Giant: max. height"
+    description: "Must be ≥ min. height"
+  giant-canopy-radius:
+    label: "Giant: crown radius"
+    description: "Radius of the crown in blocks"
+  colossal-5x5-saplings:
+    label: "Colossi from 5×5"
+    description: "5×5 saplings create colossal trees"
+  natural-5x5-growth:
+    label: "5×5 natural growth"
+    description: "Colossi also grow from normal growth ticks"
+  bonemeal-5x5-growth:
+    label: "5×5 with bone meal"
+    description: "Bone meal triggers colossi immediately"
+  colossal-min-height:
+    label: "Colossus: min. height"
+    description: "Must be ≤ max. height"
+  colossal-max-height:
+    label: "Colossus: max. height"
+    description: "Must be ≥ min. height"
+  colossal-canopy-radius:
+    label: "Colossus: crown radius"
+    description: "Radius of the crown in blocks"
+  glowstone-growth:
+    label: "Luminous trees (glowstone dust)"
+    description: "Right-clicking with glowstone dust grows a protected luminous tree"
+  glowstone-xp-cost:
+    label: "Luminous tree: XP cost"
+    description: "XP points per luminous tree in survival mode"
+  glowstone-leaves-per-block:
+    label: "Luminous tree: leaves per glowstone"
+    description: "One glowstone per this many leaf blocks"
+  glowstone-max-blocks:
+    label: "Luminous tree: max. glowstone"
+    description: "Maximum number of glowstone blocks per tree"
+  glowstone-dark-light-level:
+    label: "Luminous tree: dark light level"
+    description: "Leaves up to this light level count as dark"
+  glowstone-growth-cooldown-seconds:
+    label: "Glowstone growth cooldown (seconds)"
+    description: "Minimum time between successful glowstone trees per player; 0 disables it"
+  glowstone-growth-daily-limit:
+    label: "Glowstone trees per UTC day"
+    description: "Maximum successful glowstone trees per player per UTC day; 0 disables it"
+  coal-growth:
+    label: "Coal trees"
+    description: "Right-clicking with coal grows an unprotected tree"
+  coal-growth-cooldown-seconds:
+    label: "Coal growth cooldown (seconds)"
+    description: "Minimum time between successful coal trees per player; 0 disables it"
+  coal-growth-daily-limit:
+    label: "Coal trees per UTC day"
+    description: "Maximum successful coal trees per player per UTC day; 0 disables it"
+  coal-costs:
+    normal:
+      label: "Coal cost: normal"
+      description: "Coal required for a single sapling or shrub growth (1–64)"
+    medium:
+      label: "Coal cost: medium"
+      description: "Coal required for a 2×2 tree (1–64)"
+    giant:
+      label: "Coal cost: giant"
+      description: "Coal required for a 3×3 tree (1–64)"
+    colossal:
+      label: "Coal cost: colossal"
+      description: "Coal required for a 5×5 tree (1–64)"
+    hedge:
+      label: "Coal cost: hedge"
+      description: "Coal required for a connected hedge (1–64)"
+  fire-protect-trunks:
+    label: "Protect custom trunks from fire"
+    description: "Protects exact tracked trunk blocks from direct burn events; it does not contain wildfires"
+  fire-protect-crowns:
+    label: "Protect custom crowns from fire"
+    description: "Protects exact tracked leaf blocks from direct burn events; it does not contain wildfires"
+  garden-regrowth-seconds:
+    label: "Garden leaf regrowth (seconds)"
+    description: "Delay before successfully pruned registered leaves regrow (10–86400 seconds)"
+
+# Web page "trees" (optional, Vystorm Core 0.24.0+). web.ui.* are the texts of the page in the Vystorm web UI.
+web:
+  module:
+    title: "Tree guide"
+    description: "How saplings grow into custom trees: formations, species, catalysts and costs"
+  error:
+    reload-failed: "Reload failed; the previous settings remain active: {error}"
+    no-permission: "You do not have permission for this."
+    not-ready: "CustomTrees is not ready yet."
+  ui:
+    tab:
+      guide: "How to grow"
+      species: "Species"
+      admin: "Admin"
+    loading: "Loading the tree guide…"
+    error: "The tree guide could not be loaded: {error}"
+    intro: "Plant saplings of the same kind at one height. The shape of the group decides which tree grows – the biggest complete formation wins."
+    worlds:
+      all: "Works in all normal (overworld) worlds."
+      some: "Works in these worlds: {worlds}"
+    permission: "Growing needs the permission {permission} (players have it by default)."
+    priority: "Order of checks: 5×5 → 3×3 → 2×2 → hedge/shrubs → single sapling."
+    formations: "Sapling formations"
+    formation:
+      single:
+        title: "Single sapling"
+        text: "Grows into a custom tree of its species in one of four architecture variants."
+      square:
+        title: "2×2 square"
+        text: "Four equal saplings as a square grow a medium-large tree with a thick trunk."
+      shrub:
+        title: "Shrubs"
+        text: "{min}–{max} connected saplings (also diagonally) become a group of shrubs."
+      hedge:
+        title: "Hedge"
+        text: "{min} or more connected saplings – straight, diagonal, around corners or branching, up to {max} – become a continuous hedge."
+      giant:
+        title: "Giant tree (3×3)"
+        text: "Nine equal saplings as a gap-free square grow an extra-large tree with a 3×3 trunk."
+      colossal:
+        title: "Colossus (5×5)"
+        text: "25 equal saplings as a gap-free square grow a colossal tree with a round trunk and a wide crown."
+    size:
+      height: "{min}–{max} blocks high"
+      radius: "crown radius {radius}"
+    disabled: "Disabled on this server"
+    legend:
+      sapling: "Sapling"
+      target: "Right-click or bone meal here (any sapling of the formation works)"
+    diagram: "Top view of the formation: {count} saplings"
+    trigger:
+      natural: "Natural growth"
+      bonemeal: "Bone meal"
+      glowstone: "Glowstone dust"
+      coal: "Coal"
+      "off": "{trigger}: off"
+    protected: "Protected trunk"
+    fellable: "Fellable"
+    catalysts: "Catalysts and costs"
+    catalyst:
+      bonemeal:
+        title: "Bone meal"
+        text: "Right-click a sapling of the formation: it grows at once."
+        cost: "Uses 1 bone meal"
+      glowstone:
+        title: "Luminous tree"
+        text: "Right-click with glowstone dust: a protected tree with glowstone in its dark inner foliage grows at once."
+        cost: "Uses 1 glowstone dust + {xp} XP points"
+        light: "One glowstone per {leaves} leaves, at most {max} per tree; leaves at light level {light} or darker count as dark."
+        nodrop: "This glowstone is decoration: mining or explosions drop nothing and pistons cannot move it."
+      coal:
+        title: "Coal tree"
+        text: "Right-click with coal: the same custom tree grows at once, deliberately without trunk protection, so tree-felling plugins may cut it."
+        cost: "Uses 1 coal"
+      creative: "In creative mode catalysts and XP are free."
+      refund: "If the tree cannot grow (no room, protected area), catalyst and XP are refunded."
+    tips: "Good to know"
+    room: "Keep the space above the whole formation free. Trees only replace air, grass, ferns, vines, natural leaves and their own saplings – never other blocks."
+    protection: "With CoreProtect the trunks of 3×3, 5×5 and luminous trees are recorded as placed blocks, so SmoothTimber does not fell them. 1×1, 2×2, shrubs, hedges and coal trees stay fellable."
+    generation:
+      "on": "World generation: in new chunks {chance} of the generated trees are replaced by the same custom shapes."
+      "off": "World generation: generated trees are not replaced on this server."
+    compare:
+      title: "Size comparison"
+      single: "1×1 tree"
+      giant: "3×3 giant"
+      colossal: "5×5 colossus"
+      player: "Player"
+      caption: "Maximum heights in blocks; a player is 2 blocks tall."
+      blocks: "{height} blocks"
+    species:
+      intro: "Every species has its own base shape and grows in four architecture variants."
+      height: "Single tree: {min}–{max} blocks"
+      "off": "Custom trees from single saplings are disabled on this server; 3×3 and 5×5 formations may still work."
+      oak: "Oak"
+      birch: "Birch"
+      spruce: "Spruce"
+      jungle: "Jungle"
+      acacia: "Acacia"
+      dark_oak: "Dark oak"
+      mangrove: "Mangrove"
+      cherry: "Cherry"
+      pale_oak: "Pale oak"
+    variants: "Variants"
+    variant:
+      open-grown: "free-standing"
+      forest: "forest"
+      windswept: "wind-bent"
+      ancient: "old tree"
+    shape:
+      round: "Round crown"
+      conifer: "Conifer"
+      umbrella: "Umbrella crown"
+      mangrove: "Mangrove with roots"
+    admin:
+      species-grown: "Trees grown by species"
+      since-restart: "Counts since the last server restart."
+      intro: "The same values as /customtrees status. Counters run since the last server start."
+      version: "CustomTrees {version}"
+      loading: "Loading status…"
+      counters: "Counters"
+      switches: "Switches"
+      chance: "Replacement chance"
+      worlds: "Worlds"
+      worlds-all: "all normal worlds"
+      integrations: "Integrations"
+      integrations-none: "none (Iris, CoreProtect, SmoothTimber not installed)"
+      reload: "Reload configuration"
+      reloading: "Reloading…"
+      reloaded: "Configuration reloaded."
+      reload-hint: "Re-reads config.yml and the language files, like /customtrees reload. An invalid configuration keeps the previous settings."
+      settings: "Change settings"
+      settings-hint: "Switches and numbers are on the settings page under Server → CustomTrees. The world selection (enabled-worlds) is only in config.yml."
+    counter:
+      grown: "Trees grown (1×1, 2×2)"
+      giant-grown: "Giant trees (3×3)"
+      colossal-grown: "Colossi (5×5)"
+      shrubs: "Shrub groups"
+      hedges: "Hedges"
+      glowstone-grown: "Luminous trees"
+      coal-grown: "Coal trees"
+      glowstone-blocks: "Glowstone placed"
+      coreprotect-logs: "CoreProtect trunk entries"
+      inspected-chunks: "New chunks inspected"
+      replaced: "Generated trees replaced"
+      queued: "Waiting in the queue"
+      species-grown: "Growth by species (since restart)"
+    switch:
+      player-grown: "Custom trees from saplings"
+      shrubs-hedges: "Shrubs and hedges"
+      replace-generated: "Replace generated trees"
+      new-chunk-pass: "New-chunk post-processing"
+      giant-3x3: "Giant trees from 3×3"
+      colossal-5x5: "Colossi from 5×5"
+      glowstone: "Luminous trees"
+      coal: "Coal trees"
+    state:
+      "on": "on"
+      "off": "off"
+
+garden:
+  unavailable: 'This garden action is unavailable; check permissions, Core version or storage health.'
+  no-tree: 'Look at leaves of your planted profile tree within six blocks.'
+  denied: 'No matching crown leaves could be pruned with your current building permissions.'
+  pruned: 'Pruned {count} crown leaves. Regrowth starts no earlier than {seconds} seconds, while you are online and the space remains empty.'
+  sapling-usage: '/customtrees sapling <random|open_grown|forest|windswept|ancient> <normal|medium|giant|colossal>. Requires Core 0.26.5 and customtrees.grow.'
+  single-sapling: 'Hold exactly one unmodified sapling in your main hand.'
+  sapling-ready: 'Growth profile saved. Plant the sapling in the matching size pattern; normal costs and protection rules still apply.'
+  pattern-mismatch: 'The saved profile requires its matching size pattern. Tagged saplings in one pattern must share the profile and owner.'
+
+world-tree:
+  invalid-setting: 'World-tree setting {setting} must be an integer from {min} to {max}.'
+  preview: '{size}x{size} formation: height {height}, crown radius {radius}. Right-click with bone meal. Obstacles are grown around; buildings are preserved.'
+  bonemeal: 'Use bone meal for this formation. Coal, glowstone and tagged profile plants are not supported for this size.'
+  busy: 'A growth job is already being prepared or grown. Please wait.'
+  planning: 'Preparing your world tree (loading the area, planning, checking space). No bone meal is consumed until the growth is approved.'
+  no-room: 'World-tree growth stopped before placement. Check the plants, soil, protected areas, your permission and your bone meal.'
+  shrunk: 'Not enough build height: this tree grows only {height} blocks tall (crown radius {radius}).'
+  too-high: 'There is not enough build height here for a world tree. Plant the formation lower.'
+  too-large: 'This formation needs too many chunks. Reduce the height or radius in the configuration.'
+  load-failed: 'The area around the world tree could not be loaded. Nothing was consumed; please try again shortly.'
+  growing: 'Growing your world tree in stages ({blocks} blocks).'
+  complete: 'Your world tree has finished growing.'
+  partial: 'World-tree growth ended with some blocks left out or unfinished. Existing buildings were preserved.'
+world-trees:
+  enabled:
+    label: 'World trees and fungi'
+    description: 'Configure explicit 10x10 growth. Dimensions include the crown; obstacles are grown around and trees that do not fit are shrunk.'
+  tree-height:
+    label: 'Tree height'
+    description: 'Configure explicit 10x10 growth. Dimensions include the crown; obstacles are grown around and trees that do not fit are shrunk.'
+  mushroom-height:
+    label: 'Mushroom height'
+    description: 'Configure explicit 10x10 growth. Dimensions include the crown; obstacles are grown around and trees that do not fit are shrunk.'
+  nether-height:
+    label: 'Nether height'
+    description: 'Configure explicit 10x10 growth. Dimensions include the crown; obstacles are grown around and trees that do not fit are shrunk.'
+  tree-radius:
+    label: 'Tree crown radius'
+    description: 'Configure explicit 10x10 growth. Dimensions include the crown; obstacles are grown around and trees that do not fit are shrunk.'
+  mushroom-radius:
+    label: 'Mushroom cap radius'
+    description: 'Configure explicit 10x10 growth. Dimensions include the crown; obstacles are grown around and trees that do not fit are shrunk.'
+  nether-radius:
+    label: 'Nether crown radius'
+    description: 'Configure explicit 10x10 growth. Dimensions include the crown; obstacles are grown around and trees that do not fit are shrunk.'
+  blocks-per-tick:
+    label: 'Blocks per tick'
+    description: 'Configure explicit 10x10 growth. Dimensions include the crown; obstacles are grown around and trees that do not fit are shrunk.'
+  replace-stone:
+    label: 'Replace natural stone'
+    description: 'World trees also replace stone, deepslate, andesite, diorite, granite, tuff, calcite, sandstone and terracotta. Never ores.'
+  max-skipped-percent:
+    label: 'Max. left-out blocks (%)'
+    description: 'Refuse a growth when more than this share of planned blocks would be left out. 100 = never refuse.'
+
+  fungi:
+    1x1:
+      mushroom-height:
+        label: '1x1 mushroom height'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      mushroom-radius:
+        label: '1x1 mushroom radius'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      nether-height:
+        label: '1x1 nether height'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      nether-radius:
+        label: '1x1 nether radius'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+    2x2:
+      mushroom-height:
+        label: '2x2 mushroom height'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      mushroom-radius:
+        label: '2x2 mushroom radius'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      nether-height:
+        label: '2x2 nether height'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      nether-radius:
+        label: '2x2 nether radius'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+    3x3:
+      mushroom-height:
+        label: '3x3 mushroom height'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      mushroom-radius:
+        label: '3x3 mushroom radius'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      nether-height:
+        label: '3x3 nether height'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      nether-radius:
+        label: '3x3 nether radius'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+    5x5:
+      mushroom-height:
+        label: '5x5 mushroom height'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      mushroom-radius:
+        label: '5x5 mushroom radius'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      nether-height:
+        label: '5x5 nether height'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+      nether-radius:
+        label: '5x5 nether radius'
+        description: 'Size for this fungus formation. Height includes the cap; radius is measured from the centre.'
+shaking:
+  resting: "<gray>This tree was shaken a moment ago. Try again in {minutes} min."
+  no-crown: "<gray>This trunk has no crown to shake."
+  nothing: "<gray>Only a few leaves fall down."
+  enabled:
+    label: 'Shake trees'
+    description: 'Right-click a trunk with an empty hand to shake fruit, sticks and saplings out of the crown.'
+  cooldown-seconds:
+    label: 'Rest time (seconds)'
+    description: 'How long a shaken tree rests before it can be shaken again. 0 = no rest.'
+  max-rolls:
+    label: 'Max. drops per shake'
+    description: 'Upper limit of loot rolls; a crown gets one roll per 40 leaves.'
+  min-leaves:
+    label: 'Min. leaves'
+    description: 'A trunk needs at least this many leaves of its species around it to be shaken.'
+  golden-apples:
+    label: 'Golden apples'
+    description: 'Oak and dark oak crowns may very rarely drop a golden apple. Turn off to keep them out of the economy.'
+panel:
+  trees: "Trees"
+  fungi: "Mushrooms & fungi"
+  next-task: "My next planting task"
+  squares: "Squares"
+  hedges: "Hedge rows"
+  active: "Active"
+  selected: "Selected: {pattern}"
+herbarium:
+  next-unknown: "<red>Unknown plant: {plant}. Use tab completion for plant IDs."
+  next-complete: "<green>You have collected every form in this selection!"
+  next-form: "<gold>Your next herbarium form: {plant} — {stage}"
+  next-click: "<yellow>Click for your own next planting task."
+  next-rules: "<gray>Use identical, untagged plants on suitable soil. Grow it yourself to collect it; server growth settings, costs and permissions still apply."
+  recipe:
+    sapling: "<gray>Plant {count} saplings in a {width}x{width} square and use bone meal on one."
+    explicit: "<gray>Plant {count} plants in a {width}x{width} square at the same height, then right-click one with bone meal in your main hand."
+    hedge: "<gray>Plant four matching saplings in a straight line (not a square), then use bone meal on one."
+    luminous: "<gray>Plant one sapling and right-click it with glowstone dust. The server may charge XP."
+  menu-title: "Herbarium"
+  menu-description: "Every tree and fungus form you have grown, with your forester rank"
+  title: "Herbarium of {player}"
+  summary: "<gold>{player}: <yellow>{rank}"
+  summary-progress: "<gray>{count} of {total} forms found"
+  summary-next: "<gray>Next rank: <white>{rank}</white> at {needed} forms"
+  summary-max: "<green>Every form found!"
+  plant-progress: "<gray>{count}/{total} forms"
+  found: "<green>✔ {stage}"
+  missing: "<dark_gray>✘ {stage}"
+  top-button: "<yellow>Top foresters"
+  top-header: "<gold>Top foresters (of {total} forms):"
+  top-line: "<gray>{place}. <white>{player}</white> – {count} ({rank})"
+  top-empty: "<gray>Nobody has grown a tree yet."
+  planting-button: "<green>Planting helper"
+  new-entry: "<green>Herbarium: new form <white>{plant} – {stage}</white> ({count}/{total})."
+  open: "<aqua><u>[Herbarium]</u>"
+  rank-up: "<gold>Herbarium: you are now <yellow>{rank}</yellow>!"
+  rank-broadcast: "<gold>{player} is now <yellow>{rank}</yellow> in the herbarium."
+  disabled: "<red>The herbarium is switched off on this server."
+  unknown-player: "<red>No herbarium found for {player}."
+  usage: "<gray>Usage: /customtrees herbarium [player|top]"
+  player-menu: "<green>Herbarium of {player}"
+  player-menu-lore: "<gray>{count}/{total} forms – {rank}"
+  rank:
+    sprout: "Sprout"
+    gardener: "Gardener"
+    forester: "Forester"
+    arborist: "Arborist"
+    warden: "Tree warden"
+    elder: "Forest elder"
+    keeper: "Keeper of Yggdrasil"
+  plant:
+    oak: "Oak"
+    birch: "Birch"
+    spruce: "Spruce"
+    jungle: "Jungle"
+    acacia: "Acacia"
+    dark_oak: "Dark oak"
+    mangrove: "Mangrove"
+    cherry: "Cherry"
+    pale_oak: "Pale oak"
+    red_mushroom: "Red mushroom"
+    brown_mushroom: "Brown mushroom"
+    crimson_fungus: "Crimson fungus"
+    warped_fungus: "Warped fungus"
+  stage:
+    single: "Single tree or shrub"
+    medium: "2×2 tree"
+    giant: "3×3 giant"
+    colossal: "5×5 colossus"
+    hedge: "Hedge"
+    luminous: "Luminous tree"
+    world: "10×10 world tree"
+    1x1: "1×1"
+    2x2: "2×2"
+    3x3: "3×3"
+    5x5: "5×5"
+    10x10: "10×10 giant"
+  enabled:
+    label: "Herbarium"
+    description: "Collect every tree and fungus form a player grows, with forester ranks, /customtrees herbarium and a player-menu entry."
+  announce-ranks:
+    label: "Announce ranks"
+    description: "Tell everyone online when a player reaches a new herbarium rank."
+planting:
+  status-none: "No planting pattern selected."
+  status-selection: "Selected: {pattern}; {count} plants in total; {seconds} seconds left; {mode}."
+  status-repeat: "stays active after use"
+  status-once: "one use"
+  hedge-size: "<green>Hedge row: {size} saplings"
+  hedge-how: "<gray>Place a sapling: the row extends forward on the same level. Saplings only."
+  hedge-armed: "<green>Hedge helper ({size}): place an untagged sapling; the row extends forward."
+  hedge-blocked: "<red>Hedge helper: {count} spots in the {size}-plant row are blocked or unsupported (red). Nothing else was planted."
+  hedge-missing: "<red>Hedge helper: you need {missing} more saplings for the {size}-plant row."
+  hedge-done: "<green>Hedge row ({size}) planted ({count} placed). Use bone meal to grow it."
+  menu-title: "Planting helper"
+  menu-description: "Plant a square or hedge row with one sapling"
+  title: "Planting helper"
+  size: "<green>{size}×{size} square"
+  size-count: "<gray>Uses {count} plants of one kind"
+  size-grows: "<gray>Grows: <white>{result}"
+  size-active: "<yellow>Active – place a sapling or fungus"
+  result:
+    2x2: "medium tree"
+    3x3: "3×3 giant"
+    5x5: "5×5 colossus"
+    10x10: "10×10 world tree or giant fungus"
+  "off": "<red>Switch off"
+  how: "<gray>Place one plant: it becomes the corner nearest to you, the square grows forward and to your right."
+  off-button: "<gray>[Off]"
+  armed: "<green>Planting helper {size}×{size}: place a sapling or fungus. It becomes the corner nearest to you; the square grows forward and to your right."
+  disarmed: "<gray>Planting helper switched off."
+  blocked: "<red>Planting helper: {count} spots of the {size}×{size} square are blocked or have no fitting ground (marked red). Nothing else was planted."
+  missing: "<red>Planting helper: you need {missing} more of this plant for the {size}×{size} square."
+  not-allowed: "<red>Planting helper: you may not plant here. Nothing else was planted."
+  tagged: "<yellow>Planting helper: tagged saplings are planted one by one."
+  done: "<green>Planting helper: {size}×{size} square planted ({count} placed). Use bone meal on any of them."
+  disabled: "<red>The planting helper is switched off on this server."
+  usage: "<gray>Usage: /customtrees plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off]"
+planting-helper:
+  max-hedge-length:
+    label: "Maximum hedge length"
+    description: "Maximum row length, 4 to 32. Values below 4 disable hedge planting."
+  enabled:
+    label: "Planting helper"
+    description: "Players pick a square size and plant the whole square with one sapling (/customtrees plant, /vmenu)."
+  max-size:
+    label: "Largest square"
+    description: "Largest square the helper offers: 2, 3, 5 or 10."
+  keep-active:
+    label: "Stay active"
+    description: "Keep the helper switched on after a square was planted."
+  timeout-seconds:
+    label: "Switch-off time (seconds)"
+    description: "An unused helper switches itself off after this time."
+timber:
+  progress: "<gray>Trunk <white>{chopped}/{required}</white> chopped"
+  busy: "<gray>Too many trees are falling right now; this log broke on its own."
+  too-large: "<gray>This tree is too big or reaches into unloaded land; only the log broke."
+  protected: "<red>Part of this tree is protected; it stays standing."
+  tool-spared: "<gold>Your axe would break; only this log was chopped."
+  player:
+    title: "Timber"
+    description: "Fell whole trees with an axe"
+    locked: "The server decides this for everyone."
+    mode-server: "Server default"
+    mode-drop: "Straight down"
+    mode-fall: "Tree fall"
+    use:
+      label: "Timber"
+      description: "Chopping a log with an axe fells the whole tree."
+    mode:
+      label: "How trees come down"
+      description: "Straight down: the tree breaks from the bottom up. Tree fall: it topples away from you and turns into items."
+  choice:
+    fall: "Tree fall"
+    drop: "Straight down"
+    first-log: "First log"
+    percent: "Percent of the trunk"
+    standing: "Only while standing"
+    sneaking: "Only while sneaking"
+    any: "Always"
+    server-mode: "Server mode"
+    disabled: "Never"
+    vanilla: "Like vanilla"
+    none: "Nothing"
+    pause: "Pause the built-in timber"
+    run-both: "Run both"
+  enabled:
+    label: "Timber"
+    description: "Chopping a log of a tree with an axe fells the whole tree. Player builds are never felled."
+  mode:
+    label: "How trees come down"
+    description: "fall = the tree topples away from the player around its stump and turns into items; drop = it breaks straight down from the bottom up."
+  trigger:
+    label: "When the tree falls"
+    description: "first-log = at the first chopped log; percent = once the set share of the trunk cross-section is cut."
+  trunk-percent:
+    label: "Trunk share to cut (%)"
+    description: "Percent trigger: share of the trunk cross-section that must be chopped before the tree falls."
+  sneaking:
+    label: "Sneaking"
+    description: "standing = timber only while not sneaking (sneak to chop single logs); sneaking = only while sneaking; any = always."
+  require-axe:
+    label: "Axe required"
+    description: "The timber only works with an axe in the main hand."
+  worlds:
+    label: "Worlds"
+    description: "Worlds where the timber works; empty = every world."
+  player-choice:
+    label: "Players choose"
+    description: "Players may switch the timber off for themselves and pick tree fall or straight down in /vsettings."
+  tree-types:
+    small:
+      label: "Small trees"
+      description: "Single and 2x2 trees, shrubs and hedges: server-mode, fall, drop or disabled."
+    giant:
+      label: "3x3 giants"
+      description: "Giant trees from 3x3 saplings: server-mode, fall, drop or disabled."
+    colossal:
+      label: "5x5 colossi"
+      description: "Colossal trees from 5x5 saplings: server-mode, fall, drop or disabled."
+    world:
+      label: "World trees"
+      description: "10x10 world trees and other huge trees: server-mode, fall, drop or disabled."
+  tool:
+    durability-per-log:
+      label: "Wear per log"
+      description: "Durability points the axe loses per felled log (Unbreaking applies)."
+    spare-tool:
+      label: "Spare the axe"
+      description: "Do not fell a tree when the axe would break; then only the chopped log breaks."
+  drops:
+    leaves:
+      label: "Leaf drops"
+      description: "vanilla = leaves drop saplings, sticks and apples like vanilla (Fortune helps, Silk Touch keeps leaves); none = nothing."
+    into-inventory:
+      label: "Into the inventory"
+      description: "Felled items go straight into the inventory; what does not fit lands on the ground."
+  replant:
+    label: "Replant"
+    description: "After a small tree falls, a fitting sapling is planted where its trunk stood (four for 2x2) – from the tree's drops, else from the inventory."
+  detection:
+    max-blocks:
+      label: "Max. blocks per tree"
+      description: "Trees with more logs and leaves are not felled."
+    max-radius:
+      label: "Max. radius"
+      description: "How far a tree may reach sideways from the chopped log."
+    max-height:
+      label: "Max. height"
+      description: "How high a tree may reach above the cut."
+    min-leaves:
+      label: "Min. leaves"
+      description: "A tree needs at least this many natural leaves (or caps for mushrooms and fungi)."
+    natural-ground:
+      label: "Natural ground"
+      description: "The trunk must stand on natural ground such as dirt, grass, sand, stone or nylium."
+    coreprotect-check:
+      label: "CoreProtect check"
+      description: "With CoreProtect: never fell logs a player placed."
+    only-generated-trees:
+      label: "Only generated trees"
+      description: "Only fell trees CustomTrees grew or generated (or, with CoreProtect, trees no player placed)."
+  fall:
+    max-displays:
+      label: "Max. displays per tree"
+      description: "Display entities of a falling tree; bigger trees are shown with merged cubes."
+    fall-ticks:
+      label: "Fall duration (ticks)"
+      description: "Duration of a full fall in ticks (20 = 1 second)."
+  performance:
+    blocks-per-tick:
+      label: "Blocks per tick"
+      description: "Blocks removed per tick, shared by all falling trees."
+    checks-per-tick:
+      label: "Checks per tick"
+      description: "Protection checks (break events) per tick, shared by all falling trees."
+    falls-per-world:
+      label: "Falls per world"
+      description: "Trees falling at the same time in one world."
+    falls-per-player:
+      label: "Falls per player"
+      description: "Trees one player can have falling at the same time."
+  other-timber-plugins:
+    label: "Other timber plugins"
+    description: "pause = switch the built-in timber off while SmoothTimber or another timber plugin is installed; run-both = keep both."
+  percent-memory-seconds:
+    label: "Memory of cuts (seconds)"
+    description: "Percent trigger: how long a half-chopped trunk remembers its cuts."
+  protected-region-kinds:
+    label: "Protected region kinds"
+    description: "Vystorm Core region kinds where the timber removes nothing; a region flag timber overrides it."
+
+# /customtrees through Vystorm Core: description, help and tab completion per player. "aliases" under
+# commands.customtrees are extra root commands (server-wide, the admin chooses the languages: Core config
+# commands.localized-aliases); "name" and "aliases" of a subcommand are accepted in every language, English always works.
+commands:
+  customtrees:
+    description: "Custom trees: tree guide, tagged saplings, pruning, planting helper and herbarium"
+    aliases: []
+    sub:
+      breed:
+        name: "breed"
+        aliases: []
+        description: "Cross the two growth-profile saplings held in your hands"
+      guide:
+        name: guide
+        aliases: []
+        description: "Open the tree guide (web page or in-game tutorial); also /customtrees web"
+        args:
+          page: "guide|species|admin"
+      sapling:
+        name: sapling
+        aliases: []
+        description: "Turn the single sapling in your hand into a sapling with crown form and size"
+        usage: "FORM SIZE"
+        args:
+          form: FORM
+          size: SIZE
+      prune:
+        name: prune
+        aliases: []
+        description: "Prune the crown of your garden tree you are looking at"
+      plant:
+        name: plant
+        aliases: []
+        description: "Planting helper: squares and hedge rows (menu, size, hedgeN or off)"
+        args:
+          size: "2x2|3x3|5x5|10x10|hedge4..hedge32|off"
+      herbarium:
+        name: herbarium
+        aliases: []
+        description: "Your herbarium, another player's herbarium or the top list"
+        args:
+          player: "PLAYER|top"
+      next:
+        name: next
+        aliases: []
+        description: "Suggest a missing herbarium form with planting instructions"
+        args:
+          plant: PLANT
+      status:
+        name: status
+        aliases: []
+        description: "Show the active settings and feature status"
+      reload:
+        name: reload
+        aliases: []
+        description: "Reload the configuration and language files"
+    values:
+      status: status
+      guide: guide
+      species: species
+      admin: admin
+      top: top
+
+# Free feature release: breeding
+breeding:
+  unavailable: "Breeding is unavailable, or you do not have permission."
+  survival: "Breed saplings in Survival or Adventure mode."
+  cooldown: "Your next cross is ready in {seconds}s."
+  parents: "Hold one growth-profile sapling of the same species in each hand. /customtrees sapling creates parents; breeding consumes both."
+  generation: "Generation {generation}"
+  cancelled: "Breeding cancelled; no parent was consumed."
+  success: "Generation {generation} created! Its crown and size are inherited, with a small mutation chance. Plant it normally."
+regrowth:
+  queued: "<green>🌱 This forest will grow back."
+fruit:
+  already: "<gray>This sapling already bears that fruit."
+  marked: "<green>🍎 Fruit sapling! The tree that grows here will bear fruit."
+  unripe: "<gray>Nothing is ripe yet."
+  harvested: "<green>🍎 You picked {amount} fruit."

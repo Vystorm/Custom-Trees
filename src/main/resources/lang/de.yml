@@ -1,0 +1,883 @@
+# CustomTrees – deutsche Texte. Fehlende Schlüssel fallen auf en.yml zurück.
+# MiniMessage-Formatierung (<red>, <gold>, …); &c-Codes funktionieren auch. {name} sind Platzhalter.
+
+compat:
+  missing-pale-oak: "Blasseichen und ihre Dekoration sind auf diesem Server nicht verfügbar; das Herbarium berücksichtigt nur verfügbare Arten."
+
+growth:
+  not-allowed: "<red>CustomTrees: Der Baum darf hier nicht wachsen."
+  no-room: "<red>CustomTrees: Direkt über dem Stamm ist nicht genug Platz."
+  refunded: "<yellow>CustomTrees: Wachstum abgebrochen, Kosten erstattet."
+  glowstone-missing-xp: "<red>Leuchtbaum: Du brauchst {xp} XP-Punkte."
+  glowstone-xp-used: "<gold>Leuchtbaum: {xp} XP-Punkte verbraucht."
+  catalyst-limited: "<red>CustomTrees: Das Spielerlimit für diesen Katalysator ist erreicht."
+  coal-class:
+    normal: "Normalbaum"
+    medium: "mittlerer Baum"
+    giant: "Großbaum"
+    colossal: "Kolossalbaum"
+    hedge: "Hecke"
+  coal-cost-preview: "<gray>Dieses Wachstum ({formation}) kostet <white>{coal} Kohle<gray>. Rechtsklicke dieselbe Formation erneut mit Kohle zur Bestätigung."
+  coal-cost-confirm: "<gold>Bestätigt: Bei erfolgreichem Wachstum werden {coal} Kohle verbraucht."
+  coal-missing: "<red>Du brauchst {coal} Kohle in der Hand, mit der du das Wachstum auslöst."
+  preview-disabled: "<red>CustomTrees: Baumwachstum ist in dieser Welt ausgeschaltet."
+  preview-no-pattern: "<yellow>CustomTrees: Hier gibt es keine aktive Setzling-Formation."
+  preview-pattern-unverified: "<yellow>CustomTrees: Benachbarte Chunks sind ungeladen, die Setzling-Formation ist daher noch unklar."
+  preview: "<gold>CustomTrees-Vorschau ({certainty}): {formation} {species}; Untergrund {ground}; Platz {space}; geschützter Core-Bereich {protection}."
+  preview-note: "<gray>Die Umrandung zeigt eine vorsichtige Schätzung des Platzbedarfs, nicht die spätere Baumform. Biome-Profile können Baumhöhe und Krone verändern; andere Schutz-Plugins entscheiden beim tatsächlichen Wachsen."
+  preview-confidence-detected: "erkannt"
+  preview-confidence-unverified: "möglicherweise unvollständig"
+  preview-ground-ok: "auf bekanntem CustomTrees-Boden"
+  preview-ground-bad: "nicht auf bekanntem CustomTrees-Boden"
+  preview-space-ok: "frei"
+  preview-space-bad: "blockiert"
+  preview-space-unloaded: "nicht geprüft (Chunk ungeladen)"
+  preview-protected: "überschneidet sich"
+  preview-unprotected: "keiner gefunden"
+  preview-pattern:
+    single: "einzelner Setzling"
+    square: "2×2-Setzlinge"
+    shrub: "Strauchgruppe"
+    hedge: "Hecke"
+    giant: "3×3-Riese"
+    colossal: "5×5-Koloss"
+growth-sapling:
+  name: "<green>{species}-Setzling"
+  form: "<gray>Kronenform: <white>{form}"
+  size: "<gray>Wachstumsgröße: <white>{growthClass}"
+  species:
+    oak: "Eiche"
+    birch: "Birke"
+    spruce: "Fichte"
+    jungle: "Tropenbaum"
+    acacia: "Akazie"
+    dark_oak: "Schwarzeiche"
+    mangrove: "Mangrove"
+    cherry: "Kirsche"
+    pale_oak: "Blasse Eiche"
+  crown:
+    random: "Zufällig"
+    open_grown: "Freistehend"
+    forest: "Wald"
+    windswept: "Windgebeugt"
+    ancient: "Altbaum"
+  class:
+    normal: "Normal"
+    medium: "Mittel"
+    giant: "Riesig"
+    colossal: "Kolossal"
+
+tutorial-hint: "<gray>[CustomTrees] Wie Setzlinge zu Bäumen wachsen: "
+
+action:
+  settings: "Einstellungen"
+  tutorial: "Tutorial"
+  web-guide: "<aqua><u>[Baumführer]</u>"
+
+command:
+  reloaded: "CustomTrees-Konfiguration neu geladen."
+  reload-failed: "<red>CustomTrees-Reload fehlgeschlagen; die bisherigen Einstellungen bleiben aktiv: {error}"
+  all-worlds: "alle normalen Welten"
+  no-permission: "<red>Dafür hast du keine Berechtigung."
+  usage: "<gray>Verwendung: /customtrees [guide [species|admin]], plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off], herbarium [Spieler|top] – Admins zusätzlich: status, reload"
+  players-only: "Nur Spieler können den Baumführer öffnen."
+  guide-unavailable: "<red>Der Baumführer ist gerade nicht verfügbar."
+
+validation:
+  replacement-chance: "replacement-chance muss zwischen {min} und {max} liegen."
+  giant-heights: "Die Höhe des Riesenbaums muss {min} <= min <= max <= {max} erfüllen."
+  giant-canopy-radius: "giant-canopy-radius muss zwischen {min} und {max} liegen."
+  colossal-heights: "Die Höhe des Kolosses muss {min} <= min <= max <= {max} erfüllen."
+  colossal-canopy-radius: "colossal-canopy-radius muss zwischen {min} und {max} liegen."
+  glowstone-xp-cost: "glowstone-xp-cost muss zwischen {min} und {max} liegen."
+  generated-tree-scan-depth: "generated-tree-scan-depth muss zwischen {min} und {max} liegen."
+  glowstone-leaves-per-block: "glowstone-leaves-per-block muss zwischen {min} und {max} liegen."
+  glowstone-max-blocks: "glowstone-max-blocks muss zwischen {min} und {max} liegen."
+  glowstone-dark-light-level: "glowstone-dark-light-level muss zwischen {min} und {max} liegen."
+  new-chunk-post-process-delay-ticks: "new-chunk-post-process-delay-ticks muss zwischen {min} und {max} liegen."
+  catalyst-cooldown: "{catalyst}-growth-cooldown-seconds muss zwischen {min} und {max} liegen."
+  catalyst-daily-limit: "{catalyst}-growth-daily-limit muss zwischen {min} und {max} liegen."
+  coal-costs-section: "settings.coal-costs muss ein YAML-Abschnitt sein."
+  coal-growth-cost: "coal-costs.{growthClass} muss eine ganze Zahl von {min} bis {max} sein."
+  biome-profiles-root: "biome-profiles muss ein YAML-Abschnitt sein."
+  biome-profiles-limit: "Es sind höchstens {max} Biome-Profilgruppen erlaubt."
+  biome-profiles-biome-limit: "Es sind höchstens {max} Biome-Zuweisungen erlaubt."
+  biome-profile-id: "Ungültige Biome-Profil-ID: {id}."
+  biome-profile-group: "Biome-Profil {id} muss ein YAML-Abschnitt sein."
+  biome-profile-biomes: "Biome-Profil {id} muss mindestens ein Biome auflisten."
+  biome-profile-number: "Biome-Profil {id} hat einen ungültigen Zahlenwert für {field}."
+  biome-profile-scale: "Biome-Profil {id}: {field} muss zwischen {min} und {max} liegen."
+  biome-profile-form: "Biome-Profil {id} hat eine unbekannte Kronenform: {form}."
+  biome-profile-chance: "Biome-Profil {id}: replacement-chance muss zwischen {min} und {max} liegen."
+  biome-profile-biome-key: "Biome-Profil {id} enthält einen ungültigen Biome-Schlüssel: {biome}."
+  biome-profile-unknown-biome: "Biome-Profil {id} verweist auf ein unbekanntes Biome: {biome}."
+  biome-profile-duplicate-biome: "Biome {biome} ist mehreren Profilen zugeordnet."
+  biome-profiles-core: "Nicht leere biome-profiles benötigen Vystorm Core 0.26.5 oder neuer mit TREE_GROWTH_PROFILES."
+
+settings:
+  spruce-ground:
+    label: "Waldboden um Fichten"
+    description: "Podsol und grobe Erde um große gepflanzte und neu generierte Fichten."
+  spruce-snow:
+    label: "Schnee um Fichten"
+    description: "Eine Schneeschicht auf freiem Boden; vorhandener Schnee und Pflanzen bleiben erhalten."
+  spruce-snow-cold-only:
+    label: "Fichtenschnee nur an kalten Stellen"
+    description: "Ausschalten, um dekorativen Schnee auch in warmen Biomen zu erlauben."
+  applied: "<green>CustomTrees-Einstellungen übernommen."
+  rejected: "<red>Ungültige Kombination: {error} – die vorherigen Werte wurden wiederhergestellt."
+  section-description: "Baumwachstum, Weltgeneration, Katalysatorkosten, Feuermarker und Garten-Regrowth. Welt-Freigaben (enabled-worlds) nur in config.yml."
+  custom-player-grown-trees:
+    label: "Eigene Bäume aus Setzlingen"
+    description: "Ersetzt das Wachstum von 1×1- und 2×2-Setzlingen durch eigene Baumformen"
+  connected-shrubs-and-hedges:
+    label: "Sträucher und Hecken"
+    description: "2–3 verbundene Setzlinge werden Sträucher, ab 4 eine Hecke"
+  replace-generated-trees:
+    label: "Generierte Bäume ersetzen"
+    description: "Ersetzt Bäume der Weltgeneration (nur neue Chunks)"
+  replacement-chance:
+    label: "Ersetzungschance"
+    description: "Anteil generierter Bäume, die ersetzt werden (0 = keiner, 1 = alle)"
+  generated-tree-scan-depth:
+    label: "Scan-Tiefe"
+    description: "Wie viele Blöcke unter der Oberfläche nach generierten Bäumen gesucht wird"
+  new-chunk-post-processing:
+    label: "Nachbearbeitung neuer Chunks"
+    description: "Einmaliger Durchlauf nach Iris für neu generierte Chunks"
+  new-chunk-post-process-delay-ticks:
+    label: "Verzögerung Nachbearbeitung"
+    description: "Ticks bis zur Nachbearbeitung eines neuen Chunks"
+  giant-3x3-saplings:
+    label: "Riesenbäume aus 3×3"
+    description: "3×3-Setzlinge erzeugen extra große Bäume"
+  natural-3x3-growth:
+    label: "3×3 natürlich wachsen"
+    description: "Riesenbäume wachsen auch durch normale Wachstumsticks"
+  bonemeal-3x3-growth:
+    label: "3×3 mit Knochenmehl"
+    description: "Knochenmehl löst Riesenbäume sofort aus"
+  giant-min-height:
+    label: "Riese: min. Höhe"
+    description: "Muss ≤ max. Höhe sein"
+  giant-max-height:
+    label: "Riese: max. Höhe"
+    description: "Muss ≥ min. Höhe sein"
+  giant-canopy-radius:
+    label: "Riese: Kronenradius"
+    description: "Radius der Krone in Blöcken"
+  colossal-5x5-saplings:
+    label: "Kolosse aus 5×5"
+    description: "5×5-Setzlinge erzeugen kolossale Bäume"
+  natural-5x5-growth:
+    label: "5×5 natürlich wachsen"
+    description: "Kolosse wachsen auch durch normale Wachstumsticks"
+  bonemeal-5x5-growth:
+    label: "5×5 mit Knochenmehl"
+    description: "Knochenmehl löst Kolosse sofort aus"
+  colossal-min-height:
+    label: "Koloss: min. Höhe"
+    description: "Muss ≤ max. Höhe sein"
+  colossal-max-height:
+    label: "Koloss: max. Höhe"
+    description: "Muss ≥ min. Höhe sein"
+  colossal-canopy-radius:
+    label: "Koloss: Kronenradius"
+    description: "Radius der Krone in Blöcken"
+  glowstone-growth:
+    label: "Leuchtbäume (Glühsteinstaub)"
+    description: "Rechtsklick mit Glühsteinstaub lässt einen geschützten Leuchtbaum wachsen"
+  glowstone-xp-cost:
+    label: "Leuchtbaum: XP-Kosten"
+    description: "XP-Punkte pro Leuchtbaum im Überlebensmodus"
+  glowstone-leaves-per-block:
+    label: "Leuchtbaum: Laub pro Glühstein"
+    description: "Ein Glühstein je so vielen Laubblöcken"
+  glowstone-max-blocks:
+    label: "Leuchtbaum: max. Glühstein"
+    description: "Höchstzahl Glühsteinblöcke pro Baum"
+  glowstone-dark-light-level:
+    label: "Leuchtbaum: Dunkel-Lichtstufe"
+    description: "Bis zu dieser Lichtstufe gilt Laub als dunkel"
+  glowstone-growth-cooldown-seconds:
+    label: "Leuchtbaum: Abklingzeit (Sekunden)"
+    description: "Mindestzeit zwischen erfolgreichen Leuchtbäumen je Spieler; 0 schaltet sie aus"
+  glowstone-growth-daily-limit:
+    label: "Leuchtbäume je UTC-Tag"
+    description: "Höchstzahl erfolgreicher Leuchtbäume je Spieler und UTC-Tag; 0 schaltet das Limit aus"
+  coal-growth:
+    label: "Kohlebäume"
+    description: "Rechtsklick mit Kohle lässt einen ungeschützten Baum wachsen"
+  coal-growth-cooldown-seconds:
+    label: "Kohlebaum: Abklingzeit (Sekunden)"
+    description: "Mindestzeit zwischen erfolgreichen Kohlebäumen je Spieler; 0 schaltet sie aus"
+  coal-growth-daily-limit:
+    label: "Kohlebäume je UTC-Tag"
+    description: "Höchstzahl erfolgreicher Kohlebäume je Spieler und UTC-Tag; 0 schaltet das Limit aus"
+  coal-costs:
+    normal:
+      label: "Kohlekosten: normal"
+      description: "Benötigte Kohle für Einzelbaum oder Strauchgruppe (1–64)"
+    medium:
+      label: "Kohlekosten: mittel"
+      description: "Benötigte Kohle für einen 2×2-Baum (1–64)"
+    giant:
+      label: "Kohlekosten: Riese"
+      description: "Benötigte Kohle für einen 3×3-Baum (1–64)"
+    colossal:
+      label: "Kohlekosten: Koloss"
+      description: "Benötigte Kohle für einen 5×5-Baum (1–64)"
+    hedge:
+      label: "Kohlekosten: Hecke"
+      description: "Benötigte Kohle für eine verbundene Hecke (1–64)"
+  fire-protect-trunks:
+    label: "Eigene Baumstämme vor Feuer schützen"
+    description: "Schützt exakt markierte Stammblöcke vor direkten Brandereignissen; verhindert keine Waldbrände"
+  fire-protect-crowns:
+    label: "Eigene Baumkronen vor Feuer schützen"
+    description: "Schützt exakt markierte Laubblöcke vor direkten Brandereignissen; verhindert keine Waldbrände"
+  garden-regrowth-seconds:
+    label: "Garten-Laubwachstum (Sekunden)"
+    description: "Wartezeit bis erfolgreich geschnittenes, registriertes Laub nachwächst (10–86400 Sekunden)"
+
+# Webseite "trees" (optional, Vystorm Core 0.24.0+). web.ui.* sind die Texte der Seite in der Vystorm-Weboberfläche.
+web:
+  module:
+    title: "Baumführer"
+    description: "Wie Setzlinge zu eigenen Bäumen wachsen: Formationen, Baumarten, Katalysatoren und Kosten"
+  error:
+    reload-failed: "Neu laden fehlgeschlagen; die bisherigen Einstellungen bleiben aktiv: {error}"
+    no-permission: "Dafür hast du keine Berechtigung."
+    not-ready: "CustomTrees ist noch nicht bereit."
+  ui:
+    tab:
+      guide: "Anbau"
+      species: "Baumarten"
+      admin: "Admin"
+    loading: "Baumführer wird geladen …"
+    error: "Der Baumführer konnte nicht geladen werden: {error}"
+    intro: "Pflanze Setzlinge derselben Art auf einer Höhe. Die Form der Gruppe entscheidet, welcher Baum wächst – die größte vollständige Formation gewinnt."
+    worlds:
+      all: "Funktioniert in allen normalen Welten (Oberwelt)."
+      some: "Funktioniert in diesen Welten: {worlds}"
+    permission: "Zum Wachsen braucht man das Recht {permission} (Spieler haben es standardmäßig)."
+    priority: "Reihenfolge der Prüfung: 5×5 → 3×3 → 2×2 → Hecke/Sträucher → einzelner Setzling."
+    formations: "Setzling-Formationen"
+    formation:
+      single:
+        title: "Einzelner Setzling"
+        text: "Wächst zu einem eigenen Baum seiner Art in einer von vier Architektur-Varianten."
+      square:
+        title: "2×2-Quadrat"
+        text: "Vier gleiche Setzlinge als Quadrat ergeben einen mittelgroßen Baum mit dickem Stamm."
+      shrub:
+        title: "Sträucher"
+        text: "{min}–{max} verbundene Setzlinge (auch diagonal) werden zu einer Strauchgruppe."
+      hedge:
+        title: "Hecke"
+        text: "Ab {min} verbundenen Setzlingen – gerade, diagonal, um Ecken oder verzweigt, bis zu {max} – entsteht eine durchgehende Hecke."
+      giant:
+        title: "Riesenbaum (3×3)"
+        text: "Neun gleiche Setzlinge als lückenloses Quadrat ergeben einen extragroßen Baum mit 3×3-Stamm."
+      colossal:
+        title: "Koloss (5×5)"
+        text: "25 gleiche Setzlinge als lückenloses Quadrat ergeben einen kolossalen Baum mit rundem Stamm und breiter Krone."
+    size:
+      height: "{min}–{max} Blöcke hoch"
+      radius: "Kronenradius {radius}"
+    disabled: "Auf diesem Server ausgeschaltet"
+    legend:
+      sapling: "Setzling"
+      target: "Hier rechtsklicken oder Knochenmehl (jeder Setzling der Formation geht)"
+    diagram: "Draufsicht der Formation: {count} Setzlinge"
+    trigger:
+      natural: "Natürliches Wachstum"
+      bonemeal: "Knochenmehl"
+      glowstone: "Glowstonestaub"
+      coal: "Kohle"
+      "off": "{trigger}: aus"
+    protected: "Geschützter Stamm"
+    fellable: "Fällbar"
+    catalysts: "Katalysatoren und Kosten"
+    catalyst:
+      bonemeal:
+        title: "Knochenmehl"
+        text: "Rechtsklick auf einen Setzling der Formation: Sie wächst sofort."
+        cost: "Verbraucht 1 Knochenmehl"
+      glowstone:
+        title: "Leuchtbaum"
+        text: "Rechtsklick mit Glowstonestaub: Sofort wächst ein geschützter Baum mit Glowstone im dunklen Inneren der Krone."
+        cost: "Verbraucht 1 Glowstonestaub + {xp} XP-Punkte"
+        light: "Ein Glowstone je {leaves} Laubblöcke, höchstens {max} pro Baum; Laub bis Lichtstufe {light} gilt als dunkel."
+        nodrop: "Dieser Glowstone ist Deko: Abbauen oder Explosionen droppen nichts, Kolben können ihn nicht verschieben."
+      coal:
+        title: "Kohlebaum"
+        text: "Rechtsklick mit Kohle: Sofort wächst derselbe eigene Baum, bewusst ohne Stammschutz, damit Baumfäll-Plugins ihn fällen dürfen."
+        cost: "Verbraucht 1 Kohle"
+      creative: "Im Kreativmodus sind Katalysatoren und XP kostenlos."
+      refund: "Kann der Baum nicht wachsen (kein Platz, geschütztes Gebiet), werden Katalysator und XP erstattet."
+    tips: "Gut zu wissen"
+    room: "Halte den Raum über der ganzen Formation frei. Bäume ersetzen nur Luft, Gras, Farn, Ranken, natürliches Laub und die eigenen Setzlinge – nie andere Blöcke."
+    protection: "Mit CoreProtect werden die Stämme von 3×3-, 5×5- und Leuchtbäumen als platzierte Blöcke eingetragen, damit SmoothTimber sie nicht fällt. 1×1, 2×2, Sträucher, Hecken und Kohlebäume bleiben fällbar."
+    generation:
+      "on": "Weltgeneration: In neuen Chunks werden {chance} der generierten Bäume durch dieselben eigenen Formen ersetzt."
+      "off": "Weltgeneration: Generierte Bäume werden auf diesem Server nicht ersetzt."
+    compare:
+      title: "Größenvergleich"
+      single: "1×1-Baum"
+      giant: "3×3-Riese"
+      colossal: "5×5-Koloss"
+      player: "Spieler"
+      caption: "Maximale Höhen in Blöcken; ein Spieler ist 2 Blöcke groß."
+      blocks: "{height} Blöcke"
+    species:
+      intro: "Jede Baumart hat ihre eigene Grundform und wächst in vier Architektur-Varianten."
+      height: "Einzelbaum: {min}–{max} Blöcke"
+      "off": "Eigene Bäume aus einzelnen Setzlingen sind auf diesem Server ausgeschaltet; 3×3- und 5×5-Formationen können trotzdem funktionieren."
+      oak: "Eiche"
+      birch: "Birke"
+      spruce: "Fichte"
+      jungle: "Tropenbaum"
+      acacia: "Akazie"
+      dark_oak: "Schwarzeiche"
+      mangrove: "Mangrove"
+      cherry: "Kirsche"
+      pale_oak: "Blasse Eiche"
+    variants: "Varianten"
+    variant:
+      open-grown: "freistehend"
+      forest: "Wald"
+      windswept: "windgebeugt"
+      ancient: "Altbaum"
+    shape:
+      round: "Runde Krone"
+      conifer: "Nadelbaum"
+      umbrella: "Schirmkrone"
+      mangrove: "Mangrove mit Wurzeln"
+    admin:
+      species-grown: "Gewachsene Bäume nach Art"
+      since-restart: "Zähler seit dem letzten Serverneustart."
+      intro: "Dieselben Werte wie /customtrees status. Die Zähler laufen seit dem letzten Serverstart."
+      version: "CustomTrees {version}"
+      loading: "Status wird geladen …"
+      counters: "Zähler"
+      switches: "Schalter"
+      chance: "Ersetzungschance"
+      worlds: "Welten"
+      worlds-all: "alle normalen Welten"
+      integrations: "Integrationen"
+      integrations-none: "keine (Iris, CoreProtect, SmoothTimber nicht installiert)"
+      reload: "Konfiguration neu laden"
+      reloading: "Lädt neu …"
+      reloaded: "Konfiguration neu geladen."
+      reload-hint: "Liest config.yml und die Sprachdateien neu ein, wie /customtrees reload. Eine ungültige Konfiguration lässt die bisherigen Einstellungen aktiv."
+      settings: "Einstellungen ändern"
+      settings-hint: "Schalter und Zahlen stehen auf der Einstellungsseite unter Server → CustomTrees. Die Weltauswahl (enabled-worlds) gibt es nur in config.yml."
+    counter:
+      grown: "Gewachsene Bäume (1×1, 2×2)"
+      giant-grown: "Riesenbäume (3×3)"
+      colossal-grown: "Kolosse (5×5)"
+      shrubs: "Strauchgruppen"
+      hedges: "Hecken"
+      glowstone-grown: "Leuchtbäume"
+      coal-grown: "Kohlebäume"
+      glowstone-blocks: "Gesetzter Glowstone"
+      coreprotect-logs: "CoreProtect-Stammeinträge"
+      inspected-chunks: "Geprüfte neue Chunks"
+      replaced: "Ersetzte generierte Bäume"
+      queued: "In der Warteschlange"
+      species-grown: "Wachstum je Baumart (seit Neustart)"
+    switch:
+      player-grown: "Eigene Bäume aus Setzlingen"
+      shrubs-hedges: "Sträucher und Hecken"
+      replace-generated: "Generierte Bäume ersetzen"
+      new-chunk-pass: "Nachlauf für neue Chunks"
+      giant-3x3: "Riesenbäume aus 3×3"
+      colossal-5x5: "Kolosse aus 5×5"
+      glowstone: "Leuchtbäume"
+      coal: "Kohlebäume"
+    state:
+      "on": "an"
+      "off": "aus"
+
+garden:
+  unavailable: 'Diese Gartenfunktion ist gerade nicht verfügbar; Rechte, Core-Version oder Speicherstatus prüfen.'
+  no-tree: 'Schau auf Blätter eines von dir gepflanzten Wuchsform-Baums in höchstens sechs Blöcken Entfernung.'
+  denied: 'Hier konnten keine passenden Kronenblätter mit deinen aktuellen Baurechten geschnitten werden.'
+  pruned: '{count} Kronenblätter geschnitten. Nachwachsen frühestens in {seconds} Sekunden, wenn du online bist und der Platz frei bleibt.'
+  sapling-usage: '/customtrees sapling <random|open_grown|forest|windswept|ancient> <normal|medium|giant|colossal>. Benötigt Core 0.26.5 und customtrees.grow.'
+  single-sapling: 'Halte genau einen unveränderten Setzling in der Haupthand.'
+  sapling-ready: 'Wuchsform gespeichert. Pflanze den Setzling im passenden Größenmuster; die üblichen Kosten und Schutzregeln gelten weiter.'
+  pattern-mismatch: 'Die gemerkte Wuchsform benötigt das passende Größenmuster. Gemerkte Setzlinge eines Musters müssen dieselbe Form und denselben Besitzer haben.'
+
+world-tree:
+  invalid-setting: 'Weltenbaum-Einstellung {setting} muss eine ganze Zahl von {min} bis {max} sein.'
+  preview: '{size}x{size}-Formation: Höhe {height}, Kronenradius {radius}. Rechtsklick mit Knochenmehl. Hindernisse werden umwachsen, Bauten bleiben erhalten.'
+  bonemeal: 'Benutze Knochenmehl für diese Formation. Kohle, Glowstone und markierte Profilsetzlinge werden bei dieser Größe nicht unterstützt.'
+  busy: 'Ein Weltenbaum wird bereits vorbereitet oder aufgebaut. Bitte kurz warten.'
+  planning: 'Dein Weltenbaum wird vorbereitet (Umgebung laden, planen, Platz prüfen). Knochenmehl wird erst nach der Freigabe verbraucht.'
+  no-room: 'Weltenbaum vor dem Aufbau gestoppt. Prüfe die Pflanzen, den Boden, Schutzgebiete, deine Berechtigung und dein Knochenmehl.'
+  shrunk: 'Nicht genug Bauhöhe: dieser Baum wächst nur {height} Blöcke hoch (Kronenradius {radius}).'
+  too-high: 'Hier ist zu wenig Bauhöhe für einen Weltenbaum. Pflanze die Formation weiter unten.'
+  too-large: 'Diese Formation braucht zu viele Chunks. Verkleinere Höhe oder Radius in der Konfiguration.'
+  load-failed: 'Die Umgebung des Weltenbaums konnte nicht geladen werden. Es wurde nichts verbraucht; versuche es gleich noch einmal.'
+  growing: 'Dein Weltenbaum wächst schrittweise ({blocks} Blöcke).'
+  complete: 'Dein Weltenbaum ist fertig gewachsen.'
+  partial: 'Weltenbaum mit ausgelassenen oder unfertigen Blöcken beendet. Vorhandene Bauten wurden nicht überschrieben.'
+world-trees:
+  enabled:
+    label: 'Weltenbäume und Pilze'
+    description: 'Stellt das gezielte 10x10-Wachstum ein. Maße enthalten die Krone; Hindernisse werden umwachsen, zu hohe Bäume passend verkleinert.'
+  tree-height:
+    label: 'Baumhöhe'
+    description: 'Stellt das gezielte 10x10-Wachstum ein. Maße enthalten die Krone; Hindernisse werden umwachsen, zu hohe Bäume passend verkleinert.'
+  mushroom-height:
+    label: 'Pilzhöhe'
+    description: 'Stellt das gezielte 10x10-Wachstum ein. Maße enthalten die Krone; Hindernisse werden umwachsen, zu hohe Bäume passend verkleinert.'
+  nether-height:
+    label: 'Nether-Höhe'
+    description: 'Stellt das gezielte 10x10-Wachstum ein. Maße enthalten die Krone; Hindernisse werden umwachsen, zu hohe Bäume passend verkleinert.'
+  tree-radius:
+    label: 'Baum-Kronenradius'
+    description: 'Stellt das gezielte 10x10-Wachstum ein. Maße enthalten die Krone; Hindernisse werden umwachsen, zu hohe Bäume passend verkleinert.'
+  mushroom-radius:
+    label: 'Pilz-Hutradius'
+    description: 'Stellt das gezielte 10x10-Wachstum ein. Maße enthalten die Krone; Hindernisse werden umwachsen, zu hohe Bäume passend verkleinert.'
+  nether-radius:
+    label: 'Nether-Kronenradius'
+    description: 'Stellt das gezielte 10x10-Wachstum ein. Maße enthalten die Krone; Hindernisse werden umwachsen, zu hohe Bäume passend verkleinert.'
+  blocks-per-tick:
+    label: 'Blöcke pro Tick'
+    description: 'Stellt das gezielte 10x10-Wachstum ein. Maße enthalten die Krone; Hindernisse werden umwachsen, zu hohe Bäume passend verkleinert.'
+  replace-stone:
+    label: 'Naturstein ersetzen'
+    description: 'Weltenbäume ersetzen auch Stein, Tiefenschiefer, Andesit, Diorit, Granit, Tuff, Kalzit, Sandstein und Terrakotta. Erze nie.'
+  max-skipped-percent:
+    label: 'Max. ausgelassene Blöcke (%)'
+    description: 'Wachstum ablehnen, wenn mehr als dieser Anteil der geplanten Blöcke ausgelassen würde. 100 = nie ablehnen.'
+
+  fungi:
+    1x1:
+      mushroom-height:
+        label: '1x1 Pilzhöhe'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      mushroom-radius:
+        label: '1x1 Pilzradius'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      nether-height:
+        label: '1x1 Nether-Höhe'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      nether-radius:
+        label: '1x1 Nether-Radius'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+    2x2:
+      mushroom-height:
+        label: '2x2 Pilzhöhe'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      mushroom-radius:
+        label: '2x2 Pilzradius'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      nether-height:
+        label: '2x2 Nether-Höhe'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      nether-radius:
+        label: '2x2 Nether-Radius'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+    3x3:
+      mushroom-height:
+        label: '3x3 Pilzhöhe'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      mushroom-radius:
+        label: '3x3 Pilzradius'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      nether-height:
+        label: '3x3 Nether-Höhe'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      nether-radius:
+        label: '3x3 Nether-Radius'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+    5x5:
+      mushroom-height:
+        label: '5x5 Pilzhöhe'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      mushroom-radius:
+        label: '5x5 Pilzradius'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      nether-height:
+        label: '5x5 Nether-Höhe'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+      nether-radius:
+        label: '5x5 Nether-Radius'
+        description: 'Maß für diese Pilzformation. Höhe enthält den Hut, Radius wird von der Mitte gemessen.'
+shaking:
+  resting: "<gray>Dieser Baum wurde gerade geschüttelt. Versuch es in {minutes} min wieder."
+  no-crown: "<gray>Dieser Stamm hat keine Krone zum Schütteln."
+  nothing: "<gray>Nur ein paar Blätter fallen herunter."
+  enabled:
+    label: 'Bäume schütteln'
+    description: 'Rechtsklick mit leerer Hand auf einen Stamm schüttelt Früchte, Stöcke und Setzlinge aus der Krone.'
+  cooldown-seconds:
+    label: 'Ruhezeit (Sekunden)'
+    description: 'So lange ruht ein geschüttelter Baum, bevor man ihn wieder schütteln kann. 0 = keine Ruhezeit.'
+  max-rolls:
+    label: 'Max. Funde pro Schütteln'
+    description: 'Obergrenze der Würfe; eine Krone bekommt einen Wurf pro 40 Blätter.'
+  min-leaves:
+    label: 'Mindestzahl Blätter'
+    description: 'Ein Stamm braucht mindestens so viele Blätter seiner Art, damit er sich schütteln lässt.'
+  golden-apples:
+    label: 'Goldäpfel'
+    description: 'Eichen und Schwarzeichen lassen ganz selten einen goldenen Apfel fallen. Ausschalten, um sie aus der Wirtschaft herauszuhalten.'
+panel:
+  trees: "Bäume"
+  fungi: "Pilze & Netherpilze"
+  next-task: "Meine nächste Pflanzaufgabe"
+  squares: "Quadrate"
+  hedges: "Heckenreihen"
+  active: "Aktiv"
+  selected: "Ausgewählt: {pattern}"
+herbarium:
+  next-unknown: "<red>Unbekannte Pflanze: {plant}. Nutze die Tab-Vervollständigung für Pflanzen-IDs."
+  next-complete: "<green>Du hast alle Formen dieser Auswahl gesammelt!"
+  next-form: "<gold>Deine nächste Herbarium-Form: {plant} — {stage}"
+  next-click: "<yellow>Klicken für deine eigene nächste Pflanzaufgabe."
+  next-rules: "<gray>Nutze gleiche, unmarkierte Pflanzen auf passendem Boden. Lass sie selbst wachsen, damit sie zählen; Serverregeln, Kosten und Rechte gelten weiterhin."
+  recipe:
+    sapling: "<gray>Pflanze {count} Setzlinge in einem {width}x{width}-Quadrat und benutze Knochenmehl an einem."
+    explicit: "<gray>Pflanze {count} Pflanzen in einem {width}x{width}-Quadrat auf gleicher Höhe und rechtsklicke eine mit Knochenmehl in der Haupthand."
+    hedge: "<gray>Pflanze vier gleiche Setzlinge in einer geraden Reihe (kein Quadrat) und benutze Knochenmehl an einem."
+    luminous: "<gray>Pflanze einen Setzling und rechtsklicke ihn mit Leuchtsteinstaub. Der Server kann dafür XP verlangen."
+  menu-title: "Herbarium"
+  menu-description: "Jede Baum- und Pilzform, die du gezogen hast, mit deinem Förster-Rang"
+  title: "Herbarium von {player}"
+  summary: "<gold>{player}: <yellow>{rank}"
+  summary-progress: "<gray>{count} von {total} Formen gefunden"
+  summary-next: "<gray>Nächster Rang: <white>{rank}</white> ab {needed} Formen"
+  summary-max: "<green>Alle Formen gefunden!"
+  plant-progress: "<gray>{count}/{total} Formen"
+  found: "<green>✔ {stage}"
+  missing: "<dark_gray>✘ {stage}"
+  top-button: "<yellow>Beste Förster"
+  top-header: "<gold>Beste Förster (von {total} Formen):"
+  top-line: "<gray>{place}. <white>{player}</white> – {count} ({rank})"
+  top-empty: "<gray>Noch hat niemand einen Baum gezogen."
+  planting-button: "<green>Pflanzhilfe"
+  new-entry: "<green>Herbarium: neue Form <white>{plant} – {stage}</white> ({count}/{total})."
+  open: "<aqua><u>[Herbarium]</u>"
+  rank-up: "<gold>Herbarium: Du bist jetzt <yellow>{rank}</yellow>!"
+  rank-broadcast: "<gold>{player} ist jetzt <yellow>{rank}</yellow> im Herbarium."
+  disabled: "<red>Das Herbarium ist auf diesem Server ausgeschaltet."
+  unknown-player: "<red>Für {player} gibt es kein Herbarium."
+  usage: "<gray>Verwendung: /customtrees herbarium [Spieler|top]"
+  player-menu: "<green>Herbarium von {player}"
+  player-menu-lore: "<gray>{count}/{total} Formen – {rank}"
+  rank:
+    sprout: "Keimling"
+    gardener: "Gärtner"
+    forester: "Förster"
+    arborist: "Baumpfleger"
+    warden: "Waldhüter"
+    elder: "Waldältester"
+    keeper: "Hüter von Yggdrasil"
+  plant:
+    oak: "Eiche"
+    birch: "Birke"
+    spruce: "Fichte"
+    jungle: "Tropenbaum"
+    acacia: "Akazie"
+    dark_oak: "Schwarzeiche"
+    mangrove: "Mangrove"
+    cherry: "Kirschbaum"
+    pale_oak: "Blasseiche"
+    red_mushroom: "Roter Pilz"
+    brown_mushroom: "Brauner Pilz"
+    crimson_fungus: "Karmesinpilz"
+    warped_fungus: "Wirrpilz"
+  stage:
+    single: "Einzelbaum oder Strauch"
+    medium: "2×2-Baum"
+    giant: "3×3-Riese"
+    colossal: "5×5-Koloss"
+    hedge: "Hecke"
+    luminous: "Leuchtbaum"
+    world: "10×10-Weltbaum"
+    1x1: "1×1"
+    2x2: "2×2"
+    3x3: "3×3"
+    5x5: "5×5"
+    10x10: "10×10-Riese"
+  enabled:
+    label: "Herbarium"
+    description: "Sammelt jede Baum- und Pilzform, die ein Spieler zieht, mit Förster-Rängen, /customtrees herbarium und einem Eintrag im Spielermenü."
+  announce-ranks:
+    label: "Ränge ankündigen"
+    description: "Allen Spielern online mitteilen, wenn jemand einen neuen Herbarium-Rang erreicht."
+planting:
+  status-none: "Keine Pflanzvorlage ausgewählt."
+  status-selection: "Ausgewählt: {pattern}; insgesamt {count} Pflanzen; noch {seconds} Sekunden; {mode}."
+  status-repeat: "bleibt nach Benutzung aktiv"
+  status-once: "einmalige Benutzung"
+  hedge-size: "<green>Heckenreihe: {size} Setzlinge"
+  hedge-how: "<gray>Setze einen Setzling: Die Reihe verläuft geradeaus auf gleicher Höhe. Nur Setzlinge."
+  hedge-armed: "<green>Heckenhilfe ({size}): Setze einen unmarkierten Setzling; die Reihe verläuft geradeaus."
+  hedge-blocked: "<red>Heckenhilfe: {count} Stellen der Reihe mit {size} Pflanzen sind blockiert oder ohne passenden Boden (rot). Nichts weiter gepflanzt."
+  hedge-missing: "<red>Heckenhilfe: Für die Reihe mit {size} Pflanzen fehlen {missing} Setzlinge."
+  hedge-done: "<green>Heckenreihe ({size}) gepflanzt ({count} gesetzt). Mit Knochenmehl wachsen lassen."
+  menu-title: "Pflanzhilfe"
+  menu-description: "Ein Quadrat oder eine Heckenreihe mit einem Setzling pflanzen"
+  title: "Pflanzhilfe"
+  size: "<green>{size}×{size}-Quadrat"
+  size-count: "<gray>Braucht {count} Pflanzen einer Sorte"
+  size-grows: "<gray>Wächst zu: <white>{result}"
+  size-active: "<yellow>Aktiv – setz einen Setzling oder Pilz"
+  result:
+    2x2: "mittelgroßer Baum"
+    3x3: "3×3-Riese"
+    5x5: "5×5-Koloss"
+    10x10: "10×10-Weltbaum oder Riesenpilz"
+  "off": "<red>Ausschalten"
+  how: "<gray>Setz eine Pflanze: Sie wird die Ecke, die dir am nächsten ist; das Quadrat wächst nach vorn und nach rechts."
+  off-button: "<gray>[Aus]"
+  armed: "<green>Pflanzhilfe {size}×{size}: Setz einen Setzling oder Pilz. Er wird die Ecke, die dir am nächsten ist; das Quadrat wächst nach vorn und nach rechts."
+  disarmed: "<gray>Pflanzhilfe ausgeschaltet."
+  blocked: "<red>Pflanzhilfe: {count} Felder des {size}×{size}-Quadrats sind belegt oder haben keinen passenden Boden (rot markiert). Sonst wurde nichts gepflanzt."
+  missing: "<red>Pflanzhilfe: Dir fehlen noch {missing} Stück dieser Pflanze für das {size}×{size}-Quadrat."
+  not-allowed: "<red>Pflanzhilfe: Du darfst hier nicht pflanzen. Sonst wurde nichts gepflanzt."
+  tagged: "<yellow>Pflanzhilfe: Markierte Setzlinge werden einzeln gepflanzt."
+  done: "<green>Pflanzhilfe: {size}×{size}-Quadrat gepflanzt ({count} gesetzt). Gib einem davon Knochenmehl."
+  disabled: "<red>Die Pflanzhilfe ist auf diesem Server ausgeschaltet."
+  usage: "<gray>Verwendung: /customtrees plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off]"
+planting-helper:
+  max-hedge-length:
+    label: "Maximale Heckenlänge"
+    description: "Maximale Reihenlänge, 4 bis 32. Werte unter 4 deaktivieren das Heckenpflanzen."
+  enabled:
+    label: "Pflanzhilfe"
+    description: "Spieler wählen eine Quadratgröße und pflanzen das ganze Quadrat mit einem Setzling (/customtrees plant, /vmenu)."
+  max-size:
+    label: "Größtes Quadrat"
+    description: "Größtes Quadrat, das die Pflanzhilfe anbietet: 2, 3, 5 oder 10."
+  keep-active:
+    label: "Aktiv bleiben"
+    description: "Die Pflanzhilfe bleibt nach einem gepflanzten Quadrat eingeschaltet."
+  timeout-seconds:
+    label: "Abschaltzeit (Sekunden)"
+    description: "Eine unbenutzte Pflanzhilfe schaltet sich nach dieser Zeit selbst aus."
+timber:
+  progress: "<gray>Stamm <white>{chopped}/{required}</white> angeschlagen"
+  busy: "<gray>Gerade fallen zu viele Bäume; nur dieser Stamm ist abgebaut."
+  too-large: "<gray>Dieser Baum ist zu groß oder reicht in ungeladenes Land; nur der Stamm ist abgebaut."
+  protected: "<red>Ein Teil dieses Baums ist geschützt; er bleibt stehen."
+  tool-spared: "<gold>Deine Axt würde zerbrechen; nur dieser Stamm ist abgebaut."
+  player:
+    title: "Baumfällen"
+    description: "Ganze Bäume mit der Axt fällen"
+    locked: "Das legt der Server für alle fest."
+    mode-server: "Server-Vorgabe"
+    mode-drop: "Gerade nach unten"
+    mode-fall: "Baumfall"
+    use:
+      label: "Baumfällen"
+      description: "Ein mit der Axt abgebauter Stamm fällt den ganzen Baum."
+    mode:
+      label: "Wie Bäume fallen"
+      description: "Gerade nach unten: der Baum zerfällt von unten nach oben. Baumfall: er kippt von dir weg und zerfällt in Items."
+  choice:
+    fall: "Baumfall"
+    drop: "Gerade nach unten"
+    first-log: "Erster Stamm"
+    percent: "Prozent des Stamms"
+    standing: "Nur ohne Schleichen"
+    sneaking: "Nur beim Schleichen"
+    any: "Immer"
+    server-mode: "Server-Modus"
+    disabled: "Nie"
+    vanilla: "Wie Vanilla"
+    none: "Nichts"
+    pause: "Eigenes Baumfällen pausieren"
+    run-both: "Beide laufen lassen"
+  enabled:
+    label: "Baumfällen"
+    description: "Ein mit der Axt abgebauter Stamm fällt den ganzen Baum. Spielerbauten werden nie gefällt."
+  mode:
+    label: "Wie Bäume fallen"
+    description: "fall = der Baum kippt vom Spieler weg um den Stumpf und zerfällt in Items; drop = er zerfällt gerade nach unten, von unten nach oben."
+  trigger:
+    label: "Wann der Baum fällt"
+    description: "first-log = beim ersten abgebauten Stamm; percent = sobald der eingestellte Anteil des Stammquerschnitts abgeschlagen ist."
+  trunk-percent:
+    label: "Abzuschlagender Stammanteil (%)"
+    description: "Prozent-Auslöser: Anteil des Stammquerschnitts, der abgeschlagen sein muss, bevor der Baum fällt."
+  sneaking:
+    label: "Schleichen"
+    description: "standing = nur ohne Schleichen (schleichen baut einzelne Stämme ab); sneaking = nur beim Schleichen; any = immer."
+  require-axe:
+    label: "Axt nötig"
+    description: "Baumfällen funktioniert nur mit einer Axt in der Haupthand."
+  worlds:
+    label: "Welten"
+    description: "Welten mit Baumfällen; leer = alle Welten."
+  player-choice:
+    label: "Spieler wählen"
+    description: "Spieler dürfen Baumfällen für sich ausschalten und in /vsettings Baumfall oder gerade nach unten wählen."
+  tree-types:
+    small:
+      label: "Kleine Bäume"
+      description: "Einzel- und 2x2-Bäume, Sträucher und Hecken: server-mode, fall, drop oder disabled."
+    giant:
+      label: "3x3-Riesen"
+      description: "Riesenbäume aus 3x3 Setzlingen: server-mode, fall, drop oder disabled."
+    colossal:
+      label: "5x5-Kolosse"
+      description: "Kolossbäume aus 5x5 Setzlingen: server-mode, fall, drop oder disabled."
+    world:
+      label: "Weltbäume"
+      description: "10x10-Weltbäume und andere riesige Bäume: server-mode, fall, drop oder disabled."
+  tool:
+    durability-per-log:
+      label: "Abnutzung pro Stamm"
+      description: "Haltbarkeitspunkte, die die Axt pro gefälltem Stamm verliert (Haltbarkeit-Verzauberung wirkt)."
+    spare-tool:
+      label: "Axt schonen"
+      description: "Keinen Baum fällen, wenn die Axt dabei zerbrechen würde; dann bricht nur der abgebaute Stamm."
+  drops:
+    leaves:
+      label: "Laub-Drops"
+      description: "vanilla = Laub droppt Setzlinge, Stöcke und Äpfel wie in Vanilla (Glück hilft, Behutsamkeit behält das Laub); none = nichts."
+    into-inventory:
+      label: "Ins Inventar"
+      description: "Gefällte Items landen direkt im Inventar; was nicht passt, fällt auf den Boden."
+  replant:
+    label: "Nachpflanzen"
+    description: "Nach dem Fällen eines kleinen Baums wird ein passender Setzling an den Stamm gepflanzt (vier bei 2x2) – aus den Drops des Baums, sonst aus dem Inventar."
+  detection:
+    max-blocks:
+      label: "Max. Blöcke pro Baum"
+      description: "Bäume mit mehr Stämmen und Laub werden nicht gefällt."
+    max-radius:
+      label: "Max. Radius"
+      description: "Wie weit ein Baum seitlich vom abgebauten Stamm reichen darf."
+    max-height:
+      label: "Max. Höhe"
+      description: "Wie hoch ein Baum über den Schnitt reichen darf."
+    min-leaves:
+      label: "Min. Laub"
+      description: "Ein Baum braucht mindestens so viel natürliches Laub (bei Pilzen die Hutblöcke)."
+    natural-ground:
+      label: "Natürlicher Boden"
+      description: "Der Stamm muss auf natürlichem Boden stehen, etwa Erde, Gras, Sand, Stein oder Nyzel."
+    coreprotect-check:
+      label: "CoreProtect-Prüfung"
+      description: "Mit CoreProtect: von Spielern gesetzte Stämme werden nie gefällt."
+    only-generated-trees:
+      label: "Nur erzeugte Bäume"
+      description: "Nur Bäume fällen, die CustomTrees wachsen ließ oder erzeugte (oder mit CoreProtect: die kein Spieler gesetzt hat)."
+  fall:
+    max-displays:
+      label: "Max. Anzeigen pro Baum"
+      description: "Anzeige-Entities eines fallenden Baums; größere Bäume werden mit zusammengefassten Würfeln gezeigt."
+    fall-ticks:
+      label: "Falldauer (Ticks)"
+      description: "Dauer eines vollen Falls in Ticks (20 = 1 Sekunde)."
+  performance:
+    blocks-per-tick:
+      label: "Blöcke pro Tick"
+      description: "Pro Tick entfernte Blöcke, geteilt durch alle fallenden Bäume."
+    checks-per-tick:
+      label: "Prüfungen pro Tick"
+      description: "Schutzprüfungen (Abbau-Events) pro Tick, geteilt durch alle fallenden Bäume."
+    falls-per-world:
+      label: "Fälle pro Welt"
+      description: "Gleichzeitig fallende Bäume in einer Welt."
+    falls-per-player:
+      label: "Fälle pro Spieler"
+      description: "Gleichzeitig fallende Bäume eines Spielers."
+  other-timber-plugins:
+    label: "Andere Timber-Plugins"
+    description: "pause = eigenes Baumfällen aus, solange SmoothTimber oder ein anderes Timber-Plugin installiert ist; run-both = beide laufen."
+  percent-memory-seconds:
+    label: "Gedächtnis der Schnitte (Sekunden)"
+    description: "Prozent-Auslöser: wie lange ein angeschlagener Stamm seine Schnitte behält."
+  protected-region-kinds:
+    label: "Geschützte Regionsarten"
+    description: "Vystorm-Core-Regionsarten, in denen das Baumfällen nichts entfernt; ein Regions-Flag timber hat Vorrang."
+
+# /customtrees über Vystorm Core: Beschreibung, Hilfe und Tab-Vervollständigung je Spieler. "aliases" unter
+# commands.customtrees sind zusätzliche Hauptbefehle (serverweit, der Admin wählt die Sprachen: Core-Konfig
+# commands.localized-aliases); "name" und "aliases" eines Unterbefehls werden in jeder Sprache verstanden, Englisch geht immer.
+commands:
+  customtrees:
+    description: "Eigene Bäume: Baum-Ratgeber, Setzlinge mit Form, Zurückschneiden, Pflanzhilfe und Herbarium"
+    aliases: [baumgarten]
+    sub:
+      breed:
+        name: "züchten"
+        aliases: []
+        description: "Zwei Profilsetzlinge in deinen Händen kreuzen"
+      guide:
+        name: ratgeber
+        aliases: [anleitung]
+        description: "Baum-Ratgeber öffnen (Web-Seite oder Tutorial im Spiel); auch /customtrees web"
+        args:
+          page: "ratgeber|arten|admin"
+      sapling:
+        name: setzling
+        aliases: []
+        description: "Den einzelnen Setzling in deiner Hand in einen Setzling mit Kronenform und Größe verwandeln"
+        usage: "FORM GRÖSSE"
+        args:
+          form: FORM
+          size: GRÖSSE
+      prune:
+        name: zurueckschneiden
+        aliases: [zurückschneiden, schneiden]
+        description: "Die Krone deines Gartenbaums zurückschneiden, den du ansiehst"
+      plant:
+        name: pflanzen
+        aliases: [pflanzhilfe]
+        description: "Pflanzhilfe: Quadrate und Heckenreihen (Menü, Größe, hedgeN oder aus)"
+        args:
+          size: "2x2|3x3|5x5|10x10|hedge4..hedge32|aus"
+      herbarium:
+        name: herbarium
+        aliases: []
+        description: "Dein Herbarium, das eines anderen Spielers oder die Bestenliste"
+        args:
+          player: "SPIELER|bestenliste"
+      next:
+        name: weiter
+        aliases: []
+        description: "Eine fehlende Herbarium-Form mit Pflanzanleitung vorschlagen"
+        args:
+          plant: PFLANZE
+      status:
+        name: status
+        aliases: []
+        description: "Aktive Einstellungen und Zustand der Funktionen anzeigen"
+      reload:
+        name: neuladen
+        aliases: []
+        description: "Konfiguration und Sprachdateien neu laden"
+    values:
+      status: status
+      guide: ratgeber
+      species: arten
+      admin: admin
+      top: bestenliste
+
+# Free feature release: breeding
+breeding:
+  unavailable: "Züchtung ist nicht verfügbar oder dir fehlt die Berechtigung."
+  survival: "Züchte Setzlinge im Überlebens- oder Abenteuermodus."
+  cooldown: "Deine nächste Kreuzung ist in {seconds}s möglich."
+  parents: "Halte je einen Profilsetzling derselben Art in jeder Hand. /customtrees sapling erstellt Eltern; beide werden verbraucht."
+  generation: "Generation {generation}"
+  cancelled: "Züchtung abgebrochen; kein Elternsetzling wurde verbraucht."
+  success: "Generation {generation} gezüchtet! Krone und Größe sind vererbt, mit kleiner Mutationschance. Normal einpflanzen."
+regrowth:
+  queued: "<green>🌱 Dieser Wald wächst wieder nach."
+fruit:
+  already: "<gray>Dieser Setzling trägt schon dieses Obst."
+  marked: "<green>🍎 Obstsetzling! Der Baum, der hier wächst, trägt Früchte."
+  unripe: "<gray>Noch ist nichts reif."
+  harvested: "<green>🍎 Du hast {amount} Früchte gepflückt."

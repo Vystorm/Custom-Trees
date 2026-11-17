@@ -1,0 +1,883 @@
+# CustomTrees – 简体中文文本。缺失的键会回退到 en.yml。
+# MiniMessage 格式（<red>、<gold> 等）；&c 颜色代码同样可用。{name} 为占位符。
+
+compat:
+  missing-pale-oak: "此服务器不支持苍白橡树及其装饰；植物图鉴仅包含可用树种。"
+
+growth:
+  not-allowed: "<red>CustomTrees：这棵树不能在此生长。"
+  no-room: "<red>CustomTrees：树干正上方空间不足。"
+  refunded: "<yellow>CustomTrees：生长已取消，消耗已退还。"
+  glowstone-missing-xp: "<red>发光树：你需要 {xp} 点经验。"
+  glowstone-xp-used: "<gold>发光树：已消耗 {xp} 点经验。"
+  catalyst-limited: "<red>CustomTrees：该催化剂的玩家次数上限已达到。"
+  coal-class:
+    normal: "普通树"
+    medium: "中型树"
+    giant: "巨树"
+    colossal: "巨像树"
+    hedge: "树篱"
+  coal-cost-preview: "<gray>此{formation}生长需要消耗 <white>{coal} 个煤炭<gray>。请在 10 秒内手持煤炭再次点击同一阵型以确认。"
+  coal-cost-confirm: "<gold>已确认：若生长成功，将消耗 {coal} 个煤炭。"
+  coal-missing: "<red>触发此生长的那只手中需要有 {coal} 个煤炭。"
+  preview-disabled: "<red>CustomTrees：此世界已禁用树木生长。"
+  preview-no-pattern: "<yellow>CustomTrees：此处没有可用的树苗阵型。"
+  preview-pattern-unverified: "<yellow>CustomTrees：相邻区块未加载，暂时无法判断树苗阵型。"
+  preview: "<gold>CustomTrees 预览（{certainty}）：{formation} {species}；地面 {ground}；空间 {space}；Core 保护区域 {protection}。"
+  preview-note: "<gray>轮廓只是保守的空间估算，并非最终树形。生物群系配置可能改变树高和树冠；其他保护插件会在实际生长时进行判定。"
+  preview-confidence-detected: "已检测"
+  preview-confidence-unverified: "可能不完整"
+  preview-ground-ok: "CustomTrees 支持的土壤"
+  preview-ground-bad: "不是已知的 CustomTrees 土壤"
+  preview-space-ok: "畅通"
+  preview-space-bad: "受阻"
+  preview-space-unloaded: "未检查（区块未加载）"
+  preview-protected: "有重叠"
+  preview-unprotected: "未检测到"
+  preview-pattern:
+    single: "单株树苗"
+    square: "2×2 树苗"
+    shrub: "灌木组"
+    hedge: "树篱"
+    giant: "3×3 巨树"
+    colossal: "5×5 巨像"
+growth-sapling:
+  name: "<green>{species}树苗"
+  form: "<gray>树冠形态：<white>{form}"
+  size: "<gray>生长尺寸：<white>{growthClass}"
+  species:
+    oak: "橡树"
+    birch: "白桦"
+    spruce: "云杉"
+    jungle: "丛林"
+    acacia: "金合欢"
+    dark_oak: "深色橡树"
+    mangrove: "红树"
+    cherry: "樱花"
+    pale_oak: "苍白橡树"
+  crown:
+    random: "随机"
+    open_grown: "孤立型"
+    forest: "森林型"
+    windswept: "风袭型"
+    ancient: "古树型"
+  class:
+    normal: "普通"
+    medium: "中型"
+    giant: "巨型"
+    colossal: "巨像"
+
+tutorial-hint: "<gray>[CustomTrees] 树苗如何长成树木："
+
+action:
+  settings: "设置"
+  tutorial: "教程"
+  web-guide: "<aqua><u>[树木指南]</u>"
+
+command:
+  reloaded: "CustomTrees 配置已重新加载。"
+  reload-failed: "<red>CustomTrees 重新加载失败，仍沿用之前的设置：{error}"
+  all-worlds: "所有普通世界"
+  no-permission: "<red>你没有权限执行此操作。"
+  usage: "<gray>用法：/customtrees [guide [species|admin]], plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off], herbarium [player|top] – 管理员另有：status, reload"
+  players-only: "只有玩家可以打开树木指南。"
+  guide-unavailable: "<red>树木指南目前不可用。"
+
+validation:
+  replacement-chance: "replacement-chance 必须在 {min} 到 {max} 之间。"
+  giant-heights: "巨树高度必须满足 {min} <= min <= max <= {max}。"
+  giant-canopy-radius: "giant-canopy-radius 必须在 {min} 到 {max} 之间。"
+  colossal-heights: "巨像高度必须满足 {min} <= min <= max <= {max}。"
+  colossal-canopy-radius: "colossal-canopy-radius 必须在 {min} 到 {max} 之间。"
+  glowstone-xp-cost: "glowstone-xp-cost 必须在 {min} 到 {max} 之间。"
+  generated-tree-scan-depth: "generated-tree-scan-depth 必须在 {min} 到 {max} 之间。"
+  glowstone-leaves-per-block: "glowstone-leaves-per-block 必须在 {min} 到 {max} 之间。"
+  glowstone-max-blocks: "glowstone-max-blocks 必须在 {min} 到 {max} 之间。"
+  glowstone-dark-light-level: "glowstone-dark-light-level 必须在 {min} 到 {max} 之间。"
+  new-chunk-post-process-delay-ticks: "new-chunk-post-process-delay-ticks 必须在 {min} 到 {max} 之间。"
+  catalyst-cooldown: "{catalyst}-growth-cooldown-seconds 必须在 {min} 到 {max} 之间。"
+  catalyst-daily-limit: "{catalyst}-growth-daily-limit 必须在 {min} 到 {max} 之间。"
+  coal-costs-section: "settings.coal-costs 必须是一个 YAML 节。"
+  coal-growth-cost: "coal-costs.{growthClass} 必须是 {min} 到 {max} 之间的整数。"
+  biome-profiles-root: "biome-profiles 必须是一个 YAML 节。"
+  biome-profiles-limit: "最多允许 {max} 个生物群系配置组。"
+  biome-profiles-biome-limit: "最多允许 {max} 个生物群系分配。"
+  biome-profile-id: "无效的生物群系配置 ID：{id}。"
+  biome-profile-group: "生物群系配置 {id} 必须是一个 YAML 节。"
+  biome-profile-biomes: "生物群系配置 {id} 必须至少列出一个生物群系。"
+  biome-profile-number: "生物群系配置 {id} 的 {field} 数值无效。"
+  biome-profile-scale: "生物群系配置 {id}：{field} 必须在 {min} 到 {max} 之间。"
+  biome-profile-form: "生物群系配置 {id} 含有未知的树冠形态：{form}。"
+  biome-profile-chance: "生物群系配置 {id}：replacement-chance 必须在 {min} 到 {max} 之间。"
+  biome-profile-biome-key: "生物群系配置 {id} 含有无效的生物群系键：{biome}。"
+  biome-profile-unknown-biome: "生物群系配置 {id} 引用了未知的生物群系：{biome}。"
+  biome-profile-duplicate-biome: "生物群系 {biome} 被分配给了多个配置。"
+  biome-profiles-core: "非空的 biome-profiles 需要 Vystorm Core 0.26.5 或更高版本（含 TREE_GROWTH_PROFILES）。"
+
+settings:
+  spruce-ground:
+    label: "云杉林地面"
+    description: "在种植和新生成的大型云杉周围铺上灰化土和砂土。"
+  spruce-snow:
+    label: "云杉周围的雪"
+    description: "在空地上放置一层雪，不会替换已有的雪或植物。"
+  spruce-snow-cold-only:
+    label: "云杉积雪仅限寒冷地区"
+    description: "关闭后，温暖生物群系中的云杉周围也可出现装饰性积雪。"
+  applied: "<green>CustomTrees 设置已应用。"
+  rejected: "<red>无效的组合：{error} – 已恢复之前的值。"
+  section-description: "树木生长、世界生成、催化剂消耗、防火标记和花园再生。世界选择（enabled-worlds）只能在 config.yml 中设置。"
+  custom-player-grown-trees:
+    label: "树苗长成自定义树"
+    description: "用自定义树形替换 1×1 和 2×2 树苗的生长"
+  connected-shrubs-and-hedges:
+    label: "灌木与树篱"
+    description: "2–3 株相连的树苗长成灌木，4 株或以上长成树篱"
+  replace-generated-trees:
+    label: "替换生成的树木"
+    description: "替换世界生成的树木（仅限新区块）"
+  replacement-chance:
+    label: "替换概率"
+    description: "被替换的生成树木比例（0 = 不替换，1 = 全部）"
+  generated-tree-scan-depth:
+    label: "扫描深度"
+    description: "在地表以下多少格内搜索生成的树木"
+  new-chunk-post-processing:
+    label: "新区块后处理"
+    description: "对新生成的区块进行一次性处理并替换其中的树木（也能捕获延迟生成的 Iris 对象）"
+  new-chunk-post-process-delay-ticks:
+    label: "后处理延迟"
+    description: "新区块经过多少刻后进行后处理"
+  giant-3x3-saplings:
+    label: "3×3 长成巨树"
+    description: "3×3 树苗会长成特大树木"
+  natural-3x3-growth:
+    label: "3×3 自然生长"
+    description: "巨树也会通过普通的生长刻长成"
+  bonemeal-3x3-growth:
+    label: "3×3 骨粉催熟"
+    description: "骨粉可立即催生巨树"
+  giant-min-height:
+    label: "巨树：最低高度"
+    description: "必须 ≤ 最高高度"
+  giant-max-height:
+    label: "巨树：最高高度"
+    description: "必须 ≥ 最低高度"
+  giant-canopy-radius:
+    label: "巨树：树冠半径"
+    description: "树冠半径（格）"
+  colossal-5x5-saplings:
+    label: "5×5 长成巨像"
+    description: "5×5 树苗会长成巨像树"
+  natural-5x5-growth:
+    label: "5×5 自然生长"
+    description: "巨像也会通过普通的生长刻长成"
+  bonemeal-5x5-growth:
+    label: "5×5 骨粉催熟"
+    description: "骨粉可立即催生巨像"
+  colossal-min-height:
+    label: "巨像：最低高度"
+    description: "必须 ≤ 最高高度"
+  colossal-max-height:
+    label: "巨像：最高高度"
+    description: "必须 ≥ 最低高度"
+  colossal-canopy-radius:
+    label: "巨像：树冠半径"
+    description: "树冠半径（格）"
+  glowstone-growth:
+    label: "发光树（荧石粉）"
+    description: "手持荧石粉右键可长出一棵受保护的发光树"
+  glowstone-xp-cost:
+    label: "发光树：经验消耗"
+    description: "生存模式下每棵发光树消耗的经验点数"
+  glowstone-leaves-per-block:
+    label: "发光树：每块荧石对应树叶数"
+    description: "每这么多树叶方块放置一块荧石"
+  glowstone-max-blocks:
+    label: "发光树：荧石上限"
+    description: "每棵树最多的荧石方块数"
+  glowstone-dark-light-level:
+    label: "发光树：黑暗亮度等级"
+    description: "亮度等级不高于此值的树叶视为黑暗"
+  glowstone-growth-cooldown-seconds:
+    label: "荧石生长冷却（秒）"
+    description: "每位玩家两次成功长出荧石树之间的最短间隔；0 表示禁用"
+  glowstone-growth-daily-limit:
+    label: "每 UTC 日荧石树数量"
+    description: "每位玩家每个 UTC 日最多成功长出的荧石树数量；0 表示禁用"
+  coal-growth:
+    label: "煤炭树"
+    description: "手持煤炭右键可长出一棵不受保护的树"
+  coal-growth-cooldown-seconds:
+    label: "煤炭生长冷却（秒）"
+    description: "每位玩家两次成功长出煤炭树之间的最短间隔；0 表示禁用"
+  coal-growth-daily-limit:
+    label: "每 UTC 日煤炭树数量"
+    description: "每位玩家每个 UTC 日最多成功长出的煤炭树数量；0 表示禁用"
+  coal-costs:
+    normal:
+      label: "煤炭消耗：普通"
+      description: "单株树苗或灌木生长所需的煤炭（1–64）"
+    medium:
+      label: "煤炭消耗：中型"
+      description: "2×2 树木所需的煤炭（1–64）"
+    giant:
+      label: "煤炭消耗：巨树"
+      description: "3×3 树木所需的煤炭（1–64）"
+    colossal:
+      label: "煤炭消耗：巨像"
+      description: "5×5 树木所需的煤炭（1–64）"
+    hedge:
+      label: "煤炭消耗：树篱"
+      description: "相连树篱所需的煤炭（1–64）"
+  fire-protect-trunks:
+    label: "自定义树干防火"
+    description: "保护被追踪的树干方块免受直接燃烧事件影响；不能阻止野火蔓延"
+  fire-protect-crowns:
+    label: "自定义树冠防火"
+    description: "保护被追踪的树叶方块免受直接燃烧事件影响；不能阻止野火蔓延"
+  garden-regrowth-seconds:
+    label: "花园树叶再生（秒）"
+    description: "成功修剪的已登记树叶重新长出前的延迟（10–86400 秒）"
+
+# 网页 "trees"（可选，Vystorm Core 0.24.0+）。web.ui.* 是 Vystorm 网页界面中该页面的文本。
+web:
+  module:
+    title: "树木指南"
+    description: "树苗如何长成自定义树木：阵型、树种、催化剂和消耗"
+  error:
+    reload-failed: "重新加载失败，仍沿用之前的设置：{error}"
+    no-permission: "你没有权限执行此操作。"
+    not-ready: "CustomTrees 尚未就绪。"
+  ui:
+    tab:
+      guide: "种植方法"
+      species: "树种"
+      admin: "管理"
+    loading: "正在加载树木指南…"
+    error: "无法加载树木指南：{error}"
+    intro: "在同一高度种下同种树苗。树苗组的形状决定长出哪种树——最大的完整阵型优先。"
+    worlds:
+      all: "在所有普通（主世界）世界中生效。"
+      some: "在以下世界中生效：{worlds}"
+    permission: "种植需要权限 {permission}（玩家默认拥有）。"
+    priority: "检查顺序：5×5 → 3×3 → 2×2 → 树篱/灌木 → 单株树苗。"
+    formations: "树苗阵型"
+    formation:
+      single:
+        title: "单株树苗"
+        text: "长成该树种的自定义树木，有四种结构变体之一。"
+      square:
+        title: "2×2 方阵"
+        text: "四株相同树苗排成方形，长成一棵树干粗壮的中大型树。"
+      shrub:
+        title: "灌木"
+        text: "{min}–{max} 株相连的树苗（含斜向）长成一组灌木。"
+      hedge:
+        title: "树篱"
+        text: "{min} 株或以上相连的树苗——直线、斜线、拐角或分叉均可，最多 {max} 株——长成一道连续的树篱。"
+      giant:
+        title: "巨树（3×3）"
+        text: "九株相同树苗排成无空隙的方形，长成一棵 3×3 树干的特大树木。"
+      colossal:
+        title: "巨像（5×5）"
+        text: "25 株相同树苗排成无空隙的方形，长成一棵圆形树干、树冠宽阔的巨像树。"
+    size:
+      height: "高 {min}–{max} 格"
+      radius: "树冠半径 {radius}"
+    disabled: "本服务器已禁用"
+    legend:
+      sapling: "树苗"
+      target: "在此右键或使用骨粉（阵型中任意树苗均可）"
+    diagram: "阵型俯视图：{count} 株树苗"
+    trigger:
+      natural: "自然生长"
+      bonemeal: "骨粉"
+      glowstone: "荧石粉"
+      coal: "煤炭"
+      "off": "{trigger}：关闭"
+    protected: "受保护的树干"
+    fellable: "可砍伐"
+    catalysts: "催化剂与消耗"
+    catalyst:
+      bonemeal:
+        title: "骨粉"
+        text: "右键阵型中的一株树苗：立即长成。"
+        cost: "消耗 1 份骨粉"
+      glowstone:
+        title: "发光树"
+        text: "手持荧石粉右键：立即长出一棵受保护的树，其昏暗的内部树叶中嵌有荧石。"
+        cost: "消耗 1 份荧石粉 + {xp} 点经验"
+        light: "每 {leaves} 片树叶放置一块荧石，每棵树最多 {max} 块；亮度等级不高于 {light} 的树叶视为黑暗。"
+        nodrop: "这些荧石仅作装饰：挖掘或爆炸不会掉落任何东西，活塞也无法推动。"
+      coal:
+        title: "煤炭树"
+        text: "手持煤炭右键：立即长出同样的自定义树木，但刻意不保护树干，因此伐木插件可以砍伐它。"
+        cost: "消耗 1 个煤炭"
+      creative: "创造模式下催化剂和经验均免费。"
+      refund: "若树木无法生长（空间不足、受保护区域），催化剂和经验将退还。"
+    tips: "须知"
+    room: "请保持整个阵型上方的空间畅通。树木只会替换空气、草、蕨、藤蔓、天然树叶和自身的树苗——绝不替换其他方块。"
+    protection: "安装 CoreProtect 后，3×3、5×5 和发光树的树干会被记录为放置的方块，因此 SmoothTimber 不会砍伐它们。1×1、2×2、灌木、树篱和煤炭树仍可砍伐。"
+    generation:
+      "on": "世界生成：在新区块中，{chance} 的生成树木会被替换为相同的自定义树形。"
+      "off": "世界生成：本服务器不替换生成的树木。"
+    compare:
+      title: "尺寸对比"
+      single: "1×1 树"
+      giant: "3×3 巨树"
+      colossal: "5×5 巨像"
+      player: "玩家"
+      caption: "最大高度（格）；玩家身高 2 格。"
+      blocks: "{height} 格"
+    species:
+      intro: "每个树种都有自己的基础树形，并有四种结构变体。"
+      height: "单株树：{min}–{max} 格"
+      "off": "本服务器已禁用单株树苗长成自定义树；3×3 和 5×5 阵型可能仍然有效。"
+      oak: "橡树"
+      birch: "白桦"
+      spruce: "云杉"
+      jungle: "丛林"
+      acacia: "金合欢"
+      dark_oak: "深色橡树"
+      mangrove: "红树"
+      cherry: "樱花"
+      pale_oak: "苍白橡树"
+    variants: "变体"
+    variant:
+      open-grown: "孤立"
+      forest: "森林"
+      windswept: "风袭"
+      ancient: "古树"
+    shape:
+      round: "圆形树冠"
+      conifer: "针叶树"
+      umbrella: "伞形树冠"
+      mangrove: "带根的红树"
+    admin:
+      species-grown: "各树种生长数量"
+      since-restart: "自上次服务器重启以来的计数。"
+      intro: "与 /customtrees status 的数值相同。计数器从上次服务器启动开始统计。"
+      version: "CustomTrees {version}"
+      loading: "正在加载状态…"
+      counters: "计数器"
+      switches: "开关"
+      chance: "替换概率"
+      worlds: "世界"
+      worlds-all: "所有普通世界"
+      integrations: "集成"
+      integrations-none: "无（未安装 Iris、CoreProtect、SmoothTimber）"
+      reload: "重新加载配置"
+      reloading: "正在重新加载…"
+      reloaded: "配置已重新加载。"
+      reload-hint: "重新读取 config.yml 和语言文件，与 /customtrees reload 相同。配置无效时保留之前的设置。"
+      settings: "更改设置"
+      settings-hint: "开关和数值位于设置页面的 服务器 → CustomTrees 下。世界选择（enabled-worlds）只能在 config.yml 中设置。"
+    counter:
+      grown: "已生长的树（1×1、2×2）"
+      giant-grown: "巨树（3×3）"
+      colossal-grown: "巨像（5×5）"
+      shrubs: "灌木组"
+      hedges: "树篱"
+      glowstone-grown: "发光树"
+      coal-grown: "煤炭树"
+      glowstone-blocks: "已放置的荧石"
+      coreprotect-logs: "CoreProtect 树干记录"
+      inspected-chunks: "已检查的新区块"
+      replaced: "已替换的生成树木"
+      queued: "队列中等待"
+      species-grown: "各树种生长（自重启以来）"
+    switch:
+      player-grown: "树苗长成自定义树"
+      shrubs-hedges: "灌木与树篱"
+      replace-generated: "替换生成的树木"
+      new-chunk-pass: "新区块后处理"
+      giant-3x3: "3×3 长成巨树"
+      colossal-5x5: "5×5 长成巨像"
+      glowstone: "发光树"
+      coal: "煤炭树"
+    state:
+      "on": "开"
+      "off": "关"
+
+garden:
+  unavailable: '此花园操作不可用；请检查权限、Core 版本或存储状态。'
+  no-tree: '请看向六格内你种下的配置树的树叶。'
+  denied: '以你当前的建造权限，无法修剪任何匹配的树冠树叶。'
+  pruned: '已修剪 {count} 片树冠树叶。最早 {seconds} 秒后开始再生，前提是你在线且该空间保持空置。'
+  sapling-usage: '/customtrees sapling <random|open_grown|forest|windswept|ancient> <normal|medium|giant|colossal>。需要 Core 0.26.5 和 customtrees.grow。'
+  single-sapling: '请在主手中只拿一株未修改的树苗。'
+  sapling-ready: '生长配置已保存。请按匹配的尺寸阵型种下树苗；常规消耗和保护规则仍然适用。'
+  pattern-mismatch: '保存的配置需要匹配的尺寸阵型。同一阵型中的标记树苗必须拥有相同的配置和所有者。'
+
+world-tree:
+  invalid-setting: '世界树设置 {setting} 必须是 {min} 到 {max} 之间的整数。'
+  preview: '{size}x{size} 阵型：高度 {height}，树冠半径 {radius}。手持骨粉右键。障碍物会被绕开生长；建筑会被保留。'
+  bonemeal: '此阵型请使用骨粉。此尺寸不支持煤炭、荧石粉和带标记的配置植物。'
+  busy: '已有一个生长任务正在准备或生长中，请稍候。'
+  planning: '正在准备你的世界树（加载区域、规划、检查空间）。在生长获准前不会消耗骨粉。'
+  no-room: '世界树在放置前停止生长。请检查植物、土壤、受保护区域、你的权限和骨粉。'
+  shrunk: '建筑高度不足：这棵树只能长到 {height} 格高（树冠半径 {radius}）。'
+  too-high: '此处的建筑高度不足以容纳世界树。请把阵型种得低一些。'
+  too-large: '此阵型需要的区块过多。请在配置中降低高度或半径。'
+  load-failed: '无法加载世界树周围的区域。未消耗任何物品；请稍后重试。'
+  growing: '你的世界树正在分阶段生长（{blocks} 个方块）。'
+  complete: '你的世界树已长成。'
+  partial: '世界树生长结束，但有部分方块被跳过或未完成。已有建筑均被保留。'
+world-trees:
+  enabled:
+    label: '世界树与巨型菌类'
+    description: '配置显式的 10x10 生长。尺寸包含树冠；障碍物会被绕开，放不下的树会被缩小。'
+  tree-height:
+    label: '树高'
+    description: '配置显式的 10x10 生长。尺寸包含树冠；障碍物会被绕开，放不下的树会被缩小。'
+  mushroom-height:
+    label: '蘑菇高度'
+    description: '配置显式的 10x10 生长。尺寸包含树冠；障碍物会被绕开，放不下的树会被缩小。'
+  nether-height:
+    label: '下界菌高度'
+    description: '配置显式的 10x10 生长。尺寸包含树冠；障碍物会被绕开，放不下的树会被缩小。'
+  tree-radius:
+    label: '树冠半径'
+    description: '配置显式的 10x10 生长。尺寸包含树冠；障碍物会被绕开，放不下的树会被缩小。'
+  mushroom-radius:
+    label: '蘑菇伞盖半径'
+    description: '配置显式的 10x10 生长。尺寸包含树冠；障碍物会被绕开，放不下的树会被缩小。'
+  nether-radius:
+    label: '下界菌冠半径'
+    description: '配置显式的 10x10 生长。尺寸包含树冠；障碍物会被绕开，放不下的树会被缩小。'
+  blocks-per-tick:
+    label: '每刻方块数'
+    description: '配置显式的 10x10 生长。尺寸包含树冠；障碍物会被绕开，放不下的树会被缩小。'
+  replace-stone:
+    label: '替换天然石头'
+    description: '世界树也会替换石头、深板岩、安山岩、闪长岩、花岗岩、凝灰岩、方解石、砂岩和陶瓦。绝不替换矿石。'
+  max-skipped-percent:
+    label: '最大跳过方块比例（%）'
+    description: '若计划方块中被跳过的比例超过此值，则拒绝生长。100 = 从不拒绝。'
+
+  fungi:
+    1x1:
+      mushroom-height:
+        label: '1x1 蘑菇高度'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      mushroom-radius:
+        label: '1x1 蘑菇半径'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      nether-height:
+        label: '1x1 下界菌高度'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      nether-radius:
+        label: '1x1 下界菌半径'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+    2x2:
+      mushroom-height:
+        label: '2x2 蘑菇高度'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      mushroom-radius:
+        label: '2x2 蘑菇半径'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      nether-height:
+        label: '2x2 下界菌高度'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      nether-radius:
+        label: '2x2 下界菌半径'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+    3x3:
+      mushroom-height:
+        label: '3x3 蘑菇高度'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      mushroom-radius:
+        label: '3x3 蘑菇半径'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      nether-height:
+        label: '3x3 下界菌高度'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      nether-radius:
+        label: '3x3 下界菌半径'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+    5x5:
+      mushroom-height:
+        label: '5x5 蘑菇高度'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      mushroom-radius:
+        label: '5x5 蘑菇半径'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      nether-height:
+        label: '5x5 下界菌高度'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+      nether-radius:
+        label: '5x5 下界菌半径'
+        description: '此菌类阵型的尺寸。高度包含伞盖；半径从中心计算。'
+shaking:
+  resting: "<gray>这棵树刚被摇过。请 {minutes} 分钟后再试。"
+  no-crown: "<gray>这根树干没有可摇的树冠。"
+  nothing: "<gray>只落下了几片叶子。"
+  enabled:
+    label: '摇树'
+    description: '空手右键树干，可从树冠中摇落果实、木棍和树苗。'
+  cooldown-seconds:
+    label: '休息时间（秒）'
+    description: '被摇过的树需要休息多久才能再次摇动。0 = 无需休息。'
+  max-rolls:
+    label: '每次摇树最多掉落'
+    description: '战利品抽取次数上限；树冠每 40 片树叶获得一次抽取。'
+  min-leaves:
+    label: '最少树叶'
+    description: '树干周围至少要有这么多同种树叶才能摇动。'
+  golden-apples:
+    label: '金苹果'
+    description: '橡树和深色橡树的树冠极少数情况下会掉落金苹果。关闭可将其排除在经济之外。'
+panel:
+  trees: "树木"
+  fungi: "蘑菇与菌类"
+  next-task: "我的下一个种植任务"
+  squares: "方阵"
+  hedges: "树篱行"
+  active: "已启用"
+  selected: "已选择：{pattern}"
+herbarium:
+  next-unknown: "<red>未知植物：{plant}。请使用 Tab 补全查看植物 ID。"
+  next-complete: "<green>你已收集此范围内的所有形态！"
+  next-form: "<gold>下一个图鉴目标：{plant} — {stage}"
+  next-click: "<yellow>点击查看你自己的下一个种植任务。"
+  next-rules: "<gray>请在合适的土壤上使用同种、未标记的植物。亲自催生才能收集；服务器的生长设置、费用和权限仍然适用。"
+  recipe:
+    sapling: "<gray>将 {count} 棵树苗种成 {width}x{width} 的正方形，然后对一棵使用骨粉。"
+    explicit: "<gray>将 {count} 株植物种在同一高度，组成 {width}x{width} 的正方形，然后主手持骨粉右键其中一株。"
+    hedge: "<gray>将四棵同种树苗种成一条直线（不是正方形），然后对其中一棵使用骨粉。"
+    luminous: "<gray>种下一棵树苗，用荧石粉右键它。服务器可能收取经验值。"
+  menu-title: "植物图鉴"
+  menu-description: "你种出的所有树木和菌类形态，以及你的林务员等级"
+  title: "{player}的植物图鉴"
+  summary: "<gold>{player}：<yellow>{rank}"
+  summary-progress: "<gray>已发现 {count}/{total} 种形态"
+  summary-next: "<gray>下一等级：<white>{rank}</white>，需要 {needed} 种形态"
+  summary-max: "<green>已发现所有形态！"
+  plant-progress: "<gray>{count}/{total} 种形态"
+  found: "<green>✔ {stage}"
+  missing: "<dark_gray>✘ {stage}"
+  top-button: "<yellow>林务员排行"
+  top-header: "<gold>林务员排行（共 {total} 种形态）："
+  top-line: "<gray>{place}. <white>{player}</white> – {count}（{rank}）"
+  top-empty: "<gray>还没有人种出过树。"
+  planting-button: "<green>种植助手"
+  new-entry: "<green>植物图鉴：新形态 <white>{plant} – {stage}</white>（{count}/{total}）。"
+  open: "<aqua><u>[植物图鉴]</u>"
+  rank-up: "<gold>植物图鉴：你现在是<yellow>{rank}</yellow>了！"
+  rank-broadcast: "<gold>{player} 在植物图鉴中晋升为<yellow>{rank}</yellow>。"
+  disabled: "<red>本服务器已关闭植物图鉴。"
+  unknown-player: "<red>找不到 {player} 的植物图鉴。"
+  usage: "<gray>用法：/customtrees herbarium [player|top]"
+  player-menu: "<green>{player}的植物图鉴"
+  player-menu-lore: "<gray>{count}/{total} 种形态 – {rank}"
+  rank:
+    sprout: "新芽"
+    gardener: "园丁"
+    forester: "林务员"
+    arborist: "树艺师"
+    warden: "护林人"
+    elder: "森林长老"
+    keeper: "世界树守护者"
+  plant:
+    oak: "橡树"
+    birch: "白桦"
+    spruce: "云杉"
+    jungle: "丛林"
+    acacia: "金合欢"
+    dark_oak: "深色橡树"
+    mangrove: "红树"
+    cherry: "樱花"
+    pale_oak: "苍白橡树"
+    red_mushroom: "红色蘑菇"
+    brown_mushroom: "棕色蘑菇"
+    crimson_fungus: "绯红菌"
+    warped_fungus: "诡异菌"
+  stage:
+    single: "单株树或灌木"
+    medium: "2×2 树"
+    giant: "3×3 巨树"
+    colossal: "5×5 巨像"
+    hedge: "树篱"
+    luminous: "发光树"
+    world: "10×10 世界树"
+    1x1: "1×1"
+    2x2: "2×2"
+    3x3: "3×3"
+    5x5: "5×5"
+    10x10: "10×10 巨型"
+  enabled:
+    label: "植物图鉴"
+    description: "收集玩家种出的每种树木和菌类形态，附带林务员等级、/customtrees herbarium 和玩家菜单入口。"
+  announce-ranks:
+    label: "公告等级"
+    description: "玩家达到新的植物图鉴等级时通知所有在线玩家。"
+planting:
+  status-none: "未选择种植模板。"
+  status-selection: "已选：{pattern}；共 {count} 株；剩余 {seconds} 秒；{mode}。"
+  status-repeat: "使用后保持启用"
+  status-once: "仅使用一次"
+  hedge-size: "<green>树篱行：{size} 棵树苗"
+  hedge-how: "<gray>放置一棵树苗：树篱将沿前方在同一高度延伸。仅支持树苗。"
+  hedge-armed: "<green>树篱助手（{size}）：放置一棵未标记的树苗，树篱将向前延伸。"
+  hedge-blocked: "<red>树篱助手：{size} 棵树苗的行中有 {count} 处被阻挡或地面不合适（红色标记）。未种植其他树苗。"
+  hedge-missing: "<red>树篱助手：种植 {size} 棵树苗的行还需要 {missing} 棵树苗。"
+  hedge-done: "<green>已种植树篱行（{size}，新增 {count} 棵）。使用骨粉催生。"
+  menu-title: "种植助手"
+  menu-description: "用一棵树苗种植方阵或树篱行"
+  title: "种植助手"
+  size: "<green>{size}×{size} 方阵"
+  size-count: "<gray>消耗 {count} 株同种植物"
+  size-grows: "<gray>长成：<white>{result}"
+  size-active: "<yellow>已启用 – 请放置树苗或菌类"
+  result:
+    2x2: "中型树"
+    3x3: "3×3 巨树"
+    5x5: "5×5 巨像"
+    10x10: "10×10 世界树或巨型菌"
+  "off": "<red>关闭"
+  how: "<gray>放置一株植物：它成为离你最近的角，方阵向前方和你的右侧延伸。"
+  off-button: "<gray>[关闭]"
+  armed: "<green>种植助手 {size}×{size}：请放置树苗或菌类。它成为离你最近的角；方阵向前方和你的右侧延伸。"
+  disarmed: "<gray>种植助手已关闭。"
+  blocked: "<red>种植助手：{size}×{size} 方阵中有 {count} 个位置被阻挡或没有合适的地面（已标红）。未种植其他植物。"
+  missing: "<red>种植助手：种满 {size}×{size} 方阵还需要 {missing} 株此植物。"
+  not-allowed: "<red>种植助手：你不能在此种植。未种植其他植物。"
+  tagged: "<yellow>种植助手：带标记的树苗会逐株种植。"
+  done: "<green>种植助手：{size}×{size} 方阵已种好（放置了 {count} 株）。对其中任意一株使用骨粉即可。"
+  disabled: "<red>本服务器已关闭种植助手。"
+  usage: "<gray>用法：/customtrees plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off]"
+planting-helper:
+  max-hedge-length:
+    label: "树篱最大长度"
+    description: "最大行长为 4 至 32。小于 4 时禁用树篱种植。"
+  enabled:
+    label: "种植助手"
+    description: "玩家选择方阵尺寸，用一株树苗种满整个方阵（/customtrees plant、/vmenu）。"
+  max-size:
+    label: "最大方阵"
+    description: "助手提供的最大方阵：2、3、5 或 10。"
+  keep-active:
+    label: "保持启用"
+    description: "种完一个方阵后助手保持开启。"
+  timeout-seconds:
+    label: "自动关闭时间（秒）"
+    description: "未使用的助手在此时间后自动关闭。"
+timber:
+  progress: "<gray>树干已砍 <white>{chopped}/{required}</white>"
+  busy: "<gray>当前倒下的树太多；只破坏了这块原木。"
+  too-large: "<gray>这棵树太大或延伸到未加载的区域；只破坏了这块原木。"
+  protected: "<red>这棵树的一部分受到保护；它将保持直立。"
+  tool-spared: "<gold>你的斧会损坏；只砍下了这块原木。"
+  player:
+    title: "伐木"
+    description: "用斧砍倒整棵树"
+    locked: "此项由服务器统一决定。"
+    mode-server: "服务器默认"
+    mode-drop: "直接掉落"
+    mode-fall: "树木倒下"
+    use:
+      label: "伐木"
+      description: "用斧砍一块原木即可砍倒整棵树。"
+    mode:
+      label: "树木如何倒下"
+      description: "直接掉落：树从下往上破碎。树木倒下：树向远离你的方向倾倒并化为物品。"
+  choice:
+    fall: "树木倒下"
+    drop: "直接掉落"
+    first-log: "第一块原木"
+    percent: "树干百分比"
+    standing: "仅站立时"
+    sneaking: "仅潜行时"
+    any: "始终"
+    server-mode: "服务器模式"
+    disabled: "从不"
+    vanilla: "同原版"
+    none: "无"
+    pause: "暂停内置伐木"
+    run-both: "同时运行"
+  enabled:
+    label: "伐木"
+    description: "用斧砍树的一块原木即可砍倒整棵树。玩家建筑永远不会被砍倒。"
+  mode:
+    label: "树木如何倒下"
+    description: "fall = 树以树桩为轴向远离玩家的方向倾倒并化为物品；drop = 树从下往上直接破碎。"
+  trigger:
+    label: "树木何时倒下"
+    description: "first-log = 砍下第一块原木时；percent = 砍掉设定比例的树干横截面后。"
+  trunk-percent:
+    label: "需砍树干比例（%）"
+    description: "百分比触发：树倒下前必须砍掉的树干横截面比例。"
+  sneaking:
+    label: "潜行"
+    description: "standing = 仅在不潜行时伐木（潜行可单独砍原木）；sneaking = 仅潜行时；any = 始终。"
+  require-axe:
+    label: "需要斧"
+    description: "伐木仅在主手持斧时生效。"
+  worlds:
+    label: "世界"
+    description: "伐木生效的世界；留空 = 所有世界。"
+  player-choice:
+    label: "玩家自选"
+    description: "玩家可在 /vsettings 中为自己关闭伐木，并选择树木倒下或直接掉落。"
+  tree-types:
+    small:
+      label: "小型树"
+      description: "单株和 2x2 树、灌木和树篱：server-mode、fall、drop 或 disabled。"
+    giant:
+      label: "3x3 巨树"
+      description: "由 3x3 树苗长成的巨树：server-mode、fall、drop 或 disabled。"
+    colossal:
+      label: "5x5 巨像"
+      description: "由 5x5 树苗长成的巨像树：server-mode、fall、drop 或 disabled。"
+    world:
+      label: "世界树"
+      description: "10x10 世界树和其他巨大树木：server-mode、fall、drop 或 disabled。"
+  tool:
+    durability-per-log:
+      label: "每块原木磨损"
+      description: "每砍倒一块原木斧损失的耐久度（耐久附魔生效）。"
+    spare-tool:
+      label: "保护斧"
+      description: "斧即将损坏时不砍倒整棵树；此时只破坏被砍的那块原木。"
+  drops:
+    leaves:
+      label: "树叶掉落"
+      description: "vanilla = 树叶像原版一样掉落树苗、木棍和苹果（时运有效，精准采集保留树叶）；none = 不掉落。"
+    into-inventory:
+      label: "放入物品栏"
+      description: "砍下的物品直接进入物品栏；放不下的掉落在地上。"
+  replant:
+    label: "自动补种"
+    description: "砍倒小型树后，在原树干位置种下对应的树苗（2x2 种四棵）——优先使用这棵树掉落的树苗，否则从物品栏取。"
+  detection:
+    max-blocks:
+      label: "每棵树方块上限"
+      description: "原木和树叶超过此数量的树不会被砍倒。"
+    max-radius:
+      label: "最大半径"
+      description: "树从被砍原木向侧面延伸的最大距离。"
+    max-height:
+      label: "最大高度"
+      description: "树在切口上方延伸的最大高度。"
+    min-leaves:
+      label: "最少树叶"
+      description: "树至少需要这么多天然树叶（蘑菇和菌类则为伞盖）。"
+    natural-ground:
+      label: "天然地面"
+      description: "树干必须立于泥土、草方块、沙子、石头或菌岩等天然地面上。"
+    coreprotect-check:
+      label: "CoreProtect 检查"
+      description: "安装 CoreProtect 时：绝不砍倒玩家放置的原木。"
+    only-generated-trees:
+      label: "仅限生成的树"
+      description: "只砍倒 CustomTrees 种出或生成的树（或在安装 CoreProtect 时，非玩家放置的树）。"
+  fall:
+    max-displays:
+      label: "每棵树展示实体上限"
+      description: "倒下的树使用的展示实体数；更大的树会用合并的方块显示。"
+    fall-ticks:
+      label: "倒下时长（刻）"
+      description: "一次完整倒下所需的刻数（20 = 1 秒）。"
+  performance:
+    blocks-per-tick:
+      label: "每刻方块数"
+      description: "每刻移除的方块数，由所有正在倒下的树共享。"
+    checks-per-tick:
+      label: "每刻检查数"
+      description: "每刻的保护检查（破坏事件）数，由所有正在倒下的树共享。"
+    falls-per-world:
+      label: "每个世界倒树数"
+      description: "一个世界中同时倒下的树的数量。"
+    falls-per-player:
+      label: "每位玩家倒树数"
+      description: "一位玩家同时可以有多少棵树在倒下。"
+  other-timber-plugins:
+    label: "其他伐木插件"
+    description: "pause = 安装 SmoothTimber 或其他伐木插件时关闭内置伐木；run-both = 两者同时保留。"
+  percent-memory-seconds:
+    label: "砍伐记忆（秒）"
+    description: "百分比触发：砍了一半的树干记住其切口的时长。"
+  protected-region-kinds:
+    label: "受保护的区域类型"
+    description: "伐木不会移除任何方块的 Vystorm Core 区域类型；区域标志 timber 可覆盖此设置。"
+
+# 通过 Vystorm Core 提供的 /customtrees：每位玩家看到自己语言的说明、帮助和 Tab 补全。commands.customtrees 下的
+# "aliases" 是额外的主命令（全服生效，由管理员在 Core 配置 commands.localized-aliases 中选择语言）；子命令的 "name"
+# 和 "aliases" 在所有语言中都可使用，英文始终有效。
+commands:
+  customtrees:
+    description: "自定义树木：树木指南、带形状的树苗、修剪、种植助手和植物图鉴"
+    aliases: [自定义树木]
+    sub:
+      breed:
+        name: "育种"
+        aliases: []
+        description: "杂交双手中的两株生长预设树苗"
+      guide:
+        name: 指南
+        aliases: []
+        description: "打开树木指南（网页或游戏内教程）；也可用 /customtrees web"
+        args:
+          page: "指南|树种|管理"
+      sapling:
+        name: 树苗
+        aliases: []
+        description: "把你手中的单个树苗变成带树冠形状和大小的树苗"
+        usage: "形状 大小"
+        args:
+          form: 形状
+          size: 大小
+      prune:
+        name: 修剪
+        aliases: []
+        description: "修剪你正看着的花园树的树冠"
+      plant:
+        name: 种植
+        aliases: []
+        description: "种植助手：方阵和树篱行（菜单、大小、hedgeN 或关）"
+        args:
+          size: "2x2|3x3|5x5|10x10|hedge4..hedge32|关"
+      herbarium:
+        name: 植物图鉴
+        aliases: [图鉴]
+        description: "你的植物图鉴、其他玩家的图鉴或排行榜"
+        args:
+          player: "玩家|排行榜"
+      next:
+        name: 下一步
+        aliases: []
+        description: "推荐尚未收集的植物形态并说明种植方法"
+        args:
+          plant: 植物
+      status:
+        name: 状态
+        aliases: []
+        description: "显示当前设置和功能状态"
+      reload:
+        name: 重载
+        aliases: []
+        description: "重新加载配置和语言文件"
+    values:
+      status: 状态
+      guide: 指南
+      species: 树种
+      admin: 管理
+      top: 排行榜
+
+# Free feature release: breeding
+breeding:
+  unavailable: "育种不可用，或你没有权限。"
+  survival: "请在生存或冒险模式培育树苗。"
+  cooldown: "{seconds}秒后可再次育种。"
+  parents: "双手各持一株同种的生长预设树苗。用 /customtrees sapling 创建亲本；育种消耗两株。"
+  generation: "第{generation}代"
+  cancelled: "育种已取消，未消耗亲本。"
+  success: "第{generation}代培育成功！继承树冠和大小，有小概率变异。正常种植即可。"
+regrowth:
+  queued: "<green>🌱 这片森林会重新长出来。"
+fruit:
+  already: "<gray>这棵树苗已经结这种果实。"
+  marked: "<green>🍎 果树苗！在这里长出的树会结果。"
+  unripe: "<gray>还没有成熟的果实。"
+  harvested: "<green>🍎 你摘了 {amount} 个果实。"

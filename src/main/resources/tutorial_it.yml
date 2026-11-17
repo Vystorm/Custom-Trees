@@ -1,0 +1,108 @@
+# Italiano — UTF-8. Keep keys, placeholders and formatting tokens unchanged.
+title: CustomTrees
+permission: customtrees.grow
+pages:
+- title: Piantare alberi personalizzati
+  text: |
+    CustomTrees sostituisce la crescita degli zaffiri nei mondi normali con le sue forme di albero. Per impostazione predefinita ogni NORMAL mondo è abilitato.
+
+    1. Gli zaffiri vegetali dello stesso tipo con spazio libero sopra di loro.
+    2. Un singolo sapling diventa un albero personalizzato sulla crescita normale o con il pasto osseo.
+    3. Un completo 2×2 quadrati degli stessi saplings diventa un albero medio-grande.
+    4. Il pasto Bone innesca immediatamente la dimensione configurata e utilizza esattamente un elemento fuori modalità creativa.
+
+    Crescere richiede customtrees.grow.
+- title: Arbusti e siepi
+  text: |
+    Gli alberelli collegati possono crescere in piccole forme di paesaggio.
+
+    1. Collegare due o tre zaffiri dello stesso tipo alla stessa altezza, anche diagonalmente, intorno agli angoli o ramificazione.
+    2. Attendere un normale tick di crescita o utilizzare il pasto osseo su uno di questi sapling.
+    3. Il gruppo diventa arbusti.
+    4. Collegare quattro o più zaffiri dello stesso tipo per ottenere una siepe continua.
+
+    Completa 2×2, 3×3 e 5×5 quadrati rimangono dimensioni albero e non sono trattati come una siepe.
+- title: Albero gigante da 3×3
+  text: |
+    Un completo 3×3 campo degli stessi saplings crea un albero extra-large.
+
+    1. Pianta nove saplings dello stesso tipo di un quadrato senza gap ad un'altezza.
+    2. Lasciare abbastanza spazio libero sopra l'intera area.
+    3. Attendere la crescita naturale o utilizzare il pasto osseo su uno dei nove saplings.
+    4. Dimensione predefinita: 36 a 48 blocchi alti con un raggio di corona di 11.
+
+    Crescita naturale e ossea per 3×3 possono essere attivati sul server.
+- title: Colossus da 5×5
+  text: |
+    Un completo 5×5 campo degli stessi saplings crea un albero colossale con un tronco rotondo e una corona larga.
+
+    1. Pianta 25 saplings dello stesso tipo di un quadrato privo di spazio ad un'altezza.
+    2. Tenere lo spazio sopra l'intera base libera.
+    3. Attendere la crescita naturale o utilizzare il pasto osseo su un luccichio del campo.
+    4. Dimensione predefinita: 52 a 68 blocchi alti con un raggio di corona di 17.
+
+    Entrambi i trigger e le dimensioni possono essere cambiate nella configurazione del server.
+- title: Albero luminoso con polvere di lapide
+  text: |
+    Fare clic con il pulsante destro del mouse su un luccichio con polvere di lapideo aumenta una variante di guanto protetta. La lapide è collocata preferibilmente in fogliame interno scuro.
+
+    1. Tenere la polvere di glowstone e fare clic con il pulsante destro del mouse su un valido lubrificante.
+    2. Assicurati che la forma dell'albero abbia abbastanza spazio libero.
+    3. In modalità di sopravvivenza vengono utilizzati una polvere di glowstone e 100 punti reali XP.
+    4. Con CoreProtect installato, i tronchi sono registrati come posizionamenti protetti CustomTrees. I costi e la quantità di luce sono configurabili.
+- title: Albero di carbone
+  text: |
+    Con il carbone la stessa forma albero personalizzato cresce, ma deliberatamente senza la CoreProtect protezione dei suoi tronchi.
+
+    1. Tenere il carbone e fare clic con il pulsante destro del mouse su un valido lubrificante.
+    2. Assicurarsi che ci sia abbastanza spazio e l'albero cresce immediatamente.
+    3. In modalità sopravvivenza viene utilizzato un pezzo di carbone.
+    4. Utilizzare questa variante quando i tronchi non devono essere registrati come posizionamenti protetti CustomTrees.
+- title: Generazione mondiale naturale
+  text: |
+    Oltre agli alberi da gioco, CustomTrees possono sostituire gli alberi generati. Per impostazione predefinita la possibilità di sostituzione è 100 %.
+
+    1. Esplora nuove aree in un mondo normale abilitato.
+    2. Gli alberi generati possono essere sostituiti con le forme albero personalizzate.
+    3. Un breve passaggio di una volta corre dopo che un pezzo viene generato, così gli alberi posti tardi (ad esempio oggetti Iris) vengono sostituiti anche.
+    4. I pezzi esistenti non sono mai riscritti solo perché sono caricati di nuovo.
+- title: 'admin: impostazioni, stato e ricarica'
+  permission: customtrees.admin
+  text: |
+    Gestione è per gli amministratori.
+
+    1. /customtrees status mostra mondi attivi, interruttori e contatori per alberi, giganti, colossi, arbusti, siepi e alberi di glowstone e carbone.
+    2. Modifica degli interruttori e dei numeri nel menu Vystorm sotto Impostazioni → Server → CustomTrees (also /vsettings or /vadmin); si applicano immediatamente.
+    3. Combinazioni non valide, come un'altezza minima superiore all'altezza massima, vengono rifiutate e ripristinate ai valori precedenti.
+    4. Selezione mondiale (enabled-worlds) è solo in config.yml; corsa /customtrees reload Dopo. Se la configurazione non è valida, le impostazioni precedentemente attive rimangono in vigore.
+- title: 10x10 alberi del mondo e funghi giganti
+  text: |
+    Impianto 100 identici sapling ordinari, red/brown funghi o crimson/warped funghi in un quadrato completo 10x10 ad un'altezza.
+    Fare clic con il pulsante destro del mouse su qualsiasi membro con il pasto osseo. L'albero è pianificato prima e cresce in fasi dopo che i plugin di protezione lo approvano. Si consuma un pasto osseo, no XP; carbone, pietre glowstone e profili zaffiri non sono supportati per questa dimensione.
+    Altezze di default: alberi 160 (raggio corona 44, radici fino a ~30 blocchi fuori, circa 110x110 blocchi di area carica), funghi 80, Altri funghi 48 blocks. Gli ostacoli non fermano mai la crescita: piante, neve, foglie e terreno morbido (sporchi, erba, sabbia, ghiaia, argilla, fango) sono sostituiti, radici scavare nel terreno e attraverso acqua, edifici e altri blocchi sono semplicemente lasciati fuori. I pezzi mancanti sono caricati automaticamente; un albero che è troppo alto per il posto è ubriaco per adattarsi. Nether funghi bisogno abbinare nylium sotto tutti 100 piante.
+    Sneak-right-click con una mano principale vuota per vedere le dimensioni configurate. Completa 10x10 quadrati non crescono naturalmente o cadono indietro a 5x5. A arresto del server può lasciare un albero parzialmente coltivato.
+    Admins: ambientazioni di alberi del mondo in config.yml o /vadmin config CustomTrees. I cambiamenti hanno effetto per nuovi posti di lavoro in crescita.
+- title: 'Funghi e funghi Nether: tutte le dimensioni'
+  text: |
+    Funghi rossi/marrone e funghi cremisi/caldo supporto 1x1, 2x2, 3x3, 5x5 e 10x10 quadrati di piante identiche. Fare clic con il menu osseo. La più grande formazione completa vince.
+    Altezze: 8, 16, 28, 44 e 80 blocchi. Nether fungo altezze: 8, 14, 24, 36 e 48. Tutte le dimensioni sono configurabili sotto il mondo-trees.fungi; 10x10 utilizza i valori dell'albero del mondo esistenti.
+    Gli ostacoli sono cresciuti intorno e gli edifici sono conservati; gli eventi di protezione funzionano prima del consumo. Gli alberi normali più piccoli mantengono il loro comportamento esistente.
+- title: 'Impianto di aiuto: interi quadrati subito'
+  text: |
+    Aprire l'aiutante di piantatura in /vmenu (Building) o con /customtrees plant e scegliere 2x2, 3x3, 5x5 o 10x10.
+    Poi mettere uno zaffiro, propagule, fungo o fungo. Diventa l'angolo più vicino a voi; il quadrato cresce in avanti e a destra ed è riempito dal vostro inventario.
+    Se un posto è bloccato o non ha terreno di montaggio, nient'altro è piantato e le macchie sono marcate rosso. Le aree protette sono rispettate.
+    L'aiutante si spegne dopo un quadrato (or after 5 minutes unused). /customtrees plant off lo spegne subito.
+- title: 'Herbarium: raccogliere ogni forma'
+  text: |
+    Ogni albero e fungo forma si coltivano è registrato: nove specie come singolo albero, 2x2, 3x3, 5x5, siepe, albero luminoso e 10x10 albero del mondo, più quattro funghi e funghi in cinque dimensioni.
+    Apri il tuo erbario /vmenu (Character) o con /customtrees herbarium. Più forme portano ranghi più alti, da Sprout a Keeper di Yggdrasil.
+    Sneak-right-click un altro giocatore per guardare il loro erbario. /customtrees herbarium top mostra i migliori forestali.
+    /customtrees next suggerisce una forma mancante con istruzioni di piantagione, a partire da piccole formazioni. Aggiungere una pianta ID come la ciliegia per filtrare, o fare clic su una specie nell'erbario per il tuo prossimo compito. Si applicano ancora le impostazioni di crescita del server.
+- title: 'Legname: alberi interi con ascia'
+  text: |
+    Tagliare un tronco con un'ascia (without sneaking) e tutto l'albero scende. Questo funziona per alberi naturali e per ogni CustomTrees albero.
+    Caduta dell'albero: i consigli dell'albero più lontano da voi intorno alla sua stump e si rompe in oggetti dove atterra. Dritto verso il basso: si rompe dal basso verso l'alto.
+    A seconda del server, l'albero cade al primo tronco, o solo una volta che viene tagliata una parte della sezione trasversale del tronco. La barra d'azione mostra, per esempio, "Trunk 3/8".
+    In /vsettings potete spegnere il legname da soli o scegliere come scendere gli alberi. Sneak to chop single logs. Le costruzioni del giocatore e le aree protette non sono mai cadute.
+    Piccoli alberi sono ripiantati da soli: un raccordino che soffia dalle gocce dell'albero (or your inventory) va dove si trovava il tronco.

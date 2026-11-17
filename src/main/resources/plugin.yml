@@ -1,0 +1,51 @@
+name: CustomTrees
+version: '${version}'
+main: at.esoren.customtrees.CustomTreesPlugin
+description: Custom tree shapes from saplings and world generation, giant 3x3/5x5 trees, 10x10 world trees, giant mushrooms and Nether fungi, shrubs, hedges, luminous and coal trees, a herbarium collection, a planting helper and a built-in timber. Requires Vystorm Core 0.64.0 or newer.
+author: Esoren
+api-version: '1.20.6'
+load: STARTUP
+depend: [vystorm_core]
+softdepend: [Iris, CoreProtect, SmoothTimber]
+permissions:
+  customtrees.*:
+    description: Alle CustomTrees-Rechte
+    default: op
+    children:
+      customtrees.admin: true
+      customtrees.grow: true
+      customtrees.garden: true
+      customtrees.breed: true
+      customtrees.shake: true
+      customtrees.plant: true
+      customtrees.herbarium: true
+      customtrees.timber: true
+      customtrees.fruit: true
+  customtrees.fruit:
+    description: Setzlinge mit Obst zu Obstbäumen machen (Rechtsklick mit Apfel, Beeren oder Kakao)
+    default: true
+  customtrees.admin:
+    description: /customtrees reload und status, CustomTrees-Servereinstellungen und Admin-Bereich der Web-Seite
+    default: op
+  customtrees.grow:
+    description: Eigene Bäume, 10x10-Weltbäume, Riesenpilze und Nether-Pilze per Knochenmehl wachsen lassen, /customtrees sapling <Form> <Größe>
+    default: true
+  customtrees.garden:
+    description: Neu registrierte Gartenbaum-Kronen zurückschneiden (/customtrees prune)
+    default: true
+  customtrees.shake:
+    description: Bäume mit leerer Hand schütteln (Rechtsklick auf den Stamm)
+    default: true
+  customtrees.plant:
+    description: Pflanzhilfe – ganze 2x2-, 3x3-, 5x5- oder 10x10-Quadrate mit einem Setzling pflanzen (/customtrees plant)
+    default: true
+  customtrees.herbarium:
+    description: Herbarium – gewachsene Baum- und Pilzformen sammeln, eigenes und fremdes Herbarium ansehen (/customtrees herbarium)
+    default: true
+  customtrees.timber:
+    description: Baumfällen – ein mit der Axt abgebauter Stamm fällt den ganzen Baum (gerade nach unten oder als Baumfall)
+    default: true
+
+  customtrees.breed:
+    description: Breed two profiled saplings into one inherited offspring
+    default: true

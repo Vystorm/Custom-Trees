@@ -1,0 +1,941 @@
+# Français — UTF-8. Keep keys, placeholders and formatting tokens unchanged.
+compat:
+  missing-pale-oak: Le chêne pâle et sa décoration ne sont pas disponibles sur ce serveur; l'herbier n'utilise que des espèces
+    disponibles.
+growth:
+  not-allowed: '<red>CustomTrees: Cet arbre peut ne pas pousser ici.'
+  no-room: '<red>CustomTrees: Il n''y a pas assez de place directement au-dessus du coffre.'
+  refunded: '<yellow>CustomTrees: croissance annulée, frais remboursés.'
+  glowstone-missing-xp: '<red>Arbre lumineux: Vous avez besoin de {xp} XP points.'
+  glowstone-xp-used: '<gold>Arbre lumineux: {xp} XP points utilisés.'
+  catalyst-limited: '<red>CustomTrees: La limite du joueur de ce catalyseur a été atteinte.'
+  coal-class:
+    normal: Arbre normal
+    medium: arbre moyen
+    giant: arbre géant
+    colossal: arbre colossal
+    hedge: couverture
+  coal-cost-preview: <gray>Ce coût de croissance {formation} <white>{coal} charbon<gray>. Cliquez à nouveau sur la même formation
+    avec le charbon dans les 10 secondes pour confirmer.
+  coal-cost-confirm: '<gold>Confirmé: cette croissance utilisera {coal} charbon si elle réussit.'
+  coal-missing: <red>Vous avez besoin de {coal} charbon dans la main utilisée pour déclencher cette croissance.
+  preview-disabled: '<red>CustomTrees: La croissance des arbres est désactivée dans ce monde.'
+  preview-no-pattern: '<yellow>CustomTrees: Aucun motif d''écheveau activé n''est disponible ici.'
+  preview-pattern-unverified: '<yellow>CustomTrees: Des morceaux adjacents sont déchargés, de sorte que la formation de gaules
+    ne peut pas encore être déterminée.'
+  preview: '<gold>CustomTrees prévision ({certainty}): {formation} {species}; terrain {ground}; dégagement {space}; Région
+    protégée de base {protection}.'
+  preview-note: <gray>Le contour est une estimation prudente de la clairance, et non la forme finale de l'arbre. Les profils
+    de biome peuvent changer la hauteur et la couronne des arbres; d'autres plugins de protection décident pendant la croissance
+    réelle.
+  preview-confidence-detected: détecté
+  preview-confidence-unverified: peut être incomplète
+  preview-ground-ok: soutenu par CustomTrees sol
+  preview-ground-bad: pas sur un sol connu CustomTrees
+  preview-space-ok: effacer
+  preview-space-bad: bloqué
+  preview-space-unloaded: non vérifié (pouce déchargée)
+  preview-protected: chevauchements
+  preview-unprotected: aucune détection
+  preview-pattern:
+    single: Un seul arbre
+    square: 2×2 jeunes arbres
+    shrub: Groupe d'arbustes
+    hedge: couverture
+    giant: 3×3 géant
+    colossal: 5×5 colosses
+growth-sapling:
+  name: <green>{species} jeunes arbres
+  form: '<gray>Formulaire de la Couronne: <white>{form}'
+  size: '<gray>Taille de la croissance: <white>{growthClass}'
+  species:
+    oak: Chêne
+    birch: Bouleau
+    spruce: Épice
+    jungle: Jungle
+    acacia: Acacia
+    dark_oak: Chêne foncé
+    mangrove: Mangrove
+    cherry: Cerise
+    pale_oak: Chêne pâle
+  crown:
+    random: Au hasard
+    open_grown: Culture ouverte
+    forest: Forêt
+    windswept: Vents d'eau
+    ancient: Ancien
+  class:
+    normal: Normal
+    medium: Moyenne
+    giant: Géant
+    colossal: Colossal
+tutorial-hint: '<gray>[CustomTrees] Comment les jeunes arbres se développent en arbres: '
+action:
+  settings: Paramètres
+  tutorial: Tutoriel
+  web-guide: <aqua><u>[Tree guide]</u>
+command:
+  reloaded: CustomTrees configuration rechargée.
+  reload-failed: '<red>CustomTrees recharge a échoué; les réglages précédents restent actifs: {error}'
+  all-worlds: tous les mondes normaux
+  no-permission: <red>Vous n'avez pas la permission pour ça.
+  usage: '<gray>Utilisation: /customtrees [guide [species|admin]], plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off], herbarium
+    [player|top] – admins aussi: statut, recharger'
+  players-only: Seuls les joueurs peuvent ouvrir le guide de l'arbre.
+  guide-unavailable: <red>Le guide des arbres n'est pas disponible en ce moment.
+validation:
+  replacement-chance: La chance de remplacement doit être comprise entre {min} et {max}.
+  giant-heights: Les hauteurs géantes doivent satisfaire {min} <= min <= max <= {max}.
+  giant-canopy-radius: Le rayonnement de la canopie géante doit être compris entre {min} et {max}.
+  colossal-heights: Les hauteurs colossales doivent satisfaire à {min} <= min <= max <= {max}.
+  colossal-canopy-radius: Le rayonnement colossal doit être compris entre {min} et {max}.
+  glowstone-xp-cost: Le coût de la pierre-xp doit être compris entre {min} et {max}.
+  generated-tree-scan-depth: la profondeur des arbres doit être comprise entre {min} et {max}.
+  glowstone-leaves-per-block: Les feuilles de pierre brillante par bloc doivent être comprises entre {min} et {max}.
+  glowstone-max-blocks: Les blocs lumineux-max doivent être compris entre {min} et {max}.
+  glowstone-dark-light-level: Le niveau de lumière rouge-brillant doit être compris entre {min} et {max}.
+  new-chunk-post-process-delay-ticks: les nouveaux ticks après traitement doivent être compris entre {min} et {max}.
+  catalyst-cooldown: '{catalyst}-temps de récupération de la croissance-secondes doivent être compris entre {min} et {max}.'
+  catalyst-daily-limit: La limite journalière de croissance de {catalyst} doit être comprise entre {min} et {max}.
+  coal-costs-section: settings.coal-costs doit être une section YAML.
+  coal-growth-cost: les coûts du charbon.{growthClass} doivent être un nombre entier de {min} à {max}.
+  biome-profiles-root: les profils biologiques doivent être une section YAML.
+  biome-profiles-limit: Au plus {max} groupes de profils de biome sont autorisés.
+  biome-profiles-biome-limit: Au plus {max} affectations de biome sont autorisées.
+  biome-profile-id: 'Profil de biome non valide id: {id}.'
+  biome-profile-group: Profil de biome {id} doit être une section YAML.
+  biome-profile-biomes: Profil du biome {id} doit énumérer au moins un biome.
+  biome-profile-number: Profil de biome {id} a une valeur numérique invalide pour {field}.
+  biome-profile-scale: 'Profil de biome {id}: {field} doit être compris entre {min} et {max}.'
+  biome-profile-form: 'Profil de biome {id} a une forme de couronne inconnue: {form}.'
+  biome-profile-chance: 'Profil de biome {id} : la chance de remplacement doit être comprise entre {min} et {max}.'
+  biome-profile-biome-key: 'Profil de biome {id} a une clé de biome invalide: {biome}.'
+  biome-profile-unknown-biome: 'Profil de biome {id} référence un biome inconnu: {biome}.'
+  biome-profile-duplicate-biome: Le biome {biome} est attribué à plus d'un profil.
+  biome-profiles-core: Les profils biomé non vides nécessitent Vystorm Core 0.26.5 ou plus récent avec TREE_GROWTH_PROFILES.
+settings:
+  spruce-ground:
+    label: Sol forestier de l'épinette
+    description: Podzol et la saleté grossière autour de grandes épinettes plantées et nouvellement produites.
+  spruce-snow:
+    label: Neige autour des épinettes
+    description: Placer une couche de neige sur un sol vide sans remplacer la neige ou les plantes existantes.
+  spruce-snow-cold-only:
+    label: Neige d'épinette seulement dans les endroits froids
+    description: Désactiver aussi la neige décorative autour des épicéas dans des biomes chauds.
+  applied: <green>CustomTrees réglages appliqués.
+  rejected: '<red>Combinaison non valide : {error} – les valeurs précédentes ont été restaurées.'
+  section-description: Croissance des arbres, génération mondiale, coûts des catalyseurs, marqueurs de feu et repousse des
+    jardins. La sélection mondiale (mondes compatibles) n'a lieu qu'en config.yml.
+  custom-player-grown-trees:
+    label: Arbres personnalisés des jeunes arbres
+    description: Remplace la croissance de 1×1 et 2×2 jeunes arbres avec des formes d'arbres personnalisées
+  connected-shrubs-and-hedges:
+    label: Arbustes et haies
+    description: 2–3 Les jeunes arbres reliés deviennent des arbustes, 4 ou plus une haie
+  replace-generated-trees:
+    label: Remplacer les arbres générés
+    description: Remplace les arbres de génération mondiale (nouveaux morceaux seulement)
+  replacement-chance:
+    label: Possibilité de remplacement
+    description: Part des arbres produits qui sont remplacés (0 = aucun, 1 = tout)
+  generated-tree-scan-depth:
+    label: Profondeur du balayage
+    description: Combien de blocs sous les arbres générés par la surface sont recherchés
+  new-chunk-post-processing:
+    label: Post-traitement des nouveaux morceaux
+    description: Passage ponctuel sur des morceaux nouvellement générés qui remplacent leurs arbres (attrape également des
+      objets d'iris tardif)
+  new-chunk-post-process-delay-ticks:
+    label: Délai de traitement
+    description: Clique jusqu'à ce qu'un nouveau morceau soit post-traité
+  giant-3x3-saplings:
+    label: Arbres géants de 3×3
+    description: 3×3 jeunes arbres créent des arbres extra-larges
+  natural-3x3-growth:
+    label: 3×3 croissance naturelle
+    description: Les arbres géants poussent également à partir de tiques de croissance normales
+  bonemeal-3x3-growth:
+    label: 3×3 avec farine d'os
+    description: Le repas des os déclenche immédiatement des arbres géants
+  giant-min-height:
+    label: 'Géant: hauteur min'
+    description: Doit être ≤ hauteur maximale
+  giant-max-height:
+    label: 'Géant: hauteur max'
+    description: Doit être ≥ min
+  giant-canopy-radius:
+    label: 'Géant: rayon de la couronne'
+    description: Rayon de la couronne en blocs
+  colossal-5x5-saplings:
+    label: Colossi à partir de 5×5
+    description: 5×5 jeunes arbres créent des arbres colossaux
+  natural-5x5-growth:
+    label: 5×5 croissance naturelle
+    description: Colossi pousse également à partir de tiques de croissance normales
+  bonemeal-5x5-growth:
+    label: 5×5 avec farine d'os
+    description: Le repas osseux déclenche des colossi immédiatement
+  colossal-min-height:
+    label: 'Colossus: hauteur min'
+    description: Doit être ≤ hauteur maximale
+  colossal-max-height:
+    label: 'Colossus: hauteur max'
+    description: Doit être ≥ min
+  colossal-canopy-radius:
+    label: 'Colossus: rayon de la couronne'
+    description: Rayon de la couronne en blocs
+  glowstone-growth:
+    label: Arbres lumineux (poussières de pierre)
+    description: Le clic droit avec la poussière de pierre brillante pousse un arbre lumineux protégé
+  glowstone-xp-cost:
+    label: 'Arbre lumineux: XP coût'
+    description: XP points par arbre lumineux en mode survie
+  glowstone-leaves-per-block:
+    label: 'Arbre lumineux: feuilles par pierre brillante'
+    description: Une pierre brillante par ces nombreux blocs de feuilles
+  glowstone-max-blocks:
+    label: 'Arbre lumineux: max'
+    description: Nombre maximal de blocs de pierres brillantes par arbre
+  glowstone-dark-light-level:
+    label: 'Arbre lumineux: niveau lumineux foncé'
+    description: Les feuilles jusqu'à ce niveau de lumière comptent comme sombre
+  glowstone-growth-cooldown-seconds:
+    label: Temps de récupération de la croissance de Glowstone (secondes)
+    description: Temps minimum entre les arbres brillants réussis par joueur; 0 la désactive
+  glowstone-growth-daily-limit:
+    label: Arbres glowstone par UTC jour
+    description: Nombre maximal d'arbres en pierre brillante par joueur pour UTC jours; 0 la désactive
+  coal-growth:
+    label: Houilles
+    description: Le clic droit avec le charbon pousse un arbre non protégé
+  coal-growth-cooldown-seconds:
+    label: Temps de récupération du charbon (secondes)
+    description: Temps minimum entre les arbres de charbon réussis par joueur; 0 la désactive
+  coal-growth-daily-limit:
+    label: Arbres de charbon pour UTC jours
+    description: Nombre maximal d'arbres de charbon par joueur pour UTC jours; 0 la désactive
+  coal-costs:
+    normal:
+      label: 'Coût du charbon: normal'
+      description: Charbon nécessaire pour une croissance arbustive (1–64)
+    medium:
+      label: 'Coût du charbon: moyen'
+      description: Charbon nécessaire pour un 2×Arbre 2 (1–64)
+    giant:
+      label: 'Coût du charbon: géant'
+      description: Charbon nécessaire pour un 3×Arbre 3 (1–64)
+    colossal:
+      label: 'Coût du charbon: colossal'
+      description: Charbon nécessaire pour un 5×Arbre 5 (1–64)
+    hedge:
+      label: 'Coût du charbon: couverture'
+      description: Charbon nécessaire pour une haie connectée (1–64)
+  fire-protect-trunks:
+    label: Protéger les coffres personnalisés du feu
+    description: Protège les blocs de troncs suivis exacts contre les brûlures directes; il ne contient pas de feux de forêt
+  fire-protect-crowns:
+    label: Protéger les couronnes personnalisées du feu
+    description: Protège exactement les blocs de feuilles suivis des brûlures directes; il ne contient pas de feux de forêt
+  garden-regrowth-seconds:
+    label: Recroissance des feuilles du jardin (secondes)
+    description: Retard avant la taille réussie des feuilles enregistrées regrow (10–86400 secondes)
+web:
+  module:
+    title: Guide des arbres
+    description: 'Comment les jeunes arbres deviennent des arbres sur mesure : formations, espèces, catalyseurs et coûts'
+  error:
+    reload-failed: 'La recharge a échoué; les réglages précédents restent actifs: {error}'
+    no-permission: Vous n'avez pas la permission pour ça.
+    not-ready: CustomTrees n'est pas encore prêt.
+  ui:
+    tab:
+      guide: Comment grandir
+      species: Espèce
+      admin: Administrateur
+    loading: Chargement du guide de l'arbre...
+    error: 'Le guide des arbres n''a pas pu être chargé: {error}'
+    intro: Plantez des jeunes arbres du même genre à une hauteur. La forme du groupe décide quel arbre pousse – la plus grande
+      formation complète gagne.
+    worlds:
+      all: Fonctionne dans tous les mondes normaux (urbains).
+      some: 'Œuvres dans ces mondes: {worlds}'
+    permission: La croissance a besoin de la permission {permission} (les joueurs l'ont par défaut).
+    priority: 'Ordre des contrôles: 5×5 → 3×3 → 2×2 → haies/arbustes → Un seul arbre.'
+    formations: Formations de saplage
+    formation:
+      single:
+        title: Exploitation unique
+        text: Grandit en un arbre personnalisé de son espèce dans l'une des quatre variantes d'architecture.
+      square:
+        title: 2×2 carré
+        text: Quatre gaules égales comme un carré poussent un arbre moyen-grand avec un tronc épais.
+      shrub:
+        title: Abris
+        text: '{min}–{max} les jeunes arbres reliés (également diagonalement) deviennent un groupe d''arbustes.'
+      hedge:
+        title: Couverture
+        text: '{min} arbres ou plus reliés – droits, diagonaux, autour de coins ou ramifications, jusqu''à {max} – deviennent
+          une haie continue.'
+      giant:
+        title: Arbre géant (3)×3)
+        text: Neuf gaules égales comme un carré sans espace poussent un arbre extra-large avec un 3×3 coffre.
+      colossal:
+        title: Colosse (5)×5)
+        text: 25 arbres égaux comme un carré sans espace poussent un arbre colossal avec un tronc rond et une large couronne.
+    size:
+      height: '{min}–{max} blocs élevés'
+      radius: rayon de la couronne {radius}
+    disabled: désactivé sur ce serveur
+    legend:
+      sapling: Saupoudrage
+      target: Faites un clic droit ou un repas d'os ici (tout arbre de la formation fonctionne)
+    diagram: 'Vue supérieure de la formation: {count} jeunes arbres'
+    trigger:
+      natural: Croissance naturelle
+      bonemeal: Repas os
+      glowstone: Poussière
+      coal: Charbon
+      'off': '{trigger}: hors taxes'
+    protected: Coffre protégé
+    fellable: Fellable
+    catalysts: Catalyseurs et coûts
+    catalyst:
+      bonemeal:
+        title: Repas os
+        text: 'Faites un clic droit sur la formation : elle pousse à la fois.'
+        cost: Utilisation 1 farine d'os
+      glowstone:
+        title: Arbre lumineux
+        text: 'Faites un clic droit avec de la poussière de pierre rouge : un arbre protégé avec de la pierre rouge dans son
+          feuillage intérieur foncé pousse à la fois.'
+        cost: Utilisations 1 poussières de gemme + {xp} XP points
+        light: Une pierre brillante par {leaves} feuilles, au plus {max} par arbre; feuilles au niveau clair {light} ou nombre
+          plus foncé comme sombre.
+        nodrop: 'Cette pierre brillante est la décoration : l''exploitation minière ou les explosions ne laissent rien tomber
+          et les pistons ne peuvent pas la déplacer.'
+      coal:
+        title: Charbonnier
+        text: 'Faites un clic droit avec le charbon: le même arbre personnalisé pousse à la fois, délibérément sans protection
+          du tronc, de sorte que les plugins de felling d''arbres peuvent le couper.'
+        cost: Utilisations 1 charbon
+      creative: En mode créatif, les catalyseurs et XP sont gratuits.
+      refund: Si l'arbre ne peut pas pousser (pas de place, zone protégée), le catalyseur et XP sont remboursés.
+    tips: Bon à savoir
+    room: Gardez l'espace au-dessus de toute la formation libre. Les arbres remplacent seulement l'air, l'herbe, les fougères,
+      les vignes, les feuilles naturelles et leurs propres jeunes arbres – jamais d'autres blocs.
+    protection: Avec CoreProtect les malles de 3×3, 5×5 et des arbres lumineux sont enregistrés comme des blocs placés, donc
+      SmoothTimber ne les a pas abattus. 1×1, 2×2, les arbustes, les haies et les houillères restent chavirables.
+    generation:
+      'on': 'Génération mondiale: dans les nouveaux morceaux {chance} des arbres générés sont remplacés par les mêmes formes
+        personnalisées.'
+      'off': 'Génération mondiale : les arbres générés ne sont pas remplacés sur ce serveur.'
+    compare:
+      title: Comparaison de taille
+      single: 1×1 arbre
+      giant: 3×3 géant
+      colossal: 5×5 colosses
+      player: Joueur
+      caption: Hauteurs maximales en blocs; un joueur mesure 2 blocs.
+      blocks: '{height} blocs'
+    species:
+      intro: Chaque espèce a sa propre forme de base et se développe en quatre variantes d'architecture.
+      height: 'Arbre unique: {min}–{max} blocs'
+      'off': Des arbres personnalisés provenant de jeunes arbres uniques sont désactivés sur ce serveur; 3×3 et 5×5 formations
+        peuvent encore fonctionner.
+      oak: Chêne
+      birch: Bouleau
+      spruce: Épice
+      jungle: Jungle
+      acacia: Acacia
+      dark_oak: Chêne foncé
+      mangrove: Mangrove
+      cherry: Cerise
+      pale_oak: Chêne pâle
+    variants: Variantes
+    variant:
+      open-grown: autonome
+      forest: forêt
+      windswept: souffle
+      ancient: vieux arbre
+    shape:
+      round: Couronne ronde
+      conifer: Conifères
+      umbrella: Couronne parapluie
+      mangrove: Mangrove avec racines
+    admin:
+      species-grown: Arbres cultivés par espèce
+      since-restart: Compte depuis le dernier redémarrage du serveur.
+      intro: Les mêmes valeurs que /customtrees status. Les compteurs fonctionnent depuis le dernier démarrage du serveur.
+      version: CustomTrees {version}
+      loading: Chargement de l'état...
+      counters: Compteurs
+      switches: Interrupteurs
+      chance: Possibilité de remplacement
+      worlds: Mondes
+      worlds-all: tous les mondes normaux
+      integrations: Intégrations
+      integrations-none: aucun (Iris, CoreProtect, SmoothTimber non installé)
+      reload: Recharger la configuration
+      reloading: Recharger...
+      reloaded: Configuration rechargée.
+      reload-hint: Relis config.yml et les fichiers linguistiques, comme /customtrees reload. Une configuration invalide conserve
+        les paramètres précédents.
+      settings: Modifier les paramètres
+      settings-hint: Les commutateurs et les numéros sont sur la page de configuration sous Serveur → CustomTrees. La sélection
+        mondiale (mondes-faciles) n'est que de config.yml.
+    counter:
+      grown: Arbres cultivés (1×1, 2×2)
+      giant-grown: Arbres géants (3)×3)
+      colossal-grown: Colossi (5)×5)
+      shrubs: Groupes
+      hedges: Charnières
+      glowstone-grown: Arbres lumineux
+      coal-grown: Houilles
+      glowstone-blocks: Glowstone placé
+      coreprotect-logs: CoreProtect entrées de circuits
+      inspected-chunks: Nouveaux morceaux inspectés
+      replaced: Arbres produits remplacés
+      queued: Attendre dans la file d'attente
+      species-grown: Croissance par espèce (depuis le redémarrage)
+    switch:
+      player-grown: Arbres personnalisés des jeunes arbres
+      shrubs-hedges: Arbustes et haies
+      replace-generated: Remplacer les arbres générés
+      new-chunk-pass: Post-traitement des nouveaux morceaux
+      giant-3x3: Arbres géants de 3×3
+      colossal-5x5: Colossi à partir de 5×5
+      glowstone: Arbres lumineux
+      coal: Houilles
+    state:
+      'on': activé
+      'off': désactivé
+garden:
+  unavailable: Cette action de jardin n'est pas disponible; vérifier les autorisations, la version Core ou la santé de stockage.
+  no-tree: Regardez les feuilles de votre arbre de profil planté dans six blocs.
+  denied: Aucune feuille de couronne correspondante ne peut être taillée avec vos permissions de construction actuelles.
+  pruned: Feuilles de couronne taillées {count}. La repousse ne commence pas plus tôt que {seconds} secondes, pendant que
+    vous êtes en ligne et que l'espace reste vide.
+  sapling-usage: /customtrees sapling <random|open_grown|forest|windswept|ancient> <normal|medium|giant|colossal>. Nécessite
+    un noyau 0.26.5 et customtrees.grow.
+  single-sapling: Tenez exactement un arbre non modifié dans votre main principale.
+  sapling-ready: Profil de croissance sauvé. Plantez l'arbre dans le modèle de taille correspondant; les coûts normaux et
+    les règles de protection s'appliquent toujours.
+  pattern-mismatch: Le profil sauvegardé nécessite son modèle de taille correspondant. Tagged jeunes arbres en un seul motif
+    doit partager le profil et le propriétaire.
+world-tree:
+  invalid-setting: Les arbres du monde entier {setting} doivent être entiers de {min} à {max}.
+  preview: '{size}x{size} formation: hauteur {height}, rayon de la couronne {radius}. Faites un clic droit avec le repas osseux.
+    Les obstacles sont cultivés autour; les bâtiments sont conservés.'
+  bonemeal: Utilisez la farine osseuse pour cette formation. Les plants de charbon, de pierre brillante et de profilés marqués
+    ne sont pas supportés pour cette taille.
+  busy: Un emploi en croissance est déjà en préparation ou en croissance. Attendez.
+  planning: Préparer votre arbre mondial (charger la zone, planifier, vérifier l'espace). Aucun repas osseux n'est consommé
+    jusqu'à ce que la croissance soit approuvée.
+  no-room: La croissance des arbres du monde s'est arrêtée avant le placement. Vérifiez les plantes, le sol, les zones protégées,
+    votre autorisation et votre repas osseux.
+  shrunk: 'Pas assez de hauteur de construction: cet arbre ne pousse que {height} blocs de hauteur (rayon de la couronne {radius}).'
+  too-high: Il n'y a pas assez de hauteur de construction pour un arbre du monde. Plantez la formation plus bas.
+  too-large: Cette formation a besoin de trop de morceaux. Réduire la hauteur ou le rayon dans la configuration.
+  load-failed: La zone autour de l'arbre du monde ne pouvait pas être chargée. Rien n'a été consommé; veuillez réessayer rapidement.
+  growing: La culture de votre arbre mondial par étapes ({blocks} blocs).
+  complete: Votre arbre du monde a fini de grandir.
+  partial: La croissance des arbres du monde s'est terminée par des blocs laissés de côté ou inachevés. Les bâtiments existants
+    ont été conservés.
+world-trees:
+  enabled:
+    label: Arbres et champignons du monde
+    description: Configurer la croissance explicite 10x10. Les dimensions comprennent la couronne; les obstacles sont cultivés
+      autour et les arbres qui ne correspondent pas sont rétrécis.
+  tree-height:
+    label: Hauteur des arbres
+    description: Configurer la croissance explicite 10x10. Les dimensions comprennent la couronne; les obstacles sont cultivés
+      autour et les arbres qui ne correspondent pas sont rétrécis.
+  mushroom-height:
+    label: Hauteur des champignons
+    description: Configurer la croissance explicite 10x10. Les dimensions comprennent la couronne; les obstacles sont cultivés
+      autour et les arbres qui ne correspondent pas sont rétrécis.
+  nether-height:
+    label: Hauteur inférieure
+    description: Configurer la croissance explicite 10x10. Les dimensions comprennent la couronne; les obstacles sont cultivés
+      autour et les arbres qui ne correspondent pas sont rétrécis.
+  tree-radius:
+    label: Rayon de la couronne d'arbre
+    description: Configurer la croissance explicite 10x10. Les dimensions comprennent la couronne; les obstacles sont cultivés
+      autour et les arbres qui ne correspondent pas sont rétrécis.
+  mushroom-radius:
+    label: Rayon du chapeau des champignons
+    description: Configurer la croissance explicite 10x10. Les dimensions comprennent la couronne; les obstacles sont cultivés
+      autour et les arbres qui ne correspondent pas sont rétrécis.
+  nether-radius:
+    label: Rayon de la couronne
+    description: Configurer la croissance explicite 10x10. Les dimensions comprennent la couronne; les obstacles sont cultivés
+      autour et les arbres qui ne correspondent pas sont rétrécis.
+  blocks-per-tick:
+    label: Blocs par tique
+    description: Configurer la croissance explicite 10x10. Les dimensions comprennent la couronne; les obstacles sont cultivés
+      autour et les arbres qui ne correspondent pas sont rétrécis.
+  replace-stone:
+    label: Remplacer la pierre naturelle
+    description: Les arbres du monde remplacent aussi la pierre, l'ardoise, l'andésite, la diorite, le granit, le tuf, la
+      calcite, le grès et la terre cuite. Jamais de minerais.
+  max-skipped-percent:
+    label: Blocs maxi gauche (%)
+    description: Refuser une croissance lorsque plus de cette part des blocs prévus serait laissée de côté. 100 = jamais refuser.
+  fungi:
+    1x1:
+      mushroom-height:
+        label: 1x1 hauteur des champignons
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      mushroom-radius:
+        label: 1x1 rayon des champignons
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      nether-height:
+        label: 1x1 hauteur inférieure
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      nether-radius:
+        label: 1x1 rayon arrière
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+    2x2:
+      mushroom-height:
+        label: 2x2 hauteur des champignons
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      mushroom-radius:
+        label: 2x2 rayon des champignons
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      nether-height:
+        label: 2x2 hauteur inférieure
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      nether-radius:
+        label: 2x2 rayon arrière
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+    3x3:
+      mushroom-height:
+        label: 3x3 hauteur des champignons
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      mushroom-radius:
+        label: 3x3 rayon des champignons
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      nether-height:
+        label: 3x3 hauteur inférieure
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      nether-radius:
+        label: 3x3 rayon arrière
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+    5x5:
+      mushroom-height:
+        label: 5x5 hauteur des champignons
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      mushroom-radius:
+        label: 5x5 rayon des champignons
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      nether-height:
+        label: 5x5 hauteur inférieure
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+      nether-radius:
+        label: 5x5 rayon arrière
+        description: Taille pour cette formation de champignons. La hauteur comprend le culot; le rayon est mesuré à partir
+          du centre.
+shaking:
+  resting: <gray>Cet arbre a été secoué il y a un moment. Réessayez en {minutes} min.
+  no-crown: <gray>Ce coffre n'a pas de couronne à secouer.
+  nothing: <gray>Seules quelques feuilles tombent.
+  enabled:
+    label: Agiter les arbres
+    description: Faites un clic droit sur un tronc avec une main vide pour secouer les fruits, les bâtons et les jeunes arbres
+      hors de la couronne.
+  cooldown-seconds:
+    label: Temps de repos (secondes)
+    description: Combien de temps un arbre secoué se repose avant qu'il puisse être secoué à nouveau. 0 = pas de repos.
+  max-rolls:
+    label: Max. gouttes par secousse
+    description: Limite supérieure des rouleaux de butin; une couronne obtient un rouleau par 40 feuilles.
+  min-leaves:
+    label: Min. laisse
+    description: Un tronc a besoin au moins de ces nombreuses feuilles de son espèce autour d'elle pour être secoué.
+  golden-apples:
+    label: Pommes d'or
+    description: Les couronnes de chêne et de chêne foncé peuvent très rarement faire tomber une pomme dorée. Éteins-les pour
+      les garder hors de l'économie.
+panel:
+  trees: "Arbres"
+  fungi: "Champignons"
+  next-task: "Ma prochaine plantation"
+  squares: "Carrés"
+  hedges: "Rangées de haies"
+  active: "Actif"
+  selected: "Sélection : {pattern}"
+herbarium:
+  next-unknown: '<red>Plante inconnue: {plant}. Utilisez la fin de l''onglet pour les identifiants d''usine.'
+  next-complete: <green>Vous avez recueilli toutes les formes de cette sélection !
+  next-form: '<gold>Votre prochain formulaire d''herbier: {plant} — {stage}'
+  next-click: <yellow>Cliquez pour votre prochaine tâche de plantation.
+  next-rules: <gray>Utiliser des plantes identiques et non marquées sur un sol approprié. Développez-le vous-même pour le
+    collecter ; les paramètres de croissance du serveur, les coûts et les permissions s'appliquent toujours.
+  recipe:
+    sapling: <gray>Planter {count} jeunes arbres dans un {width}x{width} carré et utiliser la farine d'os sur un.
+    explicit: <gray>Plantez {count} plantes dans un carré {width}x{width} à la même hauteur, puis cliquez à droite sur une
+      avec le repas des os dans votre main principale.
+    hedge: <gray>Plantez quatre jeunes arbres en ligne droite (pas un carré), puis utilisez le repas osseux sur un.
+    luminous: <gray>Plantez un arbre et faites un clic droit avec de la poussière de pierre. Le serveur peut charger XP.
+  menu-title: Herbier
+  menu-description: Chaque arbre et champignon que vous avez grandi, avec votre rang de forester
+  title: Herbier de {player}
+  summary: '<gold>{player}: <yellow>{rank}'
+  summary-progress: <gray>{count} de {total} formulaires trouvés
+  summary-next: '<gray>Classement suivant : <white>{rank}</white> à {needed} formulaires'
+  summary-max: <green>Tous les formulaires trouvés !
+  plant-progress: <gray>{count}/{total} formulaires
+  found: <green>✔ {stage}
+  missing: <dark_gray>✘ {stage}
+  top-button: <yellow>Les meilleurs forestiers
+  top-header: '<gold>Les meilleurs forestiers (de {total} formes):'
+  top-line: <gray>{place}. <white>{player}</white> – {count} ({rank})
+  top-empty: <gray>Personne n'a encore cultivé un arbre.
+  planting-button: <green>Aide à la plantation
+  new-entry: '<green>Herbier: nouveau formulaire <white>{plant} – {stage}</white> ({count}/{total}).'
+  open: <aqua><u>[Herbarium]</u>
+  rank-up: '<gold>Herbier: vous êtes maintenant <yellow>{rank}</yellow>!'
+  rank-broadcast: <gold>{player} est maintenant <yellow>{rank}</yellow> dans l'herbier.
+  disabled: <red>L'herbier est éteint sur ce serveur.
+  unknown-player: <red>Aucun herbier trouvé pour {player}.
+  usage: '<gray>Utilisation: /customtrees herbarium [player|top]'
+  player-menu: <green>Herbier de {player}
+  player-menu-lore: <gray>{count}/{total} formulaires – {rank}
+  rank:
+    sprout: Frappe
+    gardener: Jardinier
+    forester: Forêtur
+    arborist: Arboriste
+    warden: Directeur des arbres
+    elder: Ancienne forêt
+    keeper: Gardien d'Yggdrasil
+  plant:
+    oak: Chêne
+    birch: Bouleau
+    spruce: Épice
+    jungle: Jungle
+    acacia: Acacia
+    dark_oak: Chêne foncé
+    mangrove: Mangrove
+    cherry: Cerise
+    pale_oak: Chêne pâle
+    red_mushroom: Champignon rouge
+    brown_mushroom: Champignon brun
+    crimson_fungus: Crimson champignon
+    warped_fungus: Champignons déchirés
+  stage:
+    single: Arbre ou arbuste unique
+    medium: 2×2 arbre
+    giant: 3×3 géant
+    colossal: 5×5 colosses
+    hedge: Couverture
+    luminous: Arbre lumineux
+    world: 10×10 arbre du monde
+    1x1: 1×1
+    2x2: 2×2
+    3x3: 3×3
+    5x5: 5×5
+    10x10: 10×10 géant
+  enabled:
+    label: Herbier
+    description: Recueillir chaque arbre et champignon forment un joueur se développe, avec les rangs de forester, /customtrees
+      herbarium et une entrée joueur-menu.
+  announce-ranks:
+    label: Annoncez les grades
+    description: Dites à tout le monde en ligne quand un joueur atteint un nouveau rang d'herbier.
+planting:
+  status-none: Aucun schéma de plantation sélectionné.
+  status-selection: 'Sélectionné : {pattern}; {count} plants au total; {seconds} secondes à gauche; {mode}.'
+  status-repeat: reste actif après utilisation
+  status-once: une utilisation
+  hedge-size: '<green>Ligne de haies : {size} jeunes arbres'
+  hedge-how: '<gray>Placer un arbre : la rangée s''étend vers l''avant au même niveau. Des saplings seulement.'
+  hedge-armed: '<green>Aide aux haies ({size}): placez un arbre non étiqueté; la rangée s''étend vers l''avant.'
+  hedge-blocked: '<red>Aide aux haies : {count} taches dans la rangée {size}-plant sont bloquées ou non supportées (rouge).
+    Rien d''autre n''a été planté.'
+  hedge-missing: '<red>Aide aux haies : vous avez besoin de {missing} jeunes arbres supplémentaires pour la ligne {size}-plant.'
+  hedge-done: <green>Ligne de haies ({size}) plantée ({count} placé). Utilisez le repas osseux pour le faire pousser.
+  menu-title: Aide à la plantation
+  menu-description: Planter une rangée carrée ou haie avec un arbre
+  title: Aide à la plantation
+  size: <green>{size}×{size} carré
+  size-count: <gray>Utilisations {count} plantes d'un seul type
+  size-grows: '<gray>Croissance : <white>{result}'
+  size-active: <yellow>Active – Placer un gauchissement ou un champignon
+  result:
+    2x2: arbre moyen
+    3x3: 3×3 géant
+    5x5: 5×5 colosses
+    10x10: 10×10 arbre du monde ou champignon géant
+  'off': <red>Arrêt
+  how: '<gray>Placez une plante : elle devient le coin le plus proche de vous, le carré pousse en avant et à droite.'
+  off-button: <gray>[Off]
+  armed: '<green>Aide à la plantation {size}×{size}: placer un gaufrage ou un champignon. Il devient le coin le plus proche
+    de vous; le carré grandit en avant et à droite.'
+  disarmed: <gray>L'aide à la plantation s'est éteinte.
+  blocked: '<red>Aide à la plantation: {count} taches du {size}×{size} carrés sont bloqués ou n''ont pas de terrain de fixation
+    (rouge marqué). Rien d''autre n''a été planté.'
+  missing: '<red>Aide à la plantation: vous avez besoin de {missing} de plus de cette usine pour le {size}×{size} carré.'
+  not-allowed: '<red>Aide à la plantation: vous ne pouvez pas planter ici. Rien d''autre n''a été planté.'
+  tagged: '<yellow>Aide à la plantation : les jeunes arbres marqués sont plantés un par un.'
+  done: '<green>Aide à la plantation: {size}×{size} carrés plantés ({count} placés). Utilisez la farine osseuse sur l''un
+    d''eux.'
+  disabled: <red>L'assistant de plantation est désactivé sur ce serveur.
+  usage: '<gray>Utilisation: /customtrees plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off]'
+planting-helper:
+  max-hedge-length:
+    label: Longueur maximale de la couverture
+    description: Longueur maximale de la rangée, 4 à 32. Les valeurs inférieures à 4 désactivent la plantation de haies.
+  enabled:
+    label: Aide à la plantation
+    description: Les joueurs choisissent une taille carrée et plantent le carré entier avec un arbre (/customtrees plant,
+      /vmenu).
+  max-size:
+    label: Plus grand carré
+    description: 'Plus grand carré l''aide offre: 2, 3, 5 ou 10.'
+  keep-active:
+    label: Rester actif
+    description: Gardez l'aide allumée après qu'un carré ait été planté.
+  timeout-seconds:
+    label: Temps d'arrêt (secondes)
+    description: Un assistant non utilisé s'éteint après cette période.
+timber:
+  progress: <gray>Coffre <white>{chopped}/{required}</white> haché
+  busy: <gray>Trop d'arbres tombent en ce moment; ce bois s'est cassé tout seul.
+  too-large: <gray>Cet arbre est trop grand ou atteint des terres déchargées; seul le bois s'est brisé.
+  protected: <red>Une partie de cet arbre est protégée; il reste debout.
+  tool-spared: <gold>Votre hache se briserait; seulement cette bûche a été hachée.
+  player:
+    title: Bois
+    description: Fell arbres entiers avec une hache
+    locked: Le serveur décide pour tout le monde.
+    mode-server: Par défaut du serveur
+    mode-drop: Tout droit
+    mode-fall: Chute des arbres
+    use:
+      label: Bois
+      description: Le bûcheron avec une hache tombe tout l'arbre.
+    mode:
+      label: Comment les arbres descendent
+      description: 'Tout droit : l''arbre se brise du bas vers le haut. L''arbre tombe : il s''éloigne de vous et se transforme
+        en objets.'
+  choice:
+    fall: Chute des arbres
+    drop: Tout droit
+    first-log: Premier journal
+    percent: Pourcentage du tronc
+    standing: Seulement debout
+    sneaking: Seulement en se faufilant
+    any: Toujours
+    server-mode: Mode serveur
+    disabled: Jamais
+    vanilla: Comme la vanille
+    none: Rien
+    pause: Pause le bois intégré
+    run-both: Exécutez les deux
+  enabled:
+    label: Bois
+    description: Le bûcheron d'un arbre avec une hache tombe sur tout l'arbre. Les constructions de joueurs ne sont jamais
+      abattues.
+  mode:
+    label: Comment les arbres descendent
+    description: chute = l'arbre s'éloigne du joueur autour de sa souche et se transforme en objets; chute = il se décompose
+      tout droit du bas vers le haut.
+  trigger:
+    label: Quand l'arbre tombe
+    description: premier log = au premier log haché; pourcentage = une fois que la part de la coupe transversale du tronc
+      est coupée.
+  trunk-percent:
+    label: Part du tronc à couper (%)
+    description: 'Pourcentage de déclenchement : part de la section transversale du tronc qui doit être hachée avant la chute
+      de l''arbre.'
+  sneaking:
+    label: Revêtements
+    description: En position debout = bois seulement sans s'enfiler (s'enfiler pour couper des billes simples); en s'enfilant
+      = seulement pendant s'enfiler; n'importe lequel = toujours.
+  require-axe:
+    label: Axe requis
+    description: Le bois ne fonctionne qu'avec une hache dans la main principale.
+  worlds:
+    label: Mondes
+    description: Mondes où le bois fonctionne; vide = chaque monde.
+  player-choice:
+    label: Les joueurs choisissent
+    description: Les joueurs peuvent éteindre le bois pour eux-mêmes et cueillir la chute d'arbre ou tout droit en /vsettings.
+  tree-types:
+    small:
+      label: Petits arbres
+      description: 'Single et 2x2 arbres, arbustes et haies: mode serveur, chute, chute ou désactivé.'
+    giant:
+      label: 3x3 géants
+      description: 'Arbres géants de 3x3 jeunes arbres : mode serveur, chute, chute ou désactivé.'
+    colossal:
+      label: 5x5 colosses
+      description: 'Arbres colossaux de 5x5 jeunes arbres: mode serveur, chute, chute ou désactivé.'
+    world:
+      label: Arbres du monde
+      description: '10x10 arbres du monde et autres arbres énormes: mode serveur, chute, chute ou désactivé.'
+  tool:
+    durability-per-log:
+      label: Porter par log
+      description: Des points de durabilité la hache perd par log abattu (Unbreaking s'applique).
+    spare-tool:
+      label: Épargnez la hache
+      description: Ne tombez pas un arbre quand la hache se briserait; alors seulement le bois haché se brise.
+  drops:
+    leaves:
+      label: Feuilles gouttes
+      description: vanille = les feuilles déposent des jeunes arbres, des bâtonnets et des pommes comme la vanille (Fortune
+        aide, Silk Touch garde les feuilles); aucune = rien.
+    into-inventory:
+      label: Dans l'inventaire
+      description: Les objets feuillés entrent directement dans l'inventaire; ce qui ne convient pas aux terres sur le terrain.
+  replant:
+    label: Replantation
+    description: Après la chute d'un petit arbre, on plante un arbre approprié où se trouvait son tronc (quatre pour 2x2)
+      – à partir des gouttes de l'arbre, autre part de l'inventaire.
+  detection:
+    max-blocks:
+      label: Blocs max. par arbre
+      description: Les arbres avec plus de grumes et de feuilles ne sont pas abattus.
+    max-radius:
+      label: Rayon max
+      description: Jusqu'où un arbre peut atteindre latéralement du tronc haché.
+    max-height:
+      label: Hauteur maximale
+      description: Jusqu'à quel point un arbre peut atteindre au-dessus de la coupe.
+    min-leaves:
+      label: Min. laisse
+      description: Un arbre a besoin au moins de ces nombreuses feuilles naturelles (ou des bouchons pour champignons et champignons).
+    natural-ground:
+      label: Terrain naturel
+      description: Le tronc doit se tenir sur un sol naturel tel que la saleté, l'herbe, le sable, la pierre ou le nylium.
+    coreprotect-check:
+      label: Contrôle CoreProtect
+      description: 'Avec CoreProtect: jamais tombé enregistre un joueur placé.'
+    only-generated-trees:
+      label: Seulement des arbres générés
+      description: Seulement les arbres tombés CustomTrees ont grandi ou généré (ou, avec CoreProtect, les arbres pas de joueur
+        placé).
+  fall:
+    max-displays:
+      label: Affichages max. par arbre
+      description: Les entités d'affichage d'un arbre tombant; les arbres plus grands sont affichés avec des cubes fusionnés.
+    fall-ticks:
+      label: Durée de l'automne
+      description: Durée d'une chute complète des tiques (20 = 1 seconde).
+  performance:
+    blocks-per-tick:
+      label: Blocs par tique
+      description: Blocs enlevés par tique, partagés par tous les arbres qui tombent.
+    checks-per-tick:
+      label: Contrôles par tique
+      description: Contrôles de protection (événements de rupture) par tique, partagés par tous les arbres qui tombent.
+    falls-per-world:
+      label: Chutes par monde
+      description: Des arbres tombent en même temps dans un monde.
+    falls-per-player:
+      label: Chutes par joueur
+      description: Arbres un joueur peut avoir tomber en même temps.
+  other-timber-plugins:
+    label: Autres greffons en bois
+    description: pause = éteindre le bois intégré pendant que SmoothTimber ou un autre plugin bois est installé; run-oth =
+      garder les deux.
+  percent-memory-seconds:
+    label: Mémoire des coupures (secondes)
+    description: 'Déclencheur en pourcentage : combien de temps un tronc à moitié coupé se souvient de ses coupures.'
+  protected-region-kinds:
+    label: Types de régions protégées
+    description: Vystorm Natures de la région centrale où le bois n'enlève rien; une région drapeau bois l'emporte.
+commands:
+  customtrees:
+    description: 'Arbres personnalisés: guide d''arbre, arbres marqués, taille, aide à la plantation et herbier'
+    aliases: []
+    sub:
+      breed:
+        name: "breed"
+        aliases: []
+        description: "Croiser les deux pousses à profil tenues en main"
+      guide:
+        name: guide
+        aliases: []
+        description: Ouvrir le guide des arbres (web page or in-game tutorial); aussi /customtrees web
+        args:
+          page: guide
+      sapling:
+        name: sapling
+        aliases: []
+        description: Transformez l'épinoche unique dans votre main en épinoche avec forme de couronne et taille
+        usage: FORM SIZE
+        args:
+          form: FORM
+          size: SIZE
+      prune:
+        name: prune
+        aliases: []
+        description: Prune la couronne de ton arbre de jardin que tu regardes
+      plant:
+        name: plant
+        aliases: []
+        description: 'Aide à la plantation: carrés et haies (menu, taille, haieN ou off)'
+        args:
+          size: 2x2.3x3.5x5.10x10.hedge4..hedge32
+      herbarium:
+        name: herbarium
+        aliases: []
+        description: Votre herbier, l'herbier d'un autre joueur ou la liste supérieure
+        args:
+          player: 'PLAYER: dessus'
+      next:
+        name: next
+        aliases: []
+        description: Proposer un formulaire d'herbier manquant avec instructions de plantation
+        args:
+          plant: PLANT
+      status:
+        name: status
+        aliases: []
+        description: Afficher les paramètres actifs et l'état des fonctionnalités
+      reload:
+        name: reload
+        aliases: []
+        description: Recharger les fichiers de configuration et de langue
+    values:
+      status: état
+      guide: guide
+      species: espèce
+      admin: administrateur
+      top: haut
+
+# Free feature release: breeding
+breeding:
+  unavailable: "L’hybridation est indisponible ou non autorisée."
+  survival: "Croisez les pousses en Survie ou Aventure."
+  cooldown: "Prochain croisement dans {seconds}s."
+  parents: "Tenez une pousse à profil de la même espèce dans chaque main. /customtrees sapling crée les parents ; les deux sont consommés."
+  generation: "Génération {generation}"
+  cancelled: "Croisement annulé ; aucun parent consommé."
+  success: "Génération {generation} obtenue ! Couronne et taille héritées, avec une faible chance de mutation. Plantez-la normalement."
+regrowth:
+  queued: "<green>🌱 Cette forêt va repousser."
+fruit:
+  already: "<gray>Ce jeune arbre porte déjà ce fruit."
+  marked: "<green>🍎 Jeune arbre fruitier ! L’arbre qui pousse ici portera des fruits."
+  unripe: "<gray>Rien n’est encore mûr."
+  harvested: "<green>🍎 Tu as cueilli {amount} fruit(s)."

@@ -1,0 +1,920 @@
+# Português (Brasil) — UTF-8. Keep keys, placeholders and formatting tokens unchanged.
+compat:
+  missing-pale-oak: O carvalho pálido e sua decoração não estão disponíveis neste servidor, o herbário usa apenas espécies
+    disponíveis.
+growth:
+  not-allowed: <red>CustomTreesEsta árvore pode não crescer aqui.
+  no-room: <red>CustomTreesNão há espaço suficiente diretamente acima do porta-malas.
+  refunded: <yellow>CustomTreesCrescimento cancelado, custos reembolsados.
+  glowstone-missing-xp: <red>Você precisa de {xp} XP pontos.
+  glowstone-xp-used: '<gold>Árvore luminosa: {xp} XP pontos usados.'
+  catalyst-limited: <red>CustomTreesO limite do jogador deste catalisador foi alcançado.
+  coal-class:
+    normal: Árvore normal
+    medium: Árvore média
+    giant: Árvore gigante
+    colossal: Árvore colossal
+    hedge: Sebe
+  coal-cost-preview: <gray>Este {formation} custos de crescimento <white>{coal} carvão<gray>. Clique na mesma formação novamente
+    com carvão em 10 segundos para confirmar.
+  coal-cost-confirm: '<gold>Confirmado: este crescimento usará {coal} carvão se tiver sucesso.'
+  coal-missing: <red>Você precisa de {coal} carvão na mão usado para desencadear este crescimento.
+  preview-disabled: <red>CustomTreesO crescimento da árvore é desativado neste mundo.
+  preview-no-pattern: <yellow>CustomTreesNenhum padrão de muda habilitado está disponível aqui.
+  preview-pattern-unverified: <yellow>CustomTreesPedaços adjacentes são descarregados, então a formação de mudas ainda não
+    pode ser determinada.
+  preview: '<gold>CustomTrees prévia ({certainty}): {formation} {species}; terra {ground}; liberação {space}; Área protegida
+    do núcleo {protection}.'
+  preview-note: <gray>O contorno é uma estimativa conservadora, não a forma final da árvore. Perfis de biomas podem mudar
+    a altura da árvore e a coroa; outros plugins de proteção decidem durante o crescimento real.
+  preview-confidence-detected: Detectado
+  preview-confidence-unverified: Pode estar incompleto
+  preview-ground-ok: apoiado por CustomTrees solo
+  preview-ground-bad: Não em um solo conhecido de CustomTrees
+  preview-space-ok: limpar
+  preview-space-bad: Bloqueado
+  preview-space-unloaded: Não verificado (chunk descarregado)
+  preview-protected: sobreposições
+  preview-unprotected: Nenhum detectado
+  preview-pattern:
+    single: Uma única muda
+    square: 2×2 mudas
+    shrub: grupo arbusto
+    hedge: Sebe
+    giant: 3×3 gigante
+    colossal: 5×5 Colossus
+growth-sapling:
+  name: <green>{species} mudas
+  form: '<gray>Forma da coroa: <white>{form}'
+  size: '<gray>Tamanho do crescimento: <white>{growthClass}'
+  species:
+    oak: Carvalho
+    birch: Birch
+    spruce: Spruce
+    jungle: Selva
+    acacia: Acacia
+    dark_oak: Carvalho escuro
+    mangrove: Mangrove
+    cherry: Cereja
+    pale_oak: Carvalho pálido
+  crown:
+    random: Aleatório
+    open_grown: Aberta
+    forest: Floresta
+    windswept: Ventoswept
+    ancient: Antigo
+  class:
+    normal: Normal
+    medium: Médio
+    giant: Gigante
+    colossal: Colossal
+tutorial-hint: '<gray>[CustomTrees] Como as mudas crescem em árvores: '
+action:
+  settings: Configurações
+  tutorial: Tutorial
+  web-guide: <aqua><u>[Tree guide]</u>
+command:
+  reloaded: CustomTrees configurações recarregadas.
+  reload-failed: '<red>CustomTrees reload falhou, as configurações anteriores permanecem ativas: {error}'
+  all-worlds: Todos os mundos normais
+  no-permission: <red>Você não tem permissão para isso.
+  usage: '<gray>Uso: /customtrees [guide [species|admin]], plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off], herbarium [player|top]
+    – Administradores também: status, recarga'
+  players-only: Só os jogadores podem abrir o guia de árvores.
+  guide-unavailable: <red>O guia da árvore não está disponível agora.
+validation:
+  replacement-chance: A chance de substituição deve estar entre {min} e {max}.
+  giant-heights: Alturas gigantes devem satisfazer {min} <= min <= máx <= {max}.
+  giant-canopy-radius: Raio gigante deve estar entre {min} e {max}.
+  colossal-heights: Alturas colossais devem satisfazer {min} <= min <= máx <= {max}.
+  colossal-canopy-radius: O raio colossal deve estar entre {min} e {max}.
+  glowstone-xp-cost: O custo da pedra brilhante deve estar entre {min} e {max}.
+  generated-tree-scan-depth: A profundidade gerada deve estar entre {min} e {max}.
+  glowstone-leaves-per-block: As folhas por bloco devem estar entre {min} e {max}.
+  glowstone-max-blocks: Bloqueios de pedras brilhantes devem estar entre {min} e {max}.
+  glowstone-dark-light-level: O nível de luz deve estar entre {min} e {max}.
+  new-chunk-post-process-delay-ticks: New-chunk-post-process-delay-ticks deve estar entre {min} e {max}.
+  catalyst-cooldown: '{catalyst}-crescimento-recuperação de segundos deve ser entre {min} e {max}.'
+  catalyst-daily-limit: '{catalyst}-crescimento-limite diário deve ser entre {min} e {max}.'
+  coal-costs-section: settings.coal-costs deve ser uma seção YAML.
+  coal-growth-cost: '{growthClass} deve ser um número inteiro de {min} a {max}.'
+  biome-profiles-root: Os perfis biométricos devem ser uma seção YAML.
+  biome-profiles-limit: No máximo {max} grupos de perfil de biomas são permitidos.
+  biome-profiles-biome-limit: No máximo {max} missões de bioma são permitidas.
+  biome-profile-id: 'Perfil de bioma inválido: {id}.'
+  biome-profile-group: Perfil biométrico {id} deve ser uma seção YAML.
+  biome-profile-biomes: Perfil biométrico {id} deve listar pelo menos um bioma.
+  biome-profile-number: Perfil biométrico {id} tem um valor numérico inválido para {field}.
+  biome-profile-scale: 'Perfil biométrico {id}: {field} deve estar entre {min} e {max}.'
+  biome-profile-form: 'Perfil biométrico {id} tem uma forma desconhecida de coroa: {form}.'
+  biome-profile-chance: 'Perfil biométrico {id}: chance de substituição deve estar entre {min} e {max}.'
+  biome-profile-biome-key: 'Perfil biométrico {id} tem uma chave de bioma inválida: {biome}.'
+  biome-profile-unknown-biome: 'Perfil biométrico {id} referências a um bioma desconhecido: {biome}.'
+  biome-profile-duplicate-biome: Biome {biome} é atribuído a mais de um perfil.
+  biome-profiles-core: Perfis de biomas não vazios requerem Vystorm Core 0.26.5 ou novos com TREE_GROWTH_PROFILES.
+settings:
+  spruce-ground:
+    label: Floor da floresta de Spruce
+    description: Podzol e sujeira grossa ao redor de grandes plantas e abetos recém-gerados.
+  spruce-snow:
+    label: Neve ao redor de abetos
+    description: Coloque uma camada de neve em solo vazio sem substituir neve ou plantas existentes.
+  spruce-snow-cold-only:
+    label: Neve de abeto só em locais frios
+    description: Desativar para permitir neve decorativa em torno de abetos em biomas quentes também.
+  applied: <green>CustomTrees configurações aplicadas.
+  rejected: '<red>Combinação inválida: {error} - os valores anteriores foram restaurados.'
+  section-description: Crescimento de árvores, geração mundial, custos com catalisadores, marcadores de fogo e crescimento
+    de jardim. Seleção mundial só em config.yml.
+  custom-player-grown-trees:
+    label: Árvores personalizadas de mudas
+    description: Substitui o crescimento de 1×1 e 2×2 mudas com formas de árvores personalizadas
+  connected-shrubs-and-hedges:
+    label: Arbustos e sebes
+    description: 2-3 mudas conectadas tornam-se arbustos, 4 ou mais uma sebe
+  replace-generated-trees:
+    label: Substituir árvores geradas
+    description: Substitui árvores da geração mundial (apenas novos pedaços)
+  replacement-chance:
+    label: Possibilidade de substituição
+    description: (0 = nenhum, 1 = todos)
+  generated-tree-scan-depth:
+    label: Examine a profundidade
+    description: Quantos blocos abaixo da superfície gerada por árvores são procurados
+  new-chunk-post-processing:
+    label: Pós-processamento New-chunk
+    description: Uma vez passar por cima de pedaços recém-gerados que substitui suas árvores (também pega objetos da Iris
+      tardia)
+  new-chunk-post-process-delay-ticks:
+    label: Atraso pós-processamento
+    description: Tiquetaque até que um novo pedaço seja processado
+  giant-3x3-saplings:
+    label: Árvores gigantes de 3×3
+    description: 3×3 mudas criam árvores muito grandes
+  natural-3x3-growth:
+    label: 3×3 crescimento natural
+    description: Árvores gigantes também crescem de carrapatos de crescimento normais
+  bonemeal-3x3-growth:
+    label: 3×3 com farinha de osso
+    description: A refeição de ossos desencadeia árvores gigantes imediatamente
+  giant-min-height:
+    label: 'Gigante: altura mínima'
+    description: Deve ser ≤ altura máxima
+  giant-max-height:
+    label: 'Gigante: altura máxima'
+    description: Deve ter uma altura mínima
+  giant-canopy-radius:
+    label: 'Gigante: raio da coroa'
+    description: Raio da coroa em blocos
+  colossal-5x5-saplings:
+    label: Colossi de 5×5
+    description: 5×5 mudas criam árvores colossais
+  natural-5x5-growth:
+    label: 5×5 crescimento natural
+    description: Colossi também cresce de carrapatos de crescimento normais
+  bonemeal-5x5-growth:
+    label: 5×5 com farinha de osso
+    description: Refeição óssea provoca colossi imediatamente
+  colossal-min-height:
+    label: 'Colosso: altura mínima'
+    description: Deve ser ≤ altura máxima
+  colossal-max-height:
+    label: 'Colosso: altura máxima'
+    description: Deve ter uma altura mínima
+  colossal-canopy-radius:
+    label: 'Colosso: raio da coroa'
+    description: Raio da coroa em blocos
+  glowstone-growth:
+    label: Árvores luminosas (pó de pedra brilhante)
+    description: Botão direito do mouse com pó de pedra brilhante cresce uma árvore luminosa protegida
+  glowstone-xp-cost:
+    label: 'Árvore luminosa: XP custam'
+    description: XP pontos por árvore luminosa em modo de sobrevivência
+  glowstone-leaves-per-block:
+    label: 'Árvore luminosa: folhas por pedra brilhante'
+    description: Uma pedra brilhante por tantos blocos de folhas
+  glowstone-max-blocks:
+    label: Árvore luminosa, máx
+    description: Número máximo de blocos de pedra brilhante por árvore
+  glowstone-dark-light-level:
+    label: Árvore luminosa, nível de luz escura
+    description: Deixa até este nível de luz contar como escuro
+  glowstone-growth-cooldown-seconds:
+    label: Tempo de recuperação de Glowstone
+    description: Tempo mínimo entre árvores de brilho bem sucedidas por jogador; 0 desativa
+  glowstone-growth-daily-limit:
+    label: Árvores de pedra brilhante por UTC dias
+    description: Máximas árvores de brilho de sucesso por jogador por UTC dias; 0 desativa
+  coal-growth:
+    label: Árvores de carvão
+    description: O botão direito do mouse com carvão cresce uma árvore desprotegida
+  coal-growth-cooldown-seconds:
+    label: Tempo de recuperação do carvão (segundos)
+    description: Tempo mínimo entre árvores de carvão bem sucedidas por jogador; 0 desativa
+  coal-growth-daily-limit:
+    label: Árvores de carvão por UTC dias
+    description: Máximas árvores de carvão bem sucedidas por jogador por UTC dias; 0 desativa
+  coal-costs:
+    normal:
+      label: 'Custo do carvão: normal'
+      description: Carvão necessário para uma única muda ou crescimento de arbustos (1-64)
+    medium:
+      label: 'Custo do carvão: médio'
+      description: Carvão necessário para um 2×2 árvores (1-64)
+    giant:
+      label: 'Custo do carvão: gigante'
+      description: Carvão necessário para um 3×3 árvores (1-64)
+    colossal:
+      label: 'Custo do carvão: colossal'
+      description: Carvão necessário para um 5×5 árvores (1-64)
+    hedge:
+      label: 'Custo do carvão: hedge'
+      description: Carvão necessário para uma sebe conectada (1–64)
+  fire-protect-trunks:
+    label: Protejam os troncos personalizados do fogo
+    description: Protege exatamente os troncos rastreados de eventos de queimadura direta, não contém incêndios
+  fire-protect-crowns:
+    label: Proteja coroas personalizadas do fogo
+    description: Protege os blocos de folhas rastreados de eventos de queimaduras diretas, não contém incêndios
+  garden-regrowth-seconds:
+    label: Rebrota de folhas de jardim (segundos)
+    description: Atraso antes de podar com sucesso folhas registradas crescer (10-86400 segundos)
+web:
+  module:
+    title: Guia da árvore
+    description: 'Como as mudas crescem em árvores personalizadas: formações, espécies, catalisadores e custos'
+  error:
+    reload-failed: 'Recarregar falhou; as configurações anteriores permanecem ativas: {error}'
+    no-permission: Você não tem permissão para isso.
+    not-ready: CustomTrees ainda não está pronto.
+  ui:
+    tab:
+      guide: Como crescer
+      species: Espécie
+      admin: Admin
+    loading: Carregando o guia da árvore...
+    error: 'O guia da árvore não pôde ser carregado: {error}'
+    intro: Plantar mudas do mesmo tipo em uma altura. A forma do grupo decide qual árvore cresce - a maior formação completa
+      ganha.
+    worlds:
+      all: Funciona em todos os mundos normais.
+      some: 'Trabalha nestes mundos: {worlds}'
+    permission: Crescer precisa da permissão {permission} (os jogadores a têm por padrão).
+    priority: 'Ordem de cheques: 5×5 → 3×3 → 2×2 → Sebes/Arbustos → Uma única muda.'
+    formations: Formações Sapling
+    formation:
+      single:
+        title: Uma única muda
+        text: Cresce em uma árvore personalizada de sua espécie em uma das quatro variantes de arquitetura.
+      square:
+        title: 2×2 quadrado
+        text: Quatro mudas iguais como um quadrado crescer uma árvore média-grande com um tronco grosso.
+      shrub:
+        title: Arbustos
+        text: '{min}-{max} mudas conectadas (também diagonalmente) tornam-se um grupo de arbustos.'
+      hedge:
+        title: Sede
+        text: '{min} ou mais mudas conectadas - retas, diagonais, em torno de cantos ou ramificações, até {max} - se tornam
+          uma sebe contínua.'
+      giant:
+        title: Árvore gigante (3)×3)
+        text: Nove mudas iguais como um quadrado livre de abertura crescer uma árvore extra-grande com um 3×3 porta-malas.
+      colossal:
+        title: Colossus (5)×5)
+        text: 25 mudas iguais como um quadrado livre de abertura crescer uma árvore colossal com um tronco redondo e uma coroa
+          larga.
+    size:
+      height: '{min}-{max} blocos de altura'
+      radius: Raio da coroa {radius}
+    disabled: Desativado neste servidor
+    legend:
+      sapling: Sapling
+      target: Clique com o botão direito ou refeição óssea aqui
+    diagram: 'Vista superior da formação: {count} mudas'
+    trigger:
+      natural: Crescimento natural
+      bonemeal: Farinha de ossos
+      glowstone: Pó de pedra brilhante
+      coal: Carvão
+      'off': '{trigger}: desligado'
+    protected: Mala protegida
+    fellable: FALÁVEL
+    catalysts: Catalisadores e custos
+    catalyst:
+      bonemeal:
+        title: Farinha de ossos
+        text: 'Clique com o botão direito de uma muda da formação: ela cresce imediatamente.'
+        cost: Usa 1 farinha de osso
+      glowstone:
+        title: Árvore luminosa
+        text: 'Botão direito do mouse com pó de pedra brilhante: uma árvore protegida com pedra brilhante em sua folhagem
+          interior escura cresce ao mesmo tempo.'
+        cost: Usa 1 pó de pedra brilhante + {xp} XP pontos
+        light: Uma pedra brilhante por {leaves} folhas, no máximo {max} por árvore; folhas em nível claro {light} ou contagem
+          mais escura como escuro.
+        nodrop: 'Esta pedra brilhante é decoração: mineração ou explosões não deixam cair nada e pistões não podem movê-la.'
+      coal:
+        title: Árvore de carvão
+        text: 'Botão direito do mouse com carvão: a mesma árvore personalizada cresce ao mesmo tempo, deliberadamente sem
+          proteção de tronco, então plugins de feltro de árvores podem cortá-la.'
+        cost: Usa 1 carvão
+      creative: No modo criativo catalisadores e XP são livres.
+      refund: Se a árvore não pode crescer (sem espaço, área protegida), catalisador e XP são reembolsados.
+    tips: Bom saber
+    room: Mantenha o espaço acima de toda a formação livre. Árvores só substituem ar, grama, samambaias, videiras, folhas
+      naturais e suas próprias mudas - nunca outros blocos.
+    protection: Com CoreProtect os troncos de 3×3, 5×5 e árvores luminosas são registradas como blocos colocados, então SmoothTimber
+      não as caiu. 1×1, 2×2, arbustos, sebes e árvores de carvão permanecem falíveis.
+    generation:
+      'on': 'Geração mundial: em novos pedaços {chance} das árvores geradas são substituídas pelas mesmas formas personalizadas.'
+      'off': 'Geração mundial: árvores geradas não são substituídas neste servidor.'
+    compare:
+      title: Comparação de tamanho
+      single: 1×1 árvores
+      giant: 3×3 gigante
+      colossal: 5×5 Colossus
+      player: Jogador
+      caption: Altura máxima em blocos, um jogador tem 2 blocos de altura.
+      blocks: '{height} quarteirões'
+    species:
+      intro: Cada espécie tem sua própria forma base e cresce em quatro variantes de arquitetura.
+      height: 'Árvore única: {min}-{max} blocos'
+      'off': Árvores personalizadas de mudas únicas estão desabilitadas neste servidor; 3×3 e 5×5 formações ainda podem funcionar.
+      oak: Carvalho
+      birch: Birch
+      spruce: Spruce
+      jungle: Selva
+      acacia: Acacia
+      dark_oak: Carvalho escuro
+      mangrove: Mangrove
+      cherry: Cereja
+      pale_oak: Carvalho pálido
+    variants: Variantes
+    variant:
+      open-grown: independente
+      forest: Floresta
+      windswept: Vento-vencido
+      ancient: Árvore velha
+    shape:
+      round: Coroa redonda
+      conifer: Conífera
+      umbrella: Coroa da guarda-chuva
+      mangrove: Mangue com raízes
+    admin:
+      species-grown: Árvores cultivadas por espécies
+      since-restart: Conta desde que o último servidor reiniciou.
+      intro: Os mesmos valores que /customtrees status. Contadores rodados desde o último servidor.
+      version: CustomTrees {version}
+      loading: Carregando status...
+      counters: Contadores
+      switches: Trocas
+      chance: Possibilidade de substituição
+      worlds: Mundos
+      worlds-all: Todos os mundos normais
+      integrations: Integração
+      integrations-none: Nenhum (Iris, CoreProtect, SmoothTimber não instalado)
+      reload: Recarregar configuração
+      reloading: Recarregando...
+      reloaded: Configuração recarregada.
+      reload-hint: Reler config.yml e os arquivos de linguagem, como /customtrees reload. Uma configuração inválida mantém
+        as configurações anteriores.
+      settings: Mude as configurações
+      settings-hint: Trocas e números estão na página de configurações do servidor → CustomTrees. A seleção mundial está em
+        config.yml.
+    counter:
+      grown: Árvores cultivadas (1)×1, 2×2)
+      giant-grown: Árvores gigantes (3)×3)
+      colossal-grown: Colossi (5)×5)
+      shrubs: Grupos de arbustos
+      hedges: Hedges
+      glowstone-grown: Árvores luminosas
+      coal-grown: Árvores de carvão
+      glowstone-blocks: Glowstone colocado
+      coreprotect-logs: CoreProtect entradas de tronco
+      inspected-chunks: Novos pedaços inspecionados
+      replaced: Árvores geradas substituídas
+      queued: Esperando na fila
+      species-grown: Crescimento por espécie (desde o reinício)
+    switch:
+      player-grown: Árvores personalizadas de mudas
+      shrubs-hedges: Arbustos e sebes
+      replace-generated: Substituir árvores geradas
+      new-chunk-pass: Pós-processamento New-chunk
+      giant-3x3: Árvores gigantes de 3×3
+      colossal-5x5: Colossi de 5×5
+      glowstone: Árvores luminosas
+      coal: Árvores de carvão
+    state:
+      'on': ativado
+      'off': desativado
+garden:
+  unavailable: Esta ação no jardim não está disponível, cheque permissões, versão central ou saúde de armazenamento.
+  no-tree: Olhe as folhas de sua árvore plantada dentro de seis quarteirões.
+  denied: Nenhuma folha da coroa poderia ser podada com suas atuais permissões de construção.
+  pruned: Pruned {count} folhas de coroa. O crescimento não começa antes de {seconds} segundos, enquanto você está online
+    e o espaço permanece vazio.
+  sapling-usage: /customtrees sapling <random|open_grown|forest|windswept|ancient> <normal|medium|giant|colossal>. Requer
+    Core 0.26.5 e customtrees.grow.
+  single-sapling: Mantenha exatamente uma muda não modificada em sua mão principal.
+  sapling-ready: Perfil de crescimento salvo. Coloque a muda no padrão de tamanho correspondente, custos normais e regras
+    de proteção ainda se aplicam.
+  pattern-mismatch: O perfil salvo requer seu padrão de tamanho. As mudas marcadas em um padrão devem compartilhar o perfil
+    e o dono.
+world-tree:
+  invalid-setting: A configuração mundial das árvores {setting} deve ser um inteiro de {min} a {max}.
+  preview: '{size}x{size} formação: altura {height}, raio da coroa {radius}. Botão direito com farinha de osso. Obstáculos
+    são cultivados ao redor, edifícios são preservados.'
+  bonemeal: Use farinha de osso para esta formação. Carvão, pedras brilhantes e plantas marcadas não são suportadas para este
+    tamanho.
+  busy: Um trabalho de crescimento já está sendo preparado ou crescido. Por favor, espere.
+  planning: Preparando sua árvore mundial (carregando a área, planejando, checando espaço). Nenhuma refeição óssea é consumida
+    até que o crescimento seja aprovado.
+  no-room: O crescimento das árvores do mundo parou antes da colocação. Verifique as plantas, solo, áreas protegidas, sua
+    permissão e sua refeição de ossos.
+  shrunk: 'Não há altura suficiente de construção: esta árvore cresce apenas {height} blocos de altura (raio da coroa {radius}).'
+  too-high: Não há altura suficiente para construir uma árvore do mundo. Plante a formação mais baixo.
+  too-large: Esta formação precisa de muitos pedaços. Reduzir a altura ou raio na configuração.
+  load-failed: A área ao redor da árvore mundial não poderia ser carregada. Nada foi consumido, por favor tente novamente
+    em breve.
+  growing: Crescendo sua árvore mundial em estágios ({blocks} blocos).
+  complete: Sua árvore mundial terminou de crescer.
+  partial: O crescimento da árvore mundial terminou com alguns blocos deixados de lado ou inacabados. Prédios existentes foram
+    preservados.
+world-trees:
+  enabled:
+    label: Árvores e fungos do mundo
+    description: Configurar crescimento explícito de 10x10. Dimensões incluem a coroa, obstáculos são cultivados ao redor
+      e árvores que não se encaixam são encolhidas.
+  tree-height:
+    label: Altura da árvore
+    description: Configurar crescimento explícito de 10x10. Dimensões incluem a coroa, obstáculos são cultivados ao redor
+      e árvores que não se encaixam são encolhidas.
+  mushroom-height:
+    label: Altura de cogumelos
+    description: Configurar crescimento explícito de 10x10. Dimensões incluem a coroa, obstáculos são cultivados ao redor
+      e árvores que não se encaixam são encolhidas.
+  nether-height:
+    label: Altura inferior
+    description: Configurar crescimento explícito de 10x10. Dimensões incluem a coroa, obstáculos são cultivados ao redor
+      e árvores que não se encaixam são encolhidas.
+  tree-radius:
+    label: Raio da coroa da árvore
+    description: Configurar crescimento explícito de 10x10. Dimensões incluem a coroa, obstáculos são cultivados ao redor
+      e árvores que não se encaixam são encolhidas.
+  mushroom-radius:
+    label: Raio da tampa do cogumelo
+    description: Configurar crescimento explícito de 10x10. Dimensões incluem a coroa, obstáculos são cultivados ao redor
+      e árvores que não se encaixam são encolhidas.
+  nether-radius:
+    label: Raio da coroa inferior
+    description: Configurar crescimento explícito de 10x10. Dimensões incluem a coroa, obstáculos são cultivados ao redor
+      e árvores que não se encaixam são encolhidas.
+  blocks-per-tick:
+    label: Blocos por carrapato
+    description: Configurar crescimento explícito de 10x10. Dimensões incluem a coroa, obstáculos são cultivados ao redor
+      e árvores que não se encaixam são encolhidas.
+  replace-stone:
+    label: Substituir pedra natural
+    description: Árvores do mundo também substituem pedra, arenito, andesita, diorito, granito, tuff, calcita, arenito e terracota.
+      Nunca minérios.
+  max-skipped-percent:
+    label: Max. blocos esquerdos (%)
+    description: Recusar um crescimento quando mais do que essa parcela de blocos planejados seriam deixados de fora. 100
+      = nunca recusar.
+  fungi:
+    1x1:
+      mushroom-height:
+        label: 1x1 de altura de cogumelo
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      mushroom-radius:
+        label: 1x1 raio de cogumelo
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      nether-height:
+        label: 1x1 altura inferior
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      nether-radius:
+        label: 1x1 raio inferior
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+    2x2:
+      mushroom-height:
+        label: 2x2 de altura de cogumelo
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      mushroom-radius:
+        label: 2x2 raio de cogumelo
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      nether-height:
+        label: 2x2 altura inferior
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      nether-radius:
+        label: 2x2 raio inferior
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+    3x3:
+      mushroom-height:
+        label: 3x3 de altura de cogumelo
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      mushroom-radius:
+        label: 3x3 raio de cogumelo
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      nether-height:
+        label: 3x3 altura inferior
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      nether-radius:
+        label: 3x3 raio inferior
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+    5x5:
+      mushroom-height:
+        label: 5x5 de altura de cogumelo
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      mushroom-radius:
+        label: 5x5 raio de cogumelo
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      nether-height:
+        label: 5x5 altura inferior
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+      nether-radius:
+        label: 5x5 raio inferior
+        description: Tamanho para esta formação de fungos. Altura inclui a tampa; raio é medido a partir do centro.
+shaking:
+  resting: <gray>Esta árvore foi sacudida há pouco. Tente novamente em {minutes} min.
+  no-crown: <gray>Este tronco não tem coroa para sacudir.
+  nothing: <gray>Apenas algumas folhas caem.
+  enabled:
+    label: Agitar as árvores
+    description: Clique com o botão direito de um tronco com uma mão vazia para sacudir frutas, varas e mudas da coroa.
+  cooldown-seconds:
+    label: Tempo de descanso (segundos)
+    description: Quanto tempo uma árvore agitada descansa até que possa ser sacudida novamente. 0 = sem descanso.
+  max-rolls:
+    label: Max. gotas por shake
+    description: Limite superior de rolos de saque; uma coroa recebe um rolo por 40 folhas.
+  min-leaves:
+    label: Min. folhas
+    description: Um tronco precisa de pelo menos tantas folhas de sua espécie ao seu redor para ser abalado.
+  golden-apples:
+    label: Maçãs douradas
+    description: Coroas de carvalho e carvalho escuro raramente deixam cair uma maçã dourada. Desligar para mantê-los fora
+      da economia.
+panel:
+  trees: "Árvores"
+  fungi: "Cogumelos e fungos"
+  next-task: "Meu próximo plantio"
+  squares: "Quadrados"
+  hedges: "Fileiras de cercas vivas"
+  active: "Ativo"
+  selected: "Selecionado: {pattern}"
+herbarium:
+  next-unknown: '<red>Planta desconhecida: {plant}. Use a aba completa para identificar plantas.'
+  next-complete: <green>Você reuniu todas as formas nesta seleção!
+  next-form: '<gold>Sua próxima forma de herbário: {plant} - {stage}'
+  next-click: <yellow>Clique para sua próxima tarefa de plantação.
+  next-rules: <gray>Use plantas idênticas e desmarcadas em solo adequado. Cultive você mesmo para colecioná-lo, configurações
+    de crescimento do servidor, custos e permissões ainda se aplicam.
+  recipe:
+    sapling: <gray>Planta {count} mudas em um quadrado de {width}x{width} e usar farinha de osso em um.
+    explicit: <gray>Planta {count} plantas em um {width}x{width} quadrado na mesma altura, em seguida, clique com o botão
+      direito um com farinha de osso em sua mão principal.
+    hedge: <gray>Plante quatro mudas combinando em uma linha reta (não um quadrado), então use farinha de osso em um.
+    luminous: <gray>Plante uma muda e clique com o botão direito com pó de pedra brilhante. O servidor pode cobrar XP.
+  menu-title: Herbário
+  menu-description: Todas as árvores e fungos que você cresceu, com seu posto no frontestre
+  title: Herbário de {player}
+  summary: '<gold>{player}: <yellow>{rank}'
+  summary-progress: <gray>{count} de {total} formulários encontrados
+  summary-next: '<gray>Próximo posto: <white>{rank}</white> em {needed} formulários'
+  summary-max: <green>Todos os formulários encontrados!
+  plant-progress: <gray>{count}/{total} formulários
+  found: <green>✔ {stage}
+  missing: <dark_gray>✘ {stage}
+  top-button: <yellow>Top Foresters
+  top-header: '<gold>Top Foresters (de {total} formas):'
+  top-line: <gray>{place}. <white>{player}</white> – {count} ({rank})
+  top-empty: <gray>Ninguém cresceu uma árvore ainda.
+  planting-button: <green>Ajudante de plantação
+  new-entry: '<green>Herbário: nova forma <white>{plant} – {stage}</white> ({count}/{total}).'
+  open: <aqua><u>[Herbarium]</u>
+  rank-up: '<gold>Herbarium: você é agora <yellow>{rank}</yellow>!'
+  rank-broadcast: <gold>{player} é agora <yellow>{rank}</yellow> no herbário.
+  disabled: <red>O herbário está desligado neste servidor.
+  unknown-player: <red>Nenhum herbário encontrado para {player}.
+  usage: '<gray>Uso: /customtrees herbarium [player|top]'
+  player-menu: <green>Herbário de {player}
+  player-menu-lore: <gray>{count}/{total} formulários - {rank}
+  rank:
+    sprout: Sprout
+    gardener: Jardineiro
+    forester: Forester
+    arborist: Arborista
+    warden: Diretor da árvore
+    elder: Velho da floresta
+    keeper: Guardião de Yggdrasil
+  plant:
+    oak: Carvalho
+    birch: Birch
+    spruce: Spruce
+    jungle: Selva
+    acacia: Acacia
+    dark_oak: Carvalho escuro
+    mangrove: Mangrove
+    cherry: Cereja
+    pale_oak: Carvalho pálido
+    red_mushroom: Cogumelo vermelho
+    brown_mushroom: Cogumelo marrom
+    crimson_fungus: Fungo carmesim
+    warped_fungus: Fungo Warped
+  stage:
+    single: Uma única árvore ou arbusto
+    medium: 2×2 árvores
+    giant: 3×3 gigante
+    colossal: 5×5 Colossus
+    hedge: Sede
+    luminous: Árvore luminosa
+    world: 10×10 árvore mundial
+    1x1: 1×1
+    2x2: 2×2
+    3x3: 3×3
+    5x5: 5×5
+    10x10: 10×10 gigante
+  enabled:
+    label: Herbário
+    description: Recolha todas as árvores e fungos que formam um jogador cresce, com fileiras forest, /customtrees herbarium
+      e uma entrada do jogador-menu.
+  announce-ranks:
+    label: Anunciar fileiras
+    description: Diga a todos on-line quando um jogador atingir uma nova classificação de herbário.
+planting:
+  status-none: Nenhum padrão de plantio selecionado.
+  status-selection: 'Selecionado: {pattern}, {count} plantas no total, {seconds} segundos restantes, {mode}.'
+  status-repeat: Fique ativo após o uso
+  status-once: Um uso
+  hedge-size: '<green>Fila: {size} mudas'
+  hedge-how: '<gray>Coloque uma muda: a fila se estende para frente no mesmo nível. Só Saplings.'
+  hedge-armed: '<green>Ajudante de sebes ({size}): coloque uma muda sem etiquetas; a fileira se estende para frente.'
+  hedge-blocked: <red>{count} pontos na fila da planta {size} estão bloqueados ou sem suporte (vermelho). Nada mais foi plantado.
+  hedge-missing: <red>Você precisa de mais {missing} mudas para a fila de {size} plantas.
+  hedge-done: <green>Fila de seda ({size}) plantada ({count} colocada). Use farinha de osso para plantá-la.
+  menu-title: Ajudante de plantação
+  menu-description: Plante um quadrado ou uma sebe com uma muda
+  title: Ajudante de plantação
+  size: <green>{size}×{size} quadrado
+  size-count: <gray>Usa {count} plantas de um tipo
+  size-grows: '<gray>Cresce: <white>{result}'
+  size-active: <yellow>Ativo - coloque uma muda ou fungo
+  result:
+    2x2: Árvore média
+    3x3: 3×3 gigante
+    5x5: 5×5 Colossus
+    10x10: 10×10 árvores mundiais ou fungos gigantes
+  'off': <red>Desligar
+  how: '<gray>Coloque uma planta: ela se torna o canto mais próximo de você, o quadrado cresce para frente e para sua direita.'
+  off-button: <gray>[Off]
+  armed: '<green>Plantando ajudante {size}×{size}: coloque uma muda ou fungo. Torna-se o canto mais próximo de você, o quadrado
+    cresce para frente e para sua direita.'
+  disarmed: <gray>O ajudante de plantação desligou.
+  blocked: '<red>Ajudante de plantação: {count} pontos do {size}×{size} quadrados estão bloqueados ou não têm chão adequado
+    (vermelho marcado). Nada mais foi plantado.'
+  missing: <red>Você precisa de mais {missing} desta planta para o {size}×{size} quadrados.
+  not-allowed: <red>Não pode plantar aqui. Nada mais foi plantado.
+  tagged: '<yellow>Ajudante de plantação: mudas marcadas são plantadas uma por uma.'
+  done: '<green>Ajudante de plantação: {size}×{size} quadrados plantados ({count} colocados). Use farinha de osso em qualquer
+    um deles.'
+  disabled: <red>O ajudante de plantação está desligado neste servidor.
+  usage: '<gray>Uso: /customtrees plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off]'
+planting-helper:
+  max-hedge-length:
+    label: Comprimento máximo da sebe
+    description: Comprimento máximo da linha, 4 a 32. Valores abaixo de 4 desabilitam o plantio de sebes.
+  enabled:
+    label: Ajudante de plantação
+    description: Os jogadores escolhem um tamanho quadrado e plantam o quadrado inteiro com uma muda (/customtrees plant,
+      /vmenu).
+  max-size:
+    label: Maior quadrado
+    description: 'O maior quadrado que o ajudante oferece: 2, 3, 5 ou 10.'
+  keep-active:
+    label: Mantenha-se ativo
+    description: Mantenha o ajudante ligado depois que um quadrado foi plantado.
+  timeout-seconds:
+    label: Tempo de desligamento (segundos)
+    description: Um ajudante não usado se desliga depois desse tempo.
+timber:
+  progress: <gray>Trunk <white>{chopped}/{required}</white> Cortado
+  busy: <gray>Muitas árvores estão caindo agora, este tronco quebrou sozinho.
+  too-large: <gray>Esta árvore é muito grande ou chega a terra descarregada, apenas o tronco quebrou.
+  protected: <red>Parte desta árvore está protegida, ela permanece de pé.
+  tool-spared: <gold>Seu machado quebraria, só que este tronco foi cortado.
+  player:
+    title: Madeira
+    description: Caiu árvores inteiras com um machado
+    locked: O servidor decide isso para todos.
+    mode-server: Padrão do servidor
+    mode-drop: Direto para baixo
+    mode-fall: A árvore cai
+    use:
+      label: Madeira
+      description: Cortar um tronco com um machado derruba toda a árvore.
+    mode:
+      label: Como as árvores descem
+      description: 'Direto para baixo: a árvore quebra de baixo para cima. A árvore cai: ela cai de você e se transforma em
+        itens.'
+  choice:
+    fall: A árvore cai
+    drop: Direto para baixo
+    first-log: Primeiro registro
+    percent: Por cento do porta-malas
+    standing: Só enquanto estiver de pé
+    sneaking: Só enquanto esgueira
+    any: Sempre
+    server-mode: Modo servidor
+    disabled: Nunca
+    vanilla: Como baunilha
+    none: Nada
+    pause: Pause a madeira embutida
+    run-both: Corra os dois
+  enabled:
+    label: Madeira
+    description: Cortar um tronco de uma árvore com um machado derruba toda a árvore. As construções dos jogadores nunca são
+      derrubadas.
+  mode:
+    label: Como as árvores descem
+    description: queda = a árvore derruba longe do jogador ao redor de seu toco e se transforma em itens; queda = quebra diretamente
+      do fundo para cima.
+  trigger:
+    label: Quando a árvore cai
+    description: 1o diário = no primeiro tronco cortado; percentual = uma vez que a parte definida da seção transversal do
+      tronco é cortada.
+  trunk-percent:
+    label: Parte do porta-malas para cortar (%)
+    description: 'Percentagem de gatilho: parte da seção transversal do tronco que deve ser cortada antes da árvore cair.'
+  sneaking:
+    label: Sneaking
+    description: Em pé = madeira apenas enquanto não esgueirar-se (para cortar troncos simples); esgueirar-se = apenas enquanto
+      esgueirar; qualquer = sempre.
+  require-axe:
+    label: Axe necessário
+    description: A madeira só funciona com um machado na mão principal.
+  worlds:
+    label: Mundos
+    description: Mundos onde a madeira trabalha, vazios = todos os mundos.
+  player-choice:
+    label: Os jogadores escolhem
+    description: Os jogadores podem desligar a madeira para eles mesmos e pegar a árvore cair ou direto para baixo /vsettings.
+  tree-types:
+    small:
+      label: Árvores pequenas
+      description: 'Single e 2x2 árvores, arbustos e sebes: servidor-modo, queda, queda ou desativado.'
+    giant:
+      label: 3x3 gigantes
+      description: 'Árvores gigantes de 3x3 mudas: modo servidor, queda, queda ou desativada.'
+    colossal:
+      label: 5x5 colossi
+      description: 'Árvores colossais de 5x5 mudas: modo servidor, queda, queda ou desativada.'
+    world:
+      label: Árvores do mundo
+      description: '10x10 árvores mundiais e outras árvores enormes: modo servidor, queda, queda ou desativada.'
+  tool:
+    durability-per-log:
+      label: Use por log
+      description: A durabilidade aponta que o machado perde por tora derrubada.
+    spare-tool:
+      label: Poupe o machado
+      description: Não caia uma árvore quando o machado quebrava, então só o tronco cortado quebra.
+  drops:
+    leaves:
+      label: Gotas de folhas
+      description: baunilha = folhas gotas de mudas, varas e maçãs como baunilha (Fortune ajuda, Silk Touch mantém folhas);
+        nenhum = nada.
+    into-inventory:
+      label: No inventário
+      description: Itens feltros vão direto para o inventário, o que não cabe em terras no chão.
+  replant:
+    label: Replantar
+    description: Depois que uma pequena árvore cai, uma muda adequada é plantada onde seu tronco estava (quatro para 2x2)
+      - das gotas da árvore, mais do inventário.
+  detection:
+    max-blocks:
+      label: Max. blocos por árvore
+      description: Árvores com mais troncos e folhas não são derrubadas.
+    max-radius:
+      label: Max, raio
+      description: Até onde uma árvore pode chegar do tronco cortado.
+    max-height:
+      label: Max, altura
+      description: Quão alto uma árvore pode chegar acima do corte.
+    min-leaves:
+      label: Min. folhas
+      description: Uma árvore precisa de pelo menos tantas folhas naturais (ou tampas para cogumelos e fungos).
+    natural-ground:
+      label: Terra natural
+      description: O tronco deve ficar em terra natural, como terra, grama, areia, pedra ou nílio.
+    coreprotect-check:
+      label: CoreProtect cheque
+      description: 'Com CoreProtect: nunca caiu troncos de um jogador colocado.'
+    only-generated-trees:
+      label: Apenas árvores geradas
+      description: Apenas árvores caídas CustomTrees cresceram ou geraram (ou, com CoreProtect árvores nenhum jogador colocado).
+  fall:
+    max-displays:
+      label: Max. mostra por árvore
+      description: Mostrar entidades de uma árvore caindo, árvores maiores são mostradas com cubos fundidos.
+    fall-ticks:
+      label: Duração da queda
+      description: Duração de uma queda total nos carrapatos (20 = 1 segundo).
+  performance:
+    blocks-per-tick:
+      label: Blocos por carrapato
+      description: Blocos removidos por carrapato, compartilhados por todas as árvores caindo.
+    checks-per-tick:
+      label: Cheques por tique
+      description: Verificações de proteção por carrapato, compartilhadas por árvores caindo.
+    falls-per-world:
+      label: Quedas por mundo
+      description: Árvores caindo ao mesmo tempo em um mundo.
+    falls-per-player:
+      label: Quedas por jogador
+      description: Árvores que um jogador pode ter caído ao mesmo tempo.
+  other-timber-plugins:
+    label: Outros plugins de madeira
+    description: Pause = desligue a madeira incorporada enquanto SmoothTimber ou outro plug-in de madeira é instalado; execute
+      ambos = mantenha ambos.
+  percent-memory-seconds:
+    label: Memória de cortes (segundos)
+    description: 'Porcentagem de gatilho: quanto tempo um tronco meio picado lembra de seus cortes.'
+  protected-region-kinds:
+    label: Tipos de regiões protegidas
+    description: Vystorm tipos de região do núcleo onde a madeira não remove nada, uma bandeira de região sobrepõe-se a ela.
+commands:
+  customtrees:
+    description: 'Árvores personalizadas: guia de árvores, mudas marcadas, poda, plantando ajudante e herbário'
+    aliases: []
+    sub:
+      breed:
+        name: "breed"
+        aliases: []
+        description: "Cruzar as duas mudas com perfil nas mãos"
+      guide:
+        name: guide
+        aliases: []
+        description: Abra o guia da árvore (web page or in-game tutorial); Também /customtrees web
+        args:
+          page: Guia espécies
+      sapling:
+        name: sapling
+        aliases: []
+        description: Transforme a única muda em sua mão em uma muda com forma de coroa e tamanho
+        usage: FORM SIZE
+        args:
+          form: FORM
+          size: SIZE
+      prune:
+        name: prune
+        aliases: []
+        description: Prune a coroa de sua árvore de jardim que você está olhando
+      plant:
+        name: plant
+        aliases: []
+        description: 'Ajudante de plantação: quadrados e linhas de sebe (menu, tamanho, sebe ou fora)'
+        args:
+          size: 2x23x35x510x10hedge4 hedge32 off
+      herbarium:
+        name: herbarium
+        aliases: []
+        description: Seu herbário, o herbário de outro jogador ou a lista de topo
+        args:
+          player: PLAYER o top
+      next:
+        name: next
+        aliases: []
+        description: Sugerir um formulário de herbário com instruções de plantio
+        args:
+          plant: PLANT
+      status:
+        name: status
+        aliases: []
+        description: Mostre as configurações e status do recurso
+      reload:
+        name: reload
+        aliases: []
+        description: Recarregue os arquivos de configuração e linguagem
+    values:
+      status: estado
+      guide: guia
+      species: espécie
+      admin: administrador
+      top: Topo
+
+# Free feature release: breeding
+breeding:
+  unavailable: "O cruzamento está indisponível ou você não tem permissão."
+  survival: "Cruze mudas no modo Sobrevivência ou Aventura."
+  cooldown: "Próximo cruzamento em {seconds}s."
+  parents: "Segure uma muda com perfil da mesma espécie em cada mão. /customtrees sapling cria os pais; ambos são consumidos."
+  generation: "Geração {generation}"
+  cancelled: "Cruzamento cancelado; nenhum dos pais foi consumido."
+  success: "Geração {generation} criada! Copa e tamanho herdados, com pequena chance de mutação. Plante normalmente."
+regrowth:
+  queued: "<green>🌱 Esta floresta vai crescer de novo."
+fruit:
+  already: "<gray>Esta muda já dá essa fruta."
+  marked: "<green>🍎 Muda frutífera! A árvore que crescer aqui dará frutos."
+  unripe: "<gray>Ainda não há nada maduro."
+  harvested: "<green>🍎 Você colheu {amount} fruta(s)."

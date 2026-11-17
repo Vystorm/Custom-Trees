@@ -1,0 +1,5 @@
+name: CustomTreesAcceptance
+version: 1.0.0
+main: at.esoren.customtrees.acceptance.StructureAcceptance
+api-version: '26.2'
+depend: [vystorm_core, CustomTrees]

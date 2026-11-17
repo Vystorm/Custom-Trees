@@ -1,0 +1,108 @@
+# Português (Brasil) — UTF-8. Keep keys, placeholders and formatting tokens unchanged.
+title: CustomTrees
+permission: customtrees.grow
+pages:
+- title: Plantando árvores personalizadas
+  text: |
+    CustomTrees substitui o crescimento de mudas em mundos normais com suas próprias formas de árvores. Por padrão, cada NORMAL mundo é ativado.
+
+    1. Plantar mudas do mesmo tipo com espaço livre acima delas.
+    2. Uma única muda se torna uma árvore personalizada em crescimento normal ou com farinha de osso.
+    3. Um completo 2×2 quadrados das mesmas mudas se tornam uma árvore média a grande.
+    4. Refeição óssea ativa o tamanho configurado imediatamente e usa exatamente um item fora do modo criativo.
+
+    Crescer requer customtrees.grow.
+- title: Arbustos e sebes
+  text: |
+    As mudas conectadas podem crescer em pequenas formas de paisagem.
+
+    1. Conecte duas ou três mudas do mesmo tipo na mesma altura, também na diagonal, em torno de cantos ou ramificações.
+    2. Espere por um carrapato normal ou use farinha de osso em uma dessas mudas.
+    3. O grupo se torna arbustos.
+    4. Conecte quatro ou mais mudas do mesmo tipo para obter uma sebe contínua.
+
+    Completo 2×2, 3×3 e 5×5 quadrados permanecem tamanhos de árvores e não são tratados como uma sebe.
+- title: Árvore gigante de 3×3
+  text: |
+    Um completo 3×3 campos das mesmas mudas criam uma árvore extra-grande.
+
+    1. Plantar nove mudas do mesmo tipo que um quadrado livre de abertura em uma altura.
+    2. Deixe espaço livre sobre toda a área.
+    3. Espere pelo crescimento natural ou use farinha de osso em uma das nove mudas.
+    4. Tamanho padrão: 36 a 48 blocos de altura com um raio de coroa de 11.
+
+    Crescimento natural e de farinha de ossos para 3×3 podem ser ligados no servidor.
+- title: Colossus de 5×5
+  text: |
+    Um completo 5×5 campos das mesmas mudas criam uma árvore colossal com um tronco redondo e uma coroa larga.
+
+    1. Planta 25 mudas do mesmo tipo que um quadrado livre de falhas em uma altura.
+    2. Mantenha o espaço acima de toda a base livre.
+    3. Espere pelo crescimento natural ou use farinha de osso em uma muda do campo.
+    4. Tamanho padrão: 52 a 68 blocos de altura com um raio de coroa de 17.
+
+    Ambos os gatilhos e as dimensões podem ser alteradas na configuração do servidor.
+- title: Árvore luminosa com pó de pedra brilhante
+  text: |
+    Clicar com o botão direito de uma muda com pó de pedra brilhante cresce uma variante brilhante protegida. A pedra brilhante é colocada preferencialmente em folhagem interior escura.
+
+    1. Segure o pó de pedra brilhante e clique com o botão direito de uma muda válida.
+    2. Certifique-se que a forma da árvore tenha espaço livre suficiente.
+    3. No modo de sobrevivência, um pó de pedra brilhante e 100 reais XP pontos são usados.
+    4. Com CoreProtect instalados, os troncos são gravados como lugares protegidos CustomTrees. Custo e quantidade de luz são configuráveis.
+- title: Árvore de carvão
+  text: |
+    Com carvão a mesma forma de árvore personalizada cresce, mas deliberadamente sem a proteção CoreProtect de seus troncos.
+
+    1. Segure carvão e clique com o botão direito de uma muda válida.
+    2. Certifique-se de que haja espaço suficiente e que a árvore cresça imediatamente.
+    3. No modo de sobrevivência um pedaço de carvão é usado.
+    4. Use esta variante quando os troncos não devem ser registrados como protegidos CustomTrees Colocações.
+- title: Geração natural do mundo
+  text: |
+    Além de árvores criadas por jogadores, CustomTrees podem substituir árvores geradas. Por padrão a chance de substituição é 100 %.
+
+    1. Explore novas áreas em um mundo normal habilitado.
+    2. Árvores geradas podem ser substituídas pelas formas de árvores personalizadas.
+    3. Um curto passe de uma vez passa depois que um pedaço é gerado, então árvores colocadas tarde (por exemplo, objetos Iris) são substituídas também.
+    4. Os pedaços existentes nunca são reescritos só porque estão carregados novamente.
+- title: 'Administração: configurações, status e recarga'
+  permission: customtrees.admin
+  text: |
+    Gestão é para administradores.
+
+    1. /customtrees status mostra mundos ativos, interruptores e balcões para árvores, gigantes, colossi, arbustos, sebes, bem como brilhos e árvores de carvão.
+    2. Mude os interruptores e números no menu Vystorm em configurações → Servidor → CustomTrees (also /vsettings or /vadmin); Eles se aplicam imediatamente.
+    3. Combinações inválidas, como uma altura mínima acima da altura máxima, são rejeitadas e repostas aos valores anteriores.
+    4. Seleção mundial (enabled-worlds) é apenas em config.yml; correr /customtrees reload Depois. Se a configuração for inválida, as configurações anteriormente ativas ficam em vigor.
+- title: 10x10 árvores mundiais e fungos gigantes
+  text: |
+    Planta 100 Selvas comuns idênticas, red/brown Cogumelos ou crimson/warped fungos em uma completa 10x10 quadrado em uma altura.
+    Clique com o botão direito em qualquer membro com refeição de osso. A árvore é planejada primeiro e cresce em estágios após plugins de proteção aprovarem. Ele consome uma refeição de ossos, não XP; carvão, pedras brilhantes e mudas de perfil não são suportadas para este tamanho.
+    Altura padrão: árvores 160 (Raio da coroa 44, Raízes até ~30 blocos, cerca de 110x110 blocos de área carregada), cogumelos 80, Fungos mais profundos 48 blocks. Obstáculos nunca param o crescimento: plantas, neve, folhas e chão macio (sujeira, grama, areia, cascalho, argila, lama) são substituídos, raízes escavam no solo e através da água, edifícios e outros blocos são simplesmente deixados de fora. Pedaços desaparecidos são carregados automaticamente, uma árvore que é muito alta para o ponto é encolhida para caber. Fungos profundos precisam de nylium em tudo 100 Plantas.
+    Clique com uma mão vazia para ver as dimensões configuradas. Completo 10x10 quadrados não crescem naturalmente ou caem para 5x5. A Server Stop pode deixar uma árvore parcialmente crescida.
+    Administração: configurações de árvores mundiais em config.yml ou /vadmin config CustomTrees. Mudanças fazem efeito para novos empregos em crescimento.
+- title: 'Cogumelos e fungos: todos os tamanhos'
+  text: |
+    Cogumelos vermelhos/brown e fungos carmesim/warped suportam 1x1, 2x2, 3x3, 5x5 e 10x10 quadrados de plantas idênticas. Botão direito com farinha de osso. A maior formação completa ganha.
+    Altura dos cogumelos: 8, 16, 28, 44 e 80 blocos. Alturas de fungos: 8, 14, 24, 36 e 48. Todas as dimensões são configuráveis sob o mundo-trees.fungi; 10x10 usam os valores de árvores existentes.
+    Obstáculos são cultivados ao redor e edifícios são preservados; eventos de proteção são executados antes do consumo. Pequenas árvores comuns mantêm seu comportamento existente.
+- title: 'Ajudante plantando: quadrados inteiros ao mesmo tempo'
+  text: |
+    Abra o ajudante de plantação /vmenu (Building) ou com /customtrees plant e escolher 2x2, 3x3, 5x5 ou 10x10.
+    Em seguida, coloque uma muda, propagaule, cogumelo ou fungo. Torna-se o canto mais próximo de você, o quadrado cresce para frente e para sua direita e é preenchido a partir de seu inventário.
+    Se um ponto é bloqueado ou não tem chão adequado, nada mais é plantado e as manchas são marcadas com vermelho. Áreas protegidas são respeitadas.
+    O ajudante desliga depois de um quadrado (or after 5 minutes unused). /customtrees plant off Desliga de uma vez.
+- title: 'Herbário: recolher todos os formulários'
+  text: |
+    Cada árvore e fungo forma você mesmo crescer é registrado: nove espécies como única árvore, 2x2, 3x3, 5x5, sebe, árvore luminosa e 10x10 árvore mundial, mais quatro cogumelos e fungos em cinco tamanhos.
+    Abra seu herbário /vmenu (Character) ou com /customtrees herbarium. Mais formas trazem fileiras mais altas, de Sprout para Guardião de Yggdrasil.
+    Esgueirar-se-direita-clique outro jogador para olhar para o seu herbário. /customtrees herbarium top mostra os melhores florestais.
+    /customtrees next sugere um formulário faltando com instruções de plantio, começando com pequenas formações. Adicione uma planta ID Como cereja para filtrar, ou clique em uma espécie no herbário para sua próxima tarefa. As configurações de crescimento do servidor ainda se aplicam.
+- title: 'Madeira: árvores inteiras com um machado'
+  text: |
+    Cortar um tronco com um machado (without sneaking) E toda a árvore desce. Isso funciona para árvores naturais e para cada CustomTrees árvores.
+    Árvore caindo: a árvore se afasta de você ao redor de seu toco e quebra em itens onde ela cai. Direto para baixo: ele quebra de baixo para cima.
+    Dependendo do servidor, a árvore cai no primeiro tronco, ou só uma vez que uma parte da seção transversal do tronco é cortada. A barra de ação mostra, por exemplo, 3/8".
+    In /vsettings Pode desligar a madeira ou escolher como as árvores descem. Sneak para cortar troncos simples. Jogador constrói e áreas protegidas nunca são derrubadas.
+    Pequenas árvores são replantadas sozinhas: uma muda adequada das gotas da árvore (or your inventory) Vai onde o tronco estava.

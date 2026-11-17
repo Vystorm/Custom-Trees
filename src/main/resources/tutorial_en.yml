@@ -1,0 +1,107 @@
+title: 'CustomTrees'
+permission: customtrees.grow
+pages:
+  - title: 'Planting custom trees'
+    text: |
+      CustomTrees replaces the growth of saplings in normal worlds with its own tree shapes. By default every NORMAL world is enabled.
+
+      1. Plant saplings of the same kind with free space above them.
+      2. A single sapling becomes a custom tree on normal growth or with bone meal.
+      3. A complete 2×2 square of the same saplings becomes a medium to large tree.
+      4. Bone meal triggers the configured size immediately and uses exactly one item outside creative mode.
+
+      Growing requires customtrees.grow.
+  - title: 'Shrubs and hedges'
+    text: |
+      Connected saplings can grow into small landscape shapes.
+
+      1. Connect two or three saplings of the same kind at the same height, also diagonally, around corners or branching.
+      2. Wait for a normal growth tick or use bone meal on one of these saplings.
+      3. The group becomes shrubs.
+      4. Connect four or more saplings of the same kind to get a continuous hedge.
+
+      Complete 2×2, 3×3 and 5×5 squares stay tree sizes and are not treated as a hedge.
+  - title: 'Giant tree from 3×3'
+    text: |
+      A complete 3×3 field of the same saplings creates an extra-large tree.
+
+      1. Plant nine saplings of the same kind as a gap-free square at one height.
+      2. Leave enough free space above the whole area.
+      3. Wait for natural growth or use bone meal on one of the nine saplings.
+      4. Default size: 36 to 48 blocks high with a crown radius of 11.
+
+      Natural and bone meal growth for 3×3 can each be switched on the server.
+  - title: 'Colossus from 5×5'
+    text: |
+      A complete 5×5 field of the same saplings creates a colossal tree with a round trunk and a wide crown.
+
+      1. Plant 25 saplings of the same kind as a gap-free square at one height.
+      2. Keep the space above the whole base free.
+      3. Wait for natural growth or use bone meal on one sapling of the field.
+      4. Default size: 52 to 68 blocks high with a crown radius of 17.
+
+      Both triggers and the dimensions can be changed in the server configuration.
+  - title: 'Luminous tree with glowstone dust'
+    text: |
+      Right-clicking a sapling with glowstone dust grows a protected glowing variant. The glowstone is placed preferably in dark inner foliage.
+
+      1. Hold glowstone dust and right-click a valid sapling.
+      2. Make sure the tree shape has enough free space.
+      3. In survival mode one glowstone dust and 100 real XP points are used.
+      4. With CoreProtect installed, the trunks are recorded as protected CustomTrees placements. Cost and amount of light are configurable.
+  - title: 'Coal tree'
+    text: |
+      With coal the same custom tree shape grows, but deliberately without the CoreProtect protection of its trunks.
+
+      1. Hold coal and right-click a valid sapling.
+      2. Make sure there is enough room and the tree grows immediately.
+      3. In survival mode one piece of coal is used.
+      4. Use this variant when the trunks should not be registered as protected CustomTrees placements.
+  - title: 'Natural world generation'
+    text: |
+      Besides player-grown trees, CustomTrees can replace generated trees. By default the replacement chance is 100 %.
+
+      1. Explore new areas in an enabled normal world.
+      2. Generated trees can be replaced with the custom tree shapes.
+      3. A short one-time pass runs after a chunk is generated, so trees placed late (for example Iris objects) are replaced too.
+      4. Existing chunks are never rewritten just because they are loaded again.
+  - title: 'Admin: settings, status and reload'
+    permission: customtrees.admin
+    text: |
+      Management is for administrators.
+
+      1. /customtrees status shows active worlds, switches and counters for trees, giants, colossi, shrubs, hedges as well as glowstone and coal trees.
+      2. Change switches and numbers in the Vystorm menu under Settings → Server → CustomTrees (also /vsettings or /vadmin); they apply immediately.
+      3. Invalid combinations, such as a minimum height above the maximum height, are rejected and reset to the previous values.
+      4. World selection (enabled-worlds) is only in config.yml; run /customtrees reload afterwards. If the configuration is invalid, the previously active settings stay in effect.
+  - title: '10x10 world trees and giant fungi'
+    text: |
+      Plant 100 identical ordinary saplings, red/brown mushrooms or crimson/warped fungi in a complete 10x10 square at one height.
+      Right-click any member with bone meal. The tree is planned first and grows in stages after protection plugins approve it. It consumes one bone meal, no XP; coal, glowstone and profile saplings are not supported for this size.
+      Default heights: trees 160 (crown radius 44, roots up to ~30 blocks out, about 110x110 blocks of loaded area), mushrooms 80, Nether fungi 48 blocks. Obstacles never stop the growth: plants, snow, leaves and soft ground (dirt, grass, sand, gravel, clay, mud) are replaced, roots dig into the ground and through water, buildings and other blocks are simply left out. Missing chunks are loaded automatically; a tree that is too tall for the spot is shrunk to fit. Nether fungi need matching nylium under all 100 plants.
+      Sneak-right-click with an empty main hand to see the configured dimensions. Complete 10x10 squares do not grow naturally or fall back to 5x5. A server stop can leave a partially grown tree.
+      Admins: world-trees settings in config.yml or /vadmin config CustomTrees. Changes take effect for new growth jobs.
+  - title: 'Mushrooms and Nether fungi: all sizes'
+    text: |
+      Red/brown mushrooms and crimson/warped fungi support 1x1, 2x2, 3x3, 5x5 and 10x10 squares of identical plants. Right-click with bone meal. The largest complete formation wins.
+      Mushroom heights: 8, 16, 28, 44 and 80 blocks. Nether fungus heights: 8, 14, 24, 36 and 48. All dimensions are configurable under world-trees.fungi; 10x10 uses the existing world-tree values.
+      Obstacles are grown around and buildings are preserved; protection events run before consumption. Smaller ordinary trees keep their existing behavior.
+  - title: 'Planting helper: whole squares at once'
+    text: |
+      Open the planting helper in /vmenu (Building) or with /customtrees plant and pick 2x2, 3x3, 5x5 or 10x10.
+      Then place one sapling, propagule, mushroom or fungus. It becomes the corner nearest to you; the square grows forward and to your right and is filled from your inventory.
+      If a spot is blocked or has no fitting ground, nothing else is planted and the spots are marked red. Protected areas are respected.
+      The helper switches off after one square (or after 5 minutes unused). /customtrees plant off switches it off at once.
+  - title: 'Herbarium: collect every form'
+    text: |
+      Every tree and fungus form you grow yourself is recorded: nine species as single tree, 2x2, 3x3, 5x5, hedge, luminous tree and 10x10 world tree, plus four mushrooms and fungi in five sizes.
+      Open your herbarium in /vmenu (Character) or with /customtrees herbarium. More forms bring higher ranks, from Sprout to Keeper of Yggdrasil.
+      Sneak-right-click another player to look at their herbarium. /customtrees herbarium top shows the best foresters.
+      /customtrees next suggests a missing form with planting instructions, starting with small formations. Add a plant ID such as cherry to filter, or click a species in the herbarium for your own next task. Server growth settings still apply.
+  - title: 'Timber: whole trees with an axe'
+    text: |
+      Chop a log with an axe (without sneaking) and the whole tree comes down. This works for natural trees and for every CustomTrees tree.
+      Tree fall: the tree tips over away from you around its stump and breaks into items where it lands. Straight down: it breaks from the bottom up.
+      Depending on the server, the tree falls at the first log, or only once a share of the trunk cross-section is cut. The action bar then shows, for example, "Trunk 3/8".
+      In /vsettings you can switch the timber off for yourself or pick how trees come down. Sneak to chop single logs. Player builds and protected areas are never felled.
+      Small trees are replanted on their own: a fitting sapling from the tree's drops (or your inventory) goes where the trunk stood.

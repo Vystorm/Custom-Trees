@@ -1,0 +1,928 @@
+# Italiano — UTF-8. Keep keys, placeholders and formatting tokens unchanged.
+compat:
+  missing-pale-oak: La quercia pallida e la sua decorazione non sono disponibili su questo server; l'erbario utilizza solo
+    le specie disponibili.
+growth:
+  not-allowed: '<red>CustomTrees: Questo albero potrebbe non crescere qui.'
+  no-room: '<red>CustomTrees: Non c''è abbastanza spazio direttamente sopra il tronco.'
+  refunded: '<yellow>CustomTrees: La crescita annullata, i costi rimborsati.'
+  glowstone-missing-xp: '<red>Albero luminoso: Hai bisogno di {xp} XP punti.'
+  glowstone-xp-used: '<gold>Albero luminoso: {xp} XP punti utilizzati.'
+  catalyst-limited: '<red>CustomTrees: Il limite di questo catalizzatore è stato raggiunto.'
+  coal-class:
+    normal: albero normale
+    medium: albero medio
+    giant: albero gigante
+    colossal: albero colossale
+    hedge: hedge
+  coal-cost-preview: <gray>Questo {formation} costi di crescita <white>{coal} carbone<gray>. Fare clic sulla stessa formazione
+    di nuovo con carbone entro 10 secondi per confermare.
+  coal-cost-confirm: '<gold>Confermato: questa crescita utilizzerà {coal} carbone se riuscirà.'
+  coal-missing: <red>Hai bisogno di {coal} carbone nella mano usato per innescare questa crescita.
+  preview-disabled: '<red>CustomTrees: La crescita dell''albero è disabilitata in questo mondo.'
+  preview-no-pattern: '<yellow>CustomTrees: Qui non è disponibile nessun modello di zaffiro abilitato.'
+  preview-pattern-unverified: '<yellow>CustomTrees: I pezzi adiacenti sono scaricati, quindi la formazione degli zaffiri non
+    può essere ancora determinata.'
+  preview: '<gold>CustomTrees anteprima ({certainty}): {formation} {species}; terreno {ground}; clearance {space}; Regione
+    protetta nucleo {protection}.'
+  preview-note: <gray>Il profilo è una stima di clearance conservatrice, non la forma dell'albero finale. I profili biome
+    possono cambiare altezza e corona dell'albero; altri plugin di protezione decidono durante la crescita reale.
+  preview-confidence-detected: rilevato
+  preview-confidence-unverified: può essere incompleto
+  preview-ground-ok: supportato da CustomTrees terreno
+  preview-ground-bad: non su un terreno conosciuto CustomTrees
+  preview-space-ok: cancella
+  preview-space-bad: bloccato
+  preview-space-unloaded: non controllato (carico vuoto)
+  preview-protected: sovrapposizioni
+  preview-unprotected: nessuno rilevato
+  preview-pattern:
+    single: singolo lubrificante
+    square: 2×2 zaffiri
+    shrub: gruppo arbustivo
+    hedge: hedge
+    giant: 3×3 gigante
+    colossal: 5×5 colosso
+growth-sapling:
+  name: <green>{species} lubrificante
+  form: '<gray>Forma della corona: <white>{form}'
+  size: '<gray>Dimensione della crescita: <white>{growthClass}'
+  species:
+    oak: Rovere
+    birch: Birch
+    spruce: Abete
+    jungle: Jungle
+    acacia: Acacia
+    dark_oak: Rovere scuro
+    mangrove: Mangrove
+    cherry: Cherry
+    pale_oak: rovere pallido
+  crown:
+    random: Random
+    open_grown: Gamberi aperti
+    forest: Foresta
+    windswept: Ventoswept
+    ancient: Antico
+  class:
+    normal: Normale
+    medium: Media
+    giant: Gigante
+    colossal: Colossal
+tutorial-hint: '<gray>[CustomTrees] Come gli zaffiri crescono negli alberi: '
+action:
+  settings: Impostazioni
+  tutorial: Guida
+  web-guide: <aqua><u>[Tree guide]</u>
+command:
+  reloaded: CustomTrees configurazione ricaricata.
+  reload-failed: '<red>CustomTrees ricarico fallito; le impostazioni precedenti rimangono attive: {error}'
+  all-worlds: tutti i mondi normali
+  no-permission: <red>Non hai il permesso per questo.
+  usage: '<gray>Utilizzo: /customtrees [guide [species|admin]], plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off], herbarium [player|top]
+    – amministratori anche: stato, ricarica'
+  players-only: Solo i giocatori possono aprire la guida sull'albero.
+  guide-unavailable: <red>La guida sugli alberi non è disponibile in questo momento.
+validation:
+  replacement-chance: La sostituzione deve essere compresa tra {min} e {max}.
+  giant-heights: Le altezze giganti devono soddisfare {min} <= min <= max <= {max}.
+  giant-canopy-radius: gigante-canopia-radio deve essere tra {min} e {max}.
+  colossal-heights: Le altezze di colossa devono soddisfare {min} <= min <= max <= {max}.
+  colossal-canopy-radius: colossal-canopy-radius deve essere tra {min} e {max}.
+  glowstone-xp-cost: glowstone-xp-cost deve essere tra {min} e {max}.
+  generated-tree-scan-depth: La profondità generata deve essere compresa tra {min} e {max}.
+  glowstone-leaves-per-block: glowstone-leaves-per-block deve essere tra {min} e {max}.
+  glowstone-max-blocks: glowstone-max-blocchi devono essere tra {min} e {max}.
+  glowstone-dark-light-level: glowstone-dark-light-level deve essere tra {min} e {max}.
+  new-chunk-post-process-delay-ticks: Le zecche a post-processo devono essere comprese tra {min} e {max}.
+  catalyst-cooldown: '{catalyst}-growth-recovery-seconds deve essere tra {min} e {max}.'
+  catalyst-daily-limit: '{catalyst}-growth-daily-limit deve essere tra {min} e {max}.'
+  coal-costs-section: settings.coal-costs deve essere una sezione YAML.
+  coal-growth-cost: I costi del carbone.{growthClass} devono essere un numero intero da {min} a {max}.
+  biome-profiles-root: biome-profiles deve essere una sezione YAML.
+  biome-profiles-limit: Al massimo {max} gruppi di profili biome sono ammessi.
+  biome-profiles-biome-limit: Al massimo {max} incarichi biome sono consentiti.
+  biome-profile-id: 'Invalid biome profile id: {id}.'
+  biome-profile-group: Il profilo biome {id} deve essere una sezione YAML.
+  biome-profile-biomes: Il profilo biome {id} deve elencare almeno un biome.
+  biome-profile-number: Il profilo biome {id} ha un valore numerico non valido per {field}.
+  biome-profile-scale: '{id}: {field} deve essere tra {min} e {max}.'
+  biome-profile-form: 'Profilo Biome {id} ha una forma corona sconosciuta: {form}.'
+  biome-profile-chance: 'Profilo di biome {id}: la sostituzione-chance deve essere compresa tra {min} e {max}.'
+  biome-profile-biome-key: 'Il profilo biome {id} ha una chiave di biome non valida: {biome}.'
+  biome-profile-unknown-biome: 'Profilo di biome {id} riporta un biome sconosciuto: {biome}.'
+  biome-profile-duplicate-biome: Biome {biome} è assegnato a più di un profilo.
+  biome-profiles-core: I biome-profile non vuoti richiedono Vystorm Core 0.26.5 o più recenti con TREE_GROWTH_PROFILES.
+settings:
+  spruce-ground:
+    label: Pianta di foresta di abete
+    description: Podzol e sporco grossolano intorno a grandi abeti piantati e appena generati.
+  spruce-snow:
+    label: Neve intorno a a abeti
+    description: Posizionare uno strato di neve su terra vuota senza sostituire la neve o le piante esistenti.
+  spruce-snow-cold-only:
+    label: Spruce neve solo in località fredde
+    description: Disabilitare per permettere la neve decorativa intorno a abeti in biomi caldi troppo.
+  applied: <green>CustomTrees impostazioni applicate.
+  rejected: '<red>Combinazione non valida: {error} – i valori precedenti sono stati ripristinati.'
+  section-description: Crescita dell'albero, generazione mondiale, costi catalizzanti, marcatori di fuoco e ricrescita del
+    giardino. Selezione mondiale (mondo abilitato) solo nel config.yml.
+  custom-player-grown-trees:
+    label: Alberi personalizzati da saplings
+    description: Sostituisce la crescita di 1×1 e 2×2 saplings con forme albero personalizzate
+  connected-shrubs-and-hedges:
+    label: Arbusti e siepi
+    description: 2–3 gli zaffiri collegati diventano arbusti, 4 o più una siepe
+  replace-generated-trees:
+    label: Sostituire alberi generati
+    description: Sostituisce alberi di generazione mondiale (solo pezzi nuovi)
+  replacement-chance:
+    label: Possibilità di sostituzione
+    description: Quota degli alberi generati che vengono sostituiti (0 = nessuno, 1 = tutti)
+  generated-tree-scan-depth:
+    label: profondità di scansione
+    description: Quanti blocchi sotto la superficie generata alberi sono ricercati
+  new-chunk-post-processing:
+    label: post-processing a New-chunk
+    description: Passare una volta sopra i pezzi appena generati che sostituisce i loro alberi (anche cattura gli oggetti
+      tardo Iris)
+  new-chunk-post-process-delay-ticks:
+    label: Ritardo di post-elaborazione
+    description: Ticks fino a quando un nuovo pezzo è post-processed
+  giant-3x3-saplings:
+    label: Alberi giganti da 3×3
+    description: 3×3 zaffiri creano alberi extra-large
+  natural-3x3-growth:
+    label: 3×3 crescita naturale
+    description: Gli alberi giganti crescono anche dalle normali zecche di crescita
+  bonemeal-3x3-growth:
+    label: 3×3 con pasto osseo
+    description: Il pasto Bone innesca alberi giganti immediatamente
+  giant-min-height:
+    label: 'Gigante: min. altezza'
+    description: Deve essere ≤ max. altezza
+  giant-max-height:
+    label: 'Gigante: altezza massima'
+    description: Deve essere ≥ min. altezza
+  giant-canopy-radius:
+    label: 'Gigante: raggio corona'
+    description: Radio della corona in blocchi
+  colossal-5x5-saplings:
+    label: Colossi da 5×5
+    description: 5×5 zaffiri creano alberi colossali
+  natural-5x5-growth:
+    label: 5×5 crescita naturale
+    description: Colossi anche crescere da normali zecche di crescita
+  bonemeal-5x5-growth:
+    label: 5×5 con pasto osseo
+    description: Il pasto Bone innesca colossi immediatamente
+  colossal-min-height:
+    label: 'Colosso: min. altezza'
+    description: Deve essere ≤ max. altezza
+  colossal-max-height:
+    label: 'Colosso: altezza massima'
+    description: Deve essere ≥ min. altezza
+  colossal-canopy-radius:
+    label: 'Colosso: raggio corona'
+    description: Radio della corona in blocchi
+  glowstone-growth:
+    label: Alberi luminosi (polvere di pietra)
+    description: Fare clic con la polvere di lapide cresce un albero luminoso protetto
+  glowstone-xp-cost:
+    label: 'Albero luminoso: XP costo'
+    description: XP punti per albero luminoso in modalità sopravvivenza
+  glowstone-leaves-per-block:
+    label: 'Albero luminoso: foglie per pietra grezza'
+    description: Un glowstone per questo molti blocchi foglia
+  glowstone-max-blocks:
+    label: 'Albero luminoso: max'
+    description: Numero massimo di blocchi di pietre glow per albero
+  glowstone-dark-light-level:
+    label: 'Albero luminoso: livello di luce scuro'
+    description: Lascia fino a questo livello leggero contare come scuro
+  glowstone-growth-cooldown-seconds:
+    label: Tempo di recupero della crescita di Glowstone (secondi)
+    description: Tempo minimo tra alberi di bagliore di successo per giocatore; 0 lo disabilita
+  glowstone-growth-daily-limit:
+    label: Alberi in pietra per UTC giorno
+    description: Alberi glowstone di massimo successo per giocatore per UTC giorno; 0 lo disabilita
+  coal-growth:
+    label: Alberi di carbone
+    description: Fare clic con il carbone cresce un albero non protetto
+  coal-growth-cooldown-seconds:
+    label: Tempo di recupero della crescita del carbone (secondi)
+    description: Tempo minimo tra alberi di carbone di successo per giocatore; 0 lo disabilita
+  coal-growth-daily-limit:
+    label: Alberi di carbone per UTC giorno
+    description: Alberi di carbone massimo successo per giocatore per UTC giorno; 0 lo disabilita
+  coal-costs:
+    normal:
+      label: 'Costo del carbone: normale'
+      description: Carbone richiesto per una crescita unica di zaffiro o arbusto (1–64)
+    medium:
+      label: 'Costo del carbone: medio'
+      description: Carbone richiesto per un 2×2 albero (1–64)
+    giant:
+      label: 'Costo del carbone: gigante'
+      description: Carbone richiesto per un 3×3 albero (1–64)
+    colossal:
+      label: 'Costo del carbone: colossale'
+      description: Carbone richiesto per un 5×5 albero (1–64)
+    hedge:
+      label: 'Costo del carbone: siepe'
+      description: Carbone richiesto per una siepe collegata (1–64)
+  fire-protect-trunks:
+    label: Proteggere i tronchi personalizzati dal fuoco
+    description: Protegge i blocchi di tronco tracciati esatti da eventi di masterizzazione diretta; non contiene incendi
+      selvatici
+  fire-protect-crowns:
+    label: Proteggere corone personalizzate da fuoco
+    description: Protegge i blocchi di foglie tracciati esatti da eventi di masterizzazione diretta; non contiene incendi
+      selvatici
+  garden-regrowth-seconds:
+    label: Ricrescita foglia di giardino (secondi)
+    description: Ritardo prima della ricrescita delle foglie registrate (10–86400 secondi)
+web:
+  module:
+    title: Guida all'albero
+    description: 'Come gli zaffiri crescono in alberi personalizzati: formazioni, specie, catalizzatori e costi'
+  error:
+    reload-failed: 'Ricarica fallita; le impostazioni precedenti rimangono attive: {error}'
+    no-permission: Non hai il permesso per questo.
+    not-ready: CustomTrees non è ancora pronto.
+  ui:
+    tab:
+      guide: Come crescere
+      species: Specie
+      admin: Amministrazioni
+    loading: Caricamento della guida sull'albero...
+    error: 'La guida dell''albero non poteva essere caricata: {error}'
+    intro: Gli zaffiri vegetali dello stesso tipo ad un'altezza. La forma del gruppo decide quale albero cresce – la più grande
+      formazione completa vince.
+    worlds:
+      all: Funziona in tutti i mondi normali (overworld).
+      some: 'Opere in questi mondi: {worlds}'
+    permission: Crescere ha bisogno del permesso {permission} (i giocatori lo hanno per impostazione predefinita).
+    priority: 'Ordine dei controlli: 5×5 → 3×3 → 2×2 → hedge/shrubs → single sapling.'
+    formations: Formazioni di zaffiro
+    formation:
+      single:
+        title: Sollevamento singolo
+        text: Cresce in un albero personalizzato della sua specie in una delle quattro varianti di architettura.
+      square:
+        title: 2×2 quadrati
+        text: Quattro zanne uguali come un quadrato crescono un albero medio-grande con un tronco spesso.
+      shrub:
+        title: Arbusti
+        text: '{min}–{max} gli zaffiri collegati (anche diagonalmente) diventano un gruppo di arbusti.'
+      hedge:
+        title: Hedge
+        text: '{min} o più raccordi collegati – rettilinei, diagonali, angoli o ramificazione, fino a {max} – diventano una
+          copertura continua.'
+      giant:
+        title: Albero gigante (3×3)
+        text: Nove sapling uguali come un quadrato privo di spazio crescono un albero extra-large con un 3×3 baule.
+      colossal:
+        title: Colosso (5)×5)
+        text: 25 sapling uguali come un quadrato privo di gap crescere un albero colossale con un tronco rotondo e una corona
+          larga.
+    size:
+      height: '{min}–{max} blocchi alti'
+      radius: raggio corona {radius}
+    disabled: Disabili su questo server
+    legend:
+      sapling: Sapore
+      target: Fare clic con il pulsante destro del mouse o il pasto osseo qui (qualsiasi sapido della formazione funziona)
+    diagram: 'Vista superiore della formazione: {count} saplings'
+    trigger:
+      natural: Crescita naturale
+      bonemeal: Pasto di pane
+      glowstone: Polvere di glowstone
+      coal: Carbone
+      'off': '{trigger}: off'
+    protected: Tronco protetto
+    fellable: Affidabile
+    catalysts: Catalizzatori e costi
+    catalyst:
+      bonemeal:
+        title: Pasto di pane
+        text: 'Fare clic con il pulsante destro del mouse sulla formazione: cresce subito.'
+        cost: Utilizza 1 pasto osseo
+      glowstone:
+        title: Albero luminoso
+        text: 'Fare clic con il pulsante destro del mouse sulla polvere in pietra: un albero protetto con lapide nel fogliame
+          interno scuro cresce subito.'
+        cost: Utilizza 1 polvere di lapide + {xp} XP punti
+        light: Una lapide per {leaves} foglie, al massimo {max} per albero; foglie a livello leggero {light} o più scuro conteggio
+          come scuro.
+        nodrop: 'Questo glowstone è la decorazione: estrazione mineraria o esplosioni non cadere nulla e pistoni non possono
+          spostarlo.'
+      coal:
+        title: Albero di carbone
+        text: 'Fare clic con il carbone: lo stesso albero personalizzato cresce subito, deliberatamente senza protezione del
+          tronco, in modo che i plugin per l''albero possano tagliarlo.'
+        cost: Utilizza il carbone 1
+      creative: In modalità creativa catalizzatori e XP sono liberi.
+      refund: Se l'albero non può crescere (nessuna stanza, area protetta), catalizzatore e XP sono rimborsati.
+    tips: Buono a sapersi
+    room: Tenere lo spazio sopra l'intera formazione libero. Gli alberi sostituiscono solo aria, erba, felci, viti, foglie
+      naturali e loro stessi saplings – mai altri blocchi.
+    protection: Con CoreProtect i tronchi di 3×3, 5×5 e alberi luminosi sono registrati come blocchi posti, quindi SmoothTimber
+      non li cade. 1×1, 2×2, arbusti, siepi e alberi di carbone rimangono caduti.
+    generation:
+      'on': 'Generazione mondiale: in nuovi pezzi {chance} degli alberi generati sono sostituiti dalle stesse forme personalizzate.'
+      'off': 'Generazione mondiale: gli alberi generati non vengono sostituiti su questo server.'
+    compare:
+      title: Confronto delle dimensioni
+      single: 1×1 albero
+      giant: 3×3 gigante
+      colossal: 5×5 colosso
+      player: Giocatore
+      caption: Altezza massima in blocchi; un giocatore è alto 2 blocchi.
+      blocks: '{height} blocchi'
+    species:
+      intro: Ogni specie ha la sua forma di base e cresce in quattro varianti di architettura.
+      height: 'Albero singolo: {min}–{max} blocchi'
+      'off': Su questo server sono disabilitati gli alberi personalizzati dai singoli sapling; 3×3 e 5×5 formazioni possono
+        ancora funzionare.
+      oak: Rovere
+      birch: Birch
+      spruce: Abete
+      jungle: Jungle
+      acacia: Acacia
+      dark_oak: Rovere scuro
+      mangrove: Mangrove
+      cherry: Cherry
+      pale_oak: rovere pallido
+    variants: Varianti
+    variant:
+      open-grown: freestanding
+      forest: foresta foresta
+      windswept: vento-bent
+      ancient: vecchio albero
+    shape:
+      round: Corona rotonda
+      conifer: Conifera
+      umbrella: Corona ombrello
+      mangrove: Mangrove con radici
+    admin:
+      species-grown: Alberi coltivati per specie
+      since-restart: Conta dal riavvio dell'ultimo server.
+      intro: Gli stessi valori /customtrees status. I contatori funzionano dall'ultimo avvio del server.
+      version: CustomTrees {version}
+      loading: Stato di caricamento...
+      counters: Contatori
+      switches: Interruttori
+      chance: Possibilità di sostituzione
+      worlds: Mondi
+      worlds-all: tutti i mondi normali
+      integrations: Integrazioni
+      integrations-none: nessuno (Iris, CoreProtect, SmoothTimber non installato)
+      reload: Ricaricare la configurazione
+      reloading: Ricaricare...
+      reloaded: Configurazione ricaricata.
+      reload-hint: Rilegge config.yml e i file di lingua, come /customtrees reload. Una configurazione non valida mantiene
+        le impostazioni precedenti.
+      settings: Modifica delle impostazioni
+      settings-hint: Interruttori e numeri sono nella pagina delle impostazioni sotto Server → CustomTrees. La selezione mondiale
+        (mondo accessibile) è solo nel config.yml.
+    counter:
+      grown: Alberi coltivati (1×1, 2×2)
+      giant-grown: Alberi giganti (3×3)
+      colossal-grown: Colossi (5)×5)
+      shrubs: Gruppi di arbusti
+      hedges: Siepi
+      glowstone-grown: Alberi luminosi
+      coal-grown: Alberi di carbone
+      glowstone-blocks: Glowstone posto
+      coreprotect-logs: CoreProtect tronchi
+      inspected-chunks: Nuovi pezzi ispezionati
+      replaced: Alberi generati sostituiti
+      queued: Aspettare nella coda
+      species-grown: Crescita per specie (dal riavvio)
+    switch:
+      player-grown: Alberi personalizzati da saplings
+      shrubs-hedges: Arbusti e siepi
+      replace-generated: Sostituire alberi generati
+      new-chunk-pass: post-processing a New-chunk
+      giant-3x3: Alberi giganti da 3×3
+      colossal-5x5: Colossi da 5×5
+      glowstone: Alberi luminosi
+      coal: Alberi di carbone
+    state:
+      'on': attivato
+      'off': disattivato
+garden:
+  unavailable: Questa azione giardino non è disponibile; controllare le autorizzazioni, Core versione o la salute di stoccaggio.
+  no-tree: Guarda le foglie del tuo albero di profilo piantato entro sei isolati.
+  denied: Nessuna foglia di corona corrispondente potrebbe essere potuta con i vostri permessi di costruzione attuali.
+  pruned: Pruned {count} foglie corona. La ricrescita inizia non prima di {seconds} secondi, mentre sei online e lo spazio
+    rimane vuoto.
+  sapling-usage: /customtrees sapling <random|open_grown|forest|windswept|ancient> <normal|medium|giant|colossal>. Richiede
+    Core 0.26.5 e customtrees.grow.
+  single-sapling: Tenere esattamente uno zaffiro non modificato nella mano principale.
+  sapling-ready: Profilo di crescita salvato. Piantare il linfatico nel modello di dimensione corrispondente; costi normali
+    e regole di protezione ancora si applicano.
+  pattern-mismatch: Il profilo salvato richiede il suo modello di dimensione corrispondente. Tagged saplings in uno schema
+    deve condividere il profilo e il proprietario.
+world-tree:
+  invalid-setting: L'impostazione mondiale {setting} deve essere un intero da {min} a {max}.
+  preview: '{size}x{size} formazione: altezza {height}, raggio corona {radius}. Fare clic con il menu osseo. Gli ostacoli
+    sono cresciuti intorno; gli edifici sono conservati.'
+  bonemeal: Utilizzare il pasto osseo per questa formazione. Carbone, pietra glowstone e taggati impianti di profilo non sono
+    supportati per questa dimensione.
+  busy: Un lavoro di crescita è già in fase di preparazione o di sviluppo. Ti prego, aspetta.
+  planning: Preparare il tuo albero del mondo (caricare l'area, pianificare, controllare lo spazio). Nessun pasto osseo viene
+    consumato fino all'approvazione della crescita.
+  no-room: La crescita dell'albero del mondo si è fermata prima del posizionamento. Controllare le piante, il terreno, le
+    aree protette, il vostro permesso e il vostro pasto osseo.
+  shrunk: 'Non abbastanza altezza di costruzione: questo albero cresce solo {height} blocchi di altezza (raggio a corona {radius}).'
+  too-high: Non c'è abbastanza altezza di costruzione qui per un albero di mondo. Piantare la formazione più bassa.
+  too-large: Questa formazione ha bisogno di troppi pezzi. Ridurre l'altezza o il raggio nella configurazione.
+  load-failed: L'area intorno all'albero del mondo non poteva essere caricato. Niente è stato consumato; si prega di riprovare
+    a breve.
+  growing: Crescere l'albero del mondo in fasi ({blocks} blocchi).
+  complete: Il tuo albero del mondo ha finito di crescere.
+  partial: La crescita dell'albero del mondo si è conclusa con alcuni blocchi lasciati fuori o incompiuti. Gli edifici esistenti
+    sono stati conservati.
+world-trees:
+  enabled:
+    label: Alberi mondiali e funghi
+    description: Configurare una crescita esplicita 10x10. Le dimensioni includono la corona; gli ostacoli sono coltivati
+      intorno e gli alberi che non si adattano sono tagliati.
+  tree-height:
+    label: Altezza dell'albero
+    description: Configurare una crescita esplicita 10x10. Le dimensioni includono la corona; gli ostacoli sono coltivati
+      intorno e gli alberi che non si adattano sono tagliati.
+  mushroom-height:
+    label: Altezza del bagno
+    description: Configurare una crescita esplicita 10x10. Le dimensioni includono la corona; gli ostacoli sono coltivati
+      intorno e gli alberi che non si adattano sono tagliati.
+  nether-height:
+    label: Altezza inferiore
+    description: Configurare una crescita esplicita 10x10. Le dimensioni includono la corona; gli ostacoli sono coltivati
+      intorno e gli alberi che non si adattano sono tagliati.
+  tree-radius:
+    label: Raggio corona albero
+    description: Configurare una crescita esplicita 10x10. Le dimensioni includono la corona; gli ostacoli sono coltivati
+      intorno e gli alberi che non si adattano sono tagliati.
+  mushroom-radius:
+    label: Mushroom cap raggio
+    description: Configurare una crescita esplicita 10x10. Le dimensioni includono la corona; gli ostacoli sono coltivati
+      intorno e gli alberi che non si adattano sono tagliati.
+  nether-radius:
+    label: raggio di corona nere
+    description: Configurare una crescita esplicita 10x10. Le dimensioni includono la corona; gli ostacoli sono coltivati
+      intorno e gli alberi che non si adattano sono tagliati.
+  blocks-per-tick:
+    label: Blocchi per zecca
+    description: Configurare una crescita esplicita 10x10. Le dimensioni includono la corona; gli ostacoli sono coltivati
+      intorno e gli alberi che non si adattano sono tagliati.
+  replace-stone:
+    label: Sostituire pietra naturale
+    description: Gli alberi del mondo sostituiscono anche la pietra, il deepslate, andesite, il diorite, il granito, il tufo,
+      la calcite, la arenaria e il cotto. Mai minerali.
+  max-skipped-percent:
+    label: Max. blocchi di sinistra (%)
+    description: Rifiutare una crescita quando più di questa quota di blocchi previsti sarebbe lasciato fuori. 100 = mai rifiutare.
+  fungi:
+    1x1:
+      mushroom-height:
+        label: 1x1 altezza di fungo
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      mushroom-radius:
+        label: 1x1 raggio di fungo
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      nether-height:
+        label: 1x1 altezza netta
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      nether-radius:
+        label: 1x1 raggio nether
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+    2x2:
+      mushroom-height:
+        label: 2x2 altezza di fungo
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      mushroom-radius:
+        label: 2x2 raggio di fungo
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      nether-height:
+        label: 2x2 altezza netta
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      nether-radius:
+        label: 2x2 raggio nether
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+    3x3:
+      mushroom-height:
+        label: 3x3 altezza di fungo
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      mushroom-radius:
+        label: 3x3 raggio di fungo
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      nether-height:
+        label: 3x3 altezza netta
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      nether-radius:
+        label: 3x3 raggio nether
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+    5x5:
+      mushroom-height:
+        label: 5x5 altezza di fungo
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      mushroom-radius:
+        label: 5x5 raggio di fungo
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      nether-height:
+        label: 5x5 altezza netta
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+      nether-radius:
+        label: 5x5 raggio nether
+        description: Dimensioni per questa formazione fungo. L'altezza include il tappo; il raggio è misurato dal centro.
+shaking:
+  resting: <gray>Questo albero è stato scosso un momento fa. Riprova a {minutes} min.
+  no-crown: <gray>Questo tronco non ha corona da scuotere.
+  nothing: <gray>Solo poche foglie cadono.
+  enabled:
+    label: Shake alberi
+    description: Fare clic con il pulsante destro del mouse su un tronco con una mano vuota per scuotere frutta, bastoncini
+      e zaffiri dalla corona.
+  cooldown-seconds:
+    label: Tempo di riposo (secondi)
+    description: Quanto tempo un albero scosso riposa prima che possa essere scosso di nuovo. 0 = nessun riposo.
+  max-rolls:
+    label: Max. gocce per agitazione
+    description: Limite superiore di rotoli di bottino; una corona ottiene un rotolo per 40 foglie.
+  min-leaves:
+    label: Min. foglie
+    description: Un tronco ha bisogno di almeno questo molte foglie della sua specie intorno ad esso per essere scosso.
+  golden-apples:
+    label: Mele dorate
+    description: Le corone di quercia e rovere scuro possono raramente cadere una mela d'oro. Spegnilo per tenerli fuori dall'economia.
+panel:
+  trees: "Alberi"
+  fungi: "Funghi"
+  next-task: "La mia prossima piantagione"
+  squares: "Quadrati"
+  hedges: "File di siepi"
+  active: "Attivo"
+  selected: "Selezione: {pattern}"
+herbarium:
+  next-unknown: '<red>Ignoto impianto: {plant}. Utilizzare il completamento della scheda per gli ID dell''impianto.'
+  next-complete: <green>Hai raccolto ogni modulo in questa selezione!
+  next-form: '<gold>La tua prossima forma di erbario: {plant} — {stage}'
+  next-click: <yellow>Fare clic per il tuo prossimo compito di impianto.
+  next-rules: <gray>Utilizzare piante identiche e non tagliate su terreno adatto. Crescete voi stessi per raccoglierlo; le
+    impostazioni di crescita del server, i costi e le autorizzazioni si applicano ancora.
+  recipe:
+    sapling: <gray>Pianta {count} saplings in un quadrato {width}x{width} e usa il pasto osseo su uno.
+    explicit: <gray>Pianta {count} piante in un {width}x{width} quadrato alla stessa altezza, quindi fare clic con il pulsante
+      destro del mouse su uno con il pasto osseo nella mano principale.
+    hedge: <gray>Pianta quattro zaffiri corrispondenti in una linea retta (non un quadrato), quindi usa il pasto osseo su
+      uno.
+    luminous: <gray>Pianta una linfa e fai clic con la polvere di lapide. Il server può caricare XP.
+  menu-title: Herbarium
+  menu-description: Ogni albero e fungo forma che hai coltivato, con il tuo rango di foresta
+  title: Herbarium del {player}
+  summary: '<gold>{player}: <yellow>{rank}'
+  summary-progress: <gray>{count} di {total} forme trovate
+  summary-next: '<gray>Prossimo rango: <white>{rank}</white> a {needed} forme'
+  summary-max: <green>Ogni forma trovata!
+  plant-progress: <gray>{count}/{total} forme
+  found: <green>✔ {stage}
+  missing: <dark_gray>✘ {stage}
+  top-button: <yellow>I migliori forestali
+  top-header: '<gold>Top Foresters (di {total} forme):'
+  top-line: <gray>{place}. <white>{player}</white> – {count} ({rank})
+  top-empty: <gray>Nessuno è ancora cresciuto un albero.
+  planting-button: <green>Impianto helper
+  new-entry: '<green>Herbarium: nuova forma <white>{plant} – {stage}</white> ({count}/{total}).'
+  open: <aqua><u>[Herbarium]</u>
+  rank-up: '<gold>Herbarium: sei ora <yellow>{rank}</yellow>!'
+  rank-broadcast: <gold>{player} ora <yellow>{rank}</yellow> nell'erbario.
+  disabled: <red>L'erbario è spento su questo server.
+  unknown-player: <red>Nessun erbario trovato per {player}.
+  usage: '<gray>Utilizzo: /customtrees herbarium [player|top]'
+  player-menu: <green>Herbarium del {player}
+  player-menu-lore: <gray>{count}/{total} forme – {rank}
+  rank:
+    sprout: Sprout
+    gardener: Gardener
+    forester: Foresta
+    arborist: Arborista
+    warden: Armadio albero
+    elder: Vecchio foresta
+    keeper: Custode di Yggdrasil
+  plant:
+    oak: Rovere
+    birch: Birch
+    spruce: Abete
+    jungle: Jungle
+    acacia: Acacia
+    dark_oak: Rovere scuro
+    mangrove: Mangrove
+    cherry: Cherry
+    pale_oak: rovere pallido
+    red_mushroom: Fungo rosso
+    brown_mushroom: Fungo marrone
+    crimson_fungus: Fungo di Crimson
+    warped_fungus: Fungo caldo
+  stage:
+    single: Albero singolo o arbusto
+    medium: 2×2 albero
+    giant: 3×3 gigante
+    colossal: 5×5 colosso
+    hedge: Hedge
+    luminous: Albero luminoso
+    world: 10×10 albero del mondo
+    1x1: 1×1
+    2x2: 2×2
+    3x3: 3×3
+    5x5: 5×5
+    10x10: 10×10 gigante
+  enabled:
+    label: Herbarium
+    description: Raccogliere ogni albero e fungo forma un giocatore cresce, con ranghi di foresta, /customtrees herbarium
+      e una voce giocatore-menu.
+  announce-ranks:
+    label: Annunciare i ranghi
+    description: Dica a tutti online quando un giocatore raggiunge un nuovo rango di erbario.
+planting:
+  status-none: Nessun modello di impianto selezionato.
+  status-selection: 'Selezionato: {pattern}; {count} piante in totale; {seconds} secondi sinistra; {mode}.'
+  status-repeat: rimane attivo dopo l'uso
+  status-once: un uso
+  hedge-size: '<green>fila di zeppa: {size} saplings'
+  hedge-how: '<gray>Posizionare un luccichio: la fila si estende in avanti sullo stesso livello. Saplings solo.'
+  hedge-armed: '<green>Hedge helper ({size}): posizionare un luccichio non registrato; la fila si estende in avanti.'
+  hedge-blocked: '<red>Hedge helper: {count} posti nella fila {size}-pianta sono bloccati o non supportati (rosso). Nient''altro
+    è stato piantato.'
+  hedge-missing: '<red>Hedge helper: è necessario {missing} più saplings per la fila {size}-pianta.'
+  hedge-done: <green>fila di siepe ({size}) piantato ({count} posto). Utilizzare il pasto osseo per crescere.
+  menu-title: Impianto helper
+  menu-description: Piantare un quadrato o fila di siepe con un linfalo
+  title: Impianto helper
+  size: <green>{size}×{size} quadrati
+  size-count: <gray>Utilizza {count} piante di un tipo
+  size-grows: '<gray>Cresce: <white>{result}'
+  size-active: <yellow>Attivo – posizionare un sapificante o un fungo
+  result:
+    2x2: albero medio
+    3x3: 3×3 gigante
+    5x5: 5×5 colosso
+    10x10: 10×10 albero del mondo o fungo gigante
+  'off': <red>Spegnimento
+  how: '<gray>Posizionare una pianta: diventa l''angolo più vicino a te, la piazza cresce in avanti e a destra.'
+  off-button: <gray>[Off]
+  armed: '<green>Impianto {size}×{size}: posizionare un falco o un fungo. Diventa l''angolo più vicino a voi; la piazza cresce
+    in avanti e a destra.'
+  disarmed: <gray>L'aiutante di impianto è spento.
+  blocked: '<red>Aiutante di impianto: {count} posti del {size}×{size} quadrati sono bloccati o non hanno terreno di montaggio
+    (rosso marcato). Nient''altro è stato piantato.'
+  missing: '<red>Impianto helper: è necessario {missing} più di questo impianto per il {size}×{size} quadrati.'
+  not-allowed: '<red>Impianto helper: non potete piantare qui. Nient''altro è stato piantato.'
+  tagged: '<yellow>Planting helper: taggati saplings sono piantati uno per uno.'
+  done: '<green>Impianto di aiuto: {size}×{size} piazza piantata ({count} posto). Utilizzare il pasto osseo su uno qualsiasi
+    di loro.'
+  disabled: <red>L'aiutante di impianto è spento su questo server.
+  usage: '<gray>Utilizzo: /customtrees plant [2x2|3x3|5x5|10x10|hedge4..hedge32|off]'
+planting-helper:
+  max-hedge-length:
+    label: Lunghezza massima della siepe
+    description: Lunghezza massima della fila, 4 a 32. Valori inferiori a 4 disabilitano la piantagione di siepe.
+  enabled:
+    label: Impianto helper
+    description: I giocatori scelgono una dimensione quadrata e piantano l'intero quadrato con un linfatico (/customtrees
+      plant, /vmenu).
+  max-size:
+    label: Piazza più grande
+    description: 'La piazza più grande offre l''aiutante: 2, 3, 5 o 10.'
+  keep-active:
+    label: Resta attivo
+    description: Mantenere l'aiutante acceso dopo che un quadrato è stato piantato.
+  timeout-seconds:
+    label: Tempo di spegnimento (secondi)
+    description: Un aiutante inutilizzato si spegne dopo questa volta.
+timber:
+  progress: <gray>Trunk <white>{chopped}/{required}</white> tritato tritato
+  busy: <gray>Troppi alberi stanno cadendo in questo momento; questo tronco si è rotto da solo.
+  too-large: <gray>Questo albero è troppo grande o raggiunge la terra scarica; solo il tronco si è rotto.
+  protected: <red>Parte di questo albero è protetto; rimane in piedi.
+  tool-spared: <gold>La tua ascia si romperebbe; solo questo tronco è stato tagliato.
+  player:
+    title: Legname
+    description: Fell alberi interi con un'ascia
+    locked: Il server decide questo per tutti.
+    mode-server: Predefinito server
+    mode-drop: Dritto
+    mode-fall: caduta dell'albero
+    use:
+      label: Legname
+      description: Scegliere un tronco con un'ascia cade l'intero albero.
+    mode:
+      label: Come vengono gli alberi
+      description: 'Dritto: l''albero si rompe dal basso verso l''alto. Caduta dell''albero: si rovescia lontano da voi e
+        si trasforma in oggetti.'
+  choice:
+    fall: caduta dell'albero
+    drop: Dritto
+    first-log: Primo registro
+    percent: Percentuale del tronco
+    standing: Solo in piedi
+    sneaking: Solo mentre sgattaioli
+    any: Sempre
+    server-mode: Modalità server
+    disabled: Mai
+    vanilla: Come la vaniglia
+    none: Niente
+    pause: Pausa il legno incorporato
+    run-both: Corri entrambi
+  enabled:
+    label: Legname
+    description: Scegliere un tronco di un albero con un'ascia cade l'intero albero. Le costruzioni dei giocatori non sono
+      mai cadute.
+  mode:
+    label: Come vengono gli alberi
+    description: caduta = l'albero si allontana dal giocatore intorno alla sua stump e si trasforma in oggetti; goccia = si
+      rompe direttamente dal basso verso l'alto.
+  trigger:
+    label: Quando l'albero cade
+    description: primo-log = al primo tronco tritato; per cento = una volta tagliata la quota impostata della sezione trasversale
+      del tronco.
+  trunk-percent:
+    label: Condividi per tagliare (%)
+    description: 'Innesco per cento: parte della sezione trasversale del tronco che deve essere tagliata prima che l''albero
+      cada.'
+  sneaking:
+    label: Sneaking
+    description: in piedi = legname solo mentre non intrufola (mantenere per tagliare i singoli tronchi); sneaking = solo
+      mentre sneaking; qualsiasi = sempre.
+  require-axe:
+    label: Axe richiesto
+    description: Il legname funziona solo con un'ascia nella mano principale.
+  worlds:
+    label: Mondi
+    description: Mondi dove il legno funziona; vuoto = ogni mondo.
+  player-choice:
+    label: I giocatori scelgono
+    description: I giocatori possono spegnere il legname per se stessi e scegliere caduta albero o dritto verso il basso /vsettings.
+  tree-types:
+    small:
+      label: Piccoli alberi
+      description: 'Alberi singoli e 2x2, arbusti e siepi: movimento server, caduta, goccia o disabili.'
+    giant:
+      label: 3x3 giganti
+      description: 'Alberi giganti da 3x3 saplings: server-mode, caduta, goccia o disabili.'
+    colossal:
+      label: 5x5 colossi
+      description: 'Alberi colossali da 5x5 saplings: server-mode, caduta, goccia o disabili.'
+    world:
+      label: Gli alberi del mondo
+      description: '10x10 alberi del mondo e altri alberi enormi: server-mode, caduta, goccia o disabili.'
+  tool:
+    durability-per-log:
+      label: Indossare per log
+      description: Durata indica che l'ascia perde per tronco caduto (Si applica l'infrazione).
+    spare-tool:
+      label: Spare l'ascia
+      description: Non cadere un albero quando l'ascia si romperà; poi solo il tronco tritato si rompe.
+  drops:
+    leaves:
+      label: Gocce di foglia
+      description: vaniglia = foglie goccia di luccichi, bastoncini e mele come vaniglia (Fortune aiuta, Silk Touch mantiene
+        foglie); nessuno = nulla.
+    into-inventory:
+      label: Nell'inventario
+      description: Gli oggetti in feltro vanno direttamente nell'inventario; ciò che non si adatta alle terre sul terreno.
+  replant:
+    label: Reimpianto
+    description: Dopo che un piccolo albero cade, viene piantato un raccordino dove il suo tronco si trovava (quattro per
+      2x2) – dalle gocce dell'albero, altrimenti dall'inventario.
+  detection:
+    max-blocks:
+      label: Max. blocchi per albero
+      description: Gli alberi con più tronchi e foglie non sono caduti.
+    max-radius:
+      label: Max. raggio
+      description: Fino a che punto un albero può raggiungere lateralmente dal tronco tritato.
+    max-height:
+      label: Altezza massima
+      description: Quanto alto può raggiungere un albero sopra il taglio.
+    min-leaves:
+      label: Min. foglie
+      description: Un albero ha bisogno di almeno questo molte foglie naturali (o cappucci per funghi e funghi).
+    natural-ground:
+      label: Terreno naturale
+      description: Il tronco deve stare su terra naturale come sporcizia, erba, sabbia, pietra o nylium.
+    coreprotect-check:
+      label: CoreProtect assegno
+      description: 'Con CoreProtect: mai caduto tronchi un giocatore posto.'
+    only-generated-trees:
+      label: Solo alberi generati
+      description: Solo gli alberi caduti CustomTrees sono cresciuti o generati (o, con CoreProtect, alberi nessun giocatore
+        posto).
+  fall:
+    max-displays:
+      label: Max. display per albero
+      description: Enti di esposizione di un albero cadente; alberi più grandi sono mostrati con cubi fusi.
+    fall-ticks:
+      label: Durata della caduta (ticks)
+      description: Durata di una caduta completa in zecche (20 = 1 secondo).
+  performance:
+    blocks-per-tick:
+      label: Blocchi per zecca
+      description: Blocchi rimossi per zecca, condivisi da tutti gli alberi in caduta.
+    checks-per-tick:
+      label: Controlli per zecca
+      description: Controlli di protezione (venti di rottura) per zecca, condivisi da tutti gli alberi in caduta.
+    falls-per-world:
+      label: Cadute per mondo
+      description: Alberi che cadono allo stesso tempo in un mondo.
+    falls-per-player:
+      label: Falls per giocatore
+      description: Alberi un giocatore può avere cadere allo stesso tempo.
+  other-timber-plugins:
+    label: Altri plugin in legno
+    description: pausa = spegnere il legname incorporato mentre SmoothTimber o un altro plugin di legno è installato; run-both
+      = mantenere entrambi.
+  percent-memory-seconds:
+    label: Memoria dei tagli (secondi)
+    description: 'Innesco per cento: quanto tempo un tronco semi-coltellato ricorda i suoi tagli.'
+  protected-region-kinds:
+    label: Tipi di regione protetti
+    description: Vystorm Tipi di regione di base in cui il legname non rimuove nulla; un legname di bandiera della regione
+      lo sovrascrive.
+commands:
+  customtrees:
+    description: 'Alberi personalizzati: guida sugli alberi, taggati sapling, potatura, piantatrice e erbario'
+    aliases: []
+    sub:
+      breed:
+        name: "breed"
+        aliases: []
+        description: "Incrocia i due alberelli con profilo nelle mani"
+      guide:
+        name: guide
+        aliases: []
+        description: Aprire la guida dell'albero (web page or in-game tutorial); anche /customtrees web
+        args:
+          page: Guide|species|admin
+      sapling:
+        name: sapling
+        aliases: []
+        description: Trasformare il singolo linfatico nella mano in un luccichio con forma e dimensione della corona
+        usage: FORM SIZE
+        args:
+          form: FORM
+          size: SIZE
+      prune:
+        name: prune
+        aliases: []
+        description: Prune la corona del tuo albero da giardino che stai guardando
+      plant:
+        name: plant
+        aliases: []
+        description: 'Aiutante di impianto: quadrati e filari di siepe (menu, dimensione, hedgeN o off)'
+        args:
+          size: 2x2|3x3|5x5|10x10|hedge4..hedge32|off
+      herbarium:
+        name: herbarium
+        aliases: []
+        description: Il tuo erbario, l'erbario di un altro giocatore o la lista superiore
+        args:
+          player: PLAYER
+      next:
+        name: next
+        aliases: []
+        description: Suggerisci un modulo herbarium mancante con istruzioni di piantagione
+        args:
+          plant: PLANT
+      status:
+        name: status
+        aliases: []
+        description: Mostra le impostazioni attive e lo stato delle funzionalità
+      reload:
+        name: reload
+        aliases: []
+        description: Ricaricare la configurazione e i file di lingua
+    values:
+      status: stato
+      guide: guida
+      species: specie
+      admin: admin
+      top: superiore
+
+# Free feature release: breeding
+breeding:
+  unavailable: "L’incrocio non è disponibile o non hai il permesso."
+  survival: "Incrocia gli alberelli in Sopravvivenza o Avventura."
+  cooldown: "Prossimo incrocio tra {seconds}s."
+  parents: "Tieni un alberello con profilo della stessa specie in ogni mano. /customtrees sapling crea i genitori; entrambi vengono consumati."
+  generation: "Generazione {generation}"
+  cancelled: "Incrocio annullato; nessun genitore consumato."
+  success: "Generazione {generation} creata! Chioma e dimensione ereditate, con una piccola probabilità di mutazione. Piantala normalmente."
+regrowth:
+  queued: "<green>🌱 Questa foresta ricrescerà."
+fruit:
+  already: "<gray>Questo arbusto porta già questo frutto."
+  marked: "<green>🍎 Arbusto da frutto! L’albero che cresce qui darà frutti."
+  unripe: "<gray>Non c’è ancora niente di maturo."
+  harvested: "<green>🍎 Hai raccolto {amount} frutto/i."
