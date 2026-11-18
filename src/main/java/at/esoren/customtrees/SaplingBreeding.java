@@ -33,7 +33,8 @@ final class SaplingBreeding {
         return generation==null?0:generation;
     }
     void breed(Player player) {
-        if(!player.hasPermission("customtrees.breed") || !plugin.getConfig().getBoolean("breeding.enabled",true)) {plugin.message(player,"breeding.unavailable");return;}
+        if(!CustomTreesPlugin.enabled(plugin, Feature.BREEDING)) {plugin.message(player,"feature-off");return;}
+        if(!player.hasPermission("customtrees.breed")) {plugin.message(player,"breeding.unavailable");return;}
         if(player.getGameMode()!=GameMode.SURVIVAL && player.getGameMode()!=GameMode.ADVENTURE){plugin.message(player,"breeding.survival");return;}
         long now=System.currentTimeMillis();
         long ready=player.getPersistentDataContainer().getOrDefault(COOLDOWN,PersistentDataType.LONG,0L);

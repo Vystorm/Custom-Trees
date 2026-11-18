@@ -31,8 +31,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 
 public final class CustomTreesPlugin extends JavaPlugin implements Listener {
-    /** Oldest supported Vystorm Core release. */
-    static final String MIN_CORE_VERSION = "0.64.0";
+    /** Oldest supported Vystorm Core release (placeholders through api.placeholders()). */
+    static final String MIN_CORE_VERSION = "0.65.0";
     private WorldTreeGrowth worldTrees;
     private WorldTreeSettings worldTreeSettings;
     private volatile TreeShaking.Options shakingOptions;
@@ -74,6 +74,50 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
     static final String SETTINGS_SECTION = "customtrees:" + TreeSettingsEditor.SECTION_ID;
     private static final long TUTORIAL_HINT_COOLDOWN_MS = 10 * 60_000L;
     private final Map<UUID, Long> tutorialHints = new ConcurrentHashMap<>();
+    /** Every feature switch as read in applySettings; null (= defaults) until then and in tests that mock the plugin. */
+    private volatile Feature.Switches switches;
+    /** The switches online players last got their command list for (null before the first registration). */
+    private Feature.Switches commandSwitches;
+    /** Whether the tutorial was registered at start (tutorial.enabled). */
+    private boolean tutorialRegistered;
+
+    /** Whether a feature (and trees.enabled) is on; static so classes holding a mocked plugin read the real field. */
+    static boolean enabled(CustomTreesPlugin plugin, Feature feature) {
+        Feature.Switches current = plugin == null ? null : plugin.switches;
+        return (current == null ? Feature.Switches.read(null) : current).on(feature);
+    }
+
+    boolean on(Feature feature) { return enabled(this, feature); }
+
+    /** True (and the shared message sent) when the feature is off; names the needed switch when that one is off. */
+    boolean off(CommandSender sender, Feature feature) {
+        if (on(feature)) return false;
+        Feature.Switches current = switches;
+        Feature missing = current != null && !current.off().contains(feature) ? blocking(current, feature) : null;
+        if (missing != null) lang.send(sender, "feature-needs", "switch", missing.path);
+        else lang.send(sender, "feature-off");
+        return true;
+    }
+
+    /** The switch that keeps an own-switched-on feature off (trees.enabled or the one it needs), or null. */
+    private static Feature blocking(Feature.Switches current, Feature feature) {
+        if (feature != Feature.TREES && !current.on(Feature.TREES)) return Feature.TREES;
+        for (Feature needed = feature.needs; needed != null; needed = needed.needs)
+            if (current.off().contains(needed)) return needed;
+        return null;
+    }
+
+    /**
+     * config.yml as the features see it: every switched-off feature (also everything while trees.enabled is off) reads
+     * as false, so the existing option readers switch it off without knowing the switches. The file is not changed.
+     */
+    static org.bukkit.configuration.file.YamlConfiguration effective(org.bukkit.configuration.file.FileConfiguration config, Feature.Switches switches) {
+        org.bukkit.configuration.file.YamlConfiguration copy = new org.bukkit.configuration.file.YamlConfiguration();
+        try { copy.loadFromString(config.saveToString()); }
+        catch (org.bukkit.configuration.InvalidConfigurationException impossible) { throw new IllegalStateException(impossible); }
+        for (Feature feature : Feature.values()) if (!switches.on(feature)) copy.set(feature.path, false);
+        return copy;
+    }
 
     @Override
     public void onEnable() {
@@ -97,7 +141,9 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
         timber = new TimberFeature(this, lang);
         regrowth = new ForestRegrowth(this);
         fruitTrees = new FruitTrees(this);
-        core.registerTutorial(this);
+        // tutorial.enabled is read once: Core lists tutorials when a plugin starts
+        tutorialRegistered = getConfig().getBoolean(Feature.TUTORIAL.path, true);
+        if (tutorialRegistered) core.registerTutorial(this);
         settingsEditor = new TreeSettingsEditor(this::getConfig, this::saveConfig, this::applySettings, lang,
                 (player, message) -> core.compat().platform().sendMessage(player, message.append(Component.text(" "))
                         .append(core.message().chat().settings(lang.ref("action.settings"), SETTINGS_SECTION))));
@@ -152,21 +198,17 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
         } catch (RuntimeException failure) {
             DebugMessages.mid("[CustomTreesPlugin 58] Core settings menu unavailable: " + failure);
         }
-        core.command().register(this, lang, commandSpec(this));
+        try { registerPlaceholders(core.placeholders()); }
+        catch (RuntimeException failure) { getLogger().log(Level.WARNING, "Placeholders not registered", failure); }
+        registerCommands();
         try {
             TreesConfigEditor.register(core.settings().config(), this, lang, this::applyEditedConfig);
+            declareSwitches();
         } catch (RuntimeException failure) {
             DebugMessages.high("[CustomTreesPlugin] Config editor registration failed: " + failure);
         }
-        // Optional web page; if it cannot be registered CustomTrees runs without it.
-        try {
-            TreesWeb page = new TreesWeb(this, lang, this::currentSettings);
-            web = page;
-            page.register();
-        } catch (RuntimeException failure) {
-            web = null;
-            DebugMessages.mid("[CustomTreesPlugin] Web page unavailable: " + failure);
-        }
+        // Optional web page (guide.enabled); if it cannot be registered CustomTrees runs without it.
+        if (on(Feature.GUIDE)) startWeb();
         DebugMessages.mid("[CustomTreesPlugin 49] Custom trees, four architecture variants, shrubs, hedges, glowstone/coal growth, protected 3x3/5x5 trees and one-time Iris chunk post-processing are ready.");
     }
 
@@ -228,17 +270,83 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
 
     /** A validated configuration becomes active (start, reload, settings menu or web). */
     private void applySettings(TreeSettings loaded, BiomeGrowthProfiles profiles) {
-        WorldTreeSettings worldSettings = WorldTreeSettings.load(getConfig());
+        Feature.Switches current = Feature.Switches.read(getConfig());
+        switches = current;
+        // the switches as false values: the readers below and TreeSettings switch the features off by themselves
+        org.bukkit.configuration.file.FileConfiguration config = current.off().isEmpty() ? getConfig() : effective(getConfig(), current);
+        TreeSettings settings = config == getConfig() ? loaded : TreeSettings.load(config);
+        WorldTreeSettings worldSettings = WorldTreeSettings.load(config);
         worldTreeSettings = worldSettings;
-        shakingOptions = TreeShaking.Options.read(getConfig());
-        if (herbarium != null) herbarium.apply(Herbarium.Options.read(getConfig()));
-        if (planting != null) planting.apply(PlantingStencil.Options.read(getConfig()));
-        if (timber != null) timber.apply(TimberOptions.read(getConfig()));
-        if (regrowth != null) regrowth.apply(getConfig());
-        if (fruitTrees != null) fruitTrees.apply(getConfig());
-        activeSettings = new ActiveTreeSettings(loaded, profiles);
+        shakingOptions = TreeShaking.Options.read(config);
+        if (herbarium != null) herbarium.apply(Herbarium.Options.read(config));
+        if (planting != null) planting.apply(PlantingStencil.Options.read(config));
+        if (timber != null) timber.apply(TimberOptions.read(config));
+        if (regrowth != null) regrowth.apply(config);
+        if (fruitTrees != null) fruitTrees.apply(config);
+        activeSettings = new ActiveTreeSettings(settings, current.on(Feature.BIOME_PROFILES) ? profiles : BiomeGrowthProfiles.EMPTY);
+        applySwitches();
         TreesWeb page = web;
         if (page != null) page.publishGuide();
+    }
+
+    /**
+     * After a settings load: when a switch changed, online players get their command list again (the tree asks the
+     * switches at every completion, so it is not registered again); the web guide is registered or removed.
+     */
+    private void applySwitches() {
+        if (commandSwitches != null && !commandSwitches.equals(switches)) {
+            commandSwitches = switches;
+            try { core.command().refresh(); }
+            catch (RuntimeException failure) { DebugMessages.high("[CustomTrees] command lists could not be sent again: " + failure); }
+        }
+        if (commandSwitches == null) return; // still starting: onEnable registers the web page itself
+        if (on(Feature.GUIDE) && web == null) startWeb();
+        else if (!on(Feature.GUIDE) && web != null) { web.unregister(); web = null; }
+    }
+
+    /** Registers /customtrees once; the subcommands of switched-off features are hidden from help and tab completion. */
+    private void registerCommands() {
+        commandSwitches = switches == null ? Feature.Switches.read(null) : switches;
+        core.command().register(this, lang, commandSpec(this));
+    }
+
+    /** Optional web page; if it cannot be registered CustomTrees runs without it. */
+    private void startWeb() {
+        try {
+            TreesWeb page = new TreesWeb(this, lang, this::currentSettings);
+            web = page;
+            page.register();
+        } catch (RuntimeException failure) {
+            web = null;
+            DebugMessages.mid("[CustomTreesPlugin] Web page unavailable: " + failure);
+        }
+    }
+
+    /** The namespace {@code trees}: herbarium, breeding cooldown and grown counters (empty while switched off). */
+    void registerPlaceholders(Vystorm.vystorm_core._advancedMethods.placeholderHandler.PlaceholderInterface registry) {
+        TreesPlaceholders.register(registry, this, new TreesPlaceholders.Source() {
+            @Override public boolean on(Feature feature) { return CustomTreesPlugin.this.on(feature); }
+            @Override public Herbarium herbarium() { return herbarium == null ? null : herbarium.data(); }
+            @Override public String rankName(Player viewer, Herbarium.Rank rank) { return herbarium.rankName(viewer, rank); }
+            @Override public long breedCooldown(Player player) {
+                Long ready = player.getPersistentDataContainer().get(SaplingBreeding.COOLDOWN, org.bukkit.persistence.PersistentDataType.LONG);
+                return TreesPlaceholders.secondsLeft(ready == null ? 0L : ready, System.currentTimeMillis());
+            }
+            @Override public long[] grown() {
+                GiantSaplingListener listener = saplingListener;
+                return listener == null ? null : new long[] {listener.regularTreesGrown(), listener.giantTreesGrown(),
+                        listener.colossalTreesGrown(), listener.shrubsGrown(), listener.hedgesGrown()};
+            }
+        }, key -> lang == null ? key : lang.ref(key));
+    }
+
+    /** Every switch in /vadmin features with its one-line description in the admin's language. */
+    private void declareSwitches() {
+        var config = core.settings().config();
+        for (Feature feature : Feature.values()) {
+            config.feature(this, feature.path, null, lang.ref(feature.description()));
+            if (feature.needsRestart()) config.activation(this, feature.path, Vystorm.vystorm_core._uiMethods.settings.SettingPolicy.Activation.RESTART);
+        }
     }
 
     private TreeSettings currentSettings() {
@@ -310,6 +418,7 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
 
     /** Throttled chat hint to the tutorial after a failed growth attempt (the action bar keeps the reason). */
     void tutorialHint(Player player) {
+        if (!tutorialRegistered) return; // tutorial.enabled was off at start
         if (!player.hasPermission("customtrees.grow")) return;
         long now = System.currentTimeMillis();
         Long last = tutorialHints.get(player.getUniqueId());
@@ -378,10 +487,18 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
      * English always works. Without arguments it opens the tree guide like {@code guide}. {@code p} may be a mock or
      * {@code null} in tests that only look at names and help.
      */
+    /**
+     * Lists a subcommand in help and tab completion only while its switch (and trees.enabled) is on, asked at every
+     * completion so a switch applies at once; while off it still answers the off message.
+     */
+    static CommandSpec.Builder gate(CommandSpec.Builder sub, CustomTreesPlugin p, Feature feature) {
+        return p == null ? sub : sub.visibleWhen(() -> enabled(p, feature));
+    }
+
     static CommandSpec commandSpec(CustomTreesPlugin p) {
         return CommandSpec.command("customtrees")
-                .executes(ctx -> p.commandGuide(ctx.sender(), null))
-                .sub("guide", s -> s.aliases("web")
+                .executes(ctx -> { if (!p.off(ctx.sender(), Feature.GUIDE)) p.commandGuide(ctx.sender(), null); })
+                .sub("guide", s -> gate(s, p, Feature.GUIDE).aliases("web")
                         .arg(Arg.word("page").optional().suggests((ctx, prefix) -> {
                             List<String> pages = new ArrayList<>();
                             for (String page : GUIDE_PAGES)
@@ -391,9 +508,9 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
                         .executes(ctx -> {
                             String input = ctx.get("page");
                             String page = input == null ? null : ctx.keyword(input, GUIDE_PAGES.toArray(String[]::new));
-                            p.commandGuide(ctx.sender(), page != null ? page : input);
+                            if (!p.off(ctx.sender(), Feature.GUIDE)) p.commandGuide(ctx.sender(), page != null ? page : input);
                         }))
-                .sub("sapling", s -> s.permission("customtrees.grow").playerOnly()
+                .sub("sapling", s -> gate(s, p, Feature.CROWN_CHOICE).permission("customtrees.grow").playerOnly()
                         .arg(Arg.word("form").optional().suggests((ctx, prefix) -> {
                             List<String> forms = new ArrayList<>();
                             for (var form : GrowthSapling.CrownForm.values()) forms.add(form.name().toLowerCase(Locale.ROOT));
@@ -404,10 +521,10 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
                             for (var size : GrowthSapling.GrowthClass.values()) sizes.add(size.name().toLowerCase(Locale.ROOT));
                             return sizes;
                         }))
-                        .executes(ctx -> p.commandSapling(ctx.player(), ctx.get("form"), ctx.get("size"))))
-                .sub("breed",s->s.permission("customtrees.breed").playerOnly().executes(ctx->new SaplingBreeding(p).breed(ctx.player())))
-                .sub("prune", s -> s.permission("customtrees.garden").playerOnly().executes(ctx -> p.commandPrune(ctx.player())))
-                .sub("plant", s -> s.permission("customtrees.plant")
+                        .executes(ctx -> { if (!p.off(ctx.player(), Feature.CROWN_CHOICE)) p.commandSapling(ctx.player(), ctx.get("form"), ctx.get("size")); }))
+                .sub("breed", s -> gate(s, p, Feature.BREEDING).permission("customtrees.breed").playerOnly().executes(ctx -> new SaplingBreeding(p).breed(ctx.player())))
+                .sub("prune", s -> gate(s, p, Feature.GARDEN).permission("customtrees.garden").playerOnly().executes(ctx -> { if (!p.off(ctx.player(), Feature.GARDEN)) p.commandPrune(ctx.player()); }))
+                .sub("plant", s -> gate(s, p, Feature.PLANTING).permission("customtrees.plant")
                         .arg(Arg.word("size").optional().suggests((ctx, prefix) -> {
                             List<String> sizes = new ArrayList<>();
                             for (String size : PlantingHelper.sizeNames()) sizes.add(size.equals("off") ? ctx.valueName("off") : size);
@@ -417,9 +534,9 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
                         .executes(ctx -> {
                             String size = ctx.get("size");
                             String keyword = size == null ? null : ctx.keyword(size, "off", "status");
-                            p.commandPlant(ctx.sender(), keyword == null ? size : keyword);
+                            if (!p.off(ctx.sender(), Feature.PLANTING)) p.commandPlant(ctx.sender(), keyword == null ? size : keyword);
                         }))
-                .sub("herbarium", s -> s.permission("customtrees.herbarium")
+                .sub("herbarium", s -> gate(s, p, Feature.HERBARIUM).permission("customtrees.herbarium")
                         .arg(Arg.word("player").optional().suggests((ctx, prefix) -> {
                             List<String> options = new ArrayList<>(List.of(ctx.valueName("top")));
                             if (Bukkit.getServer() != null) for (Player online : Bukkit.getOnlinePlayers()) options.add(online.getName());
@@ -427,12 +544,12 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
                         }))
                         .executes(ctx -> {
                             String target = ctx.get("player");
-                            p.commandHerbarium(ctx.sender(), target != null && ctx.keyword(target, "top") != null ? "top" : target);
+                            if (!p.off(ctx.sender(), Feature.HERBARIUM)) p.commandHerbarium(ctx.sender(), target != null && ctx.keyword(target, "top") != null ? "top" : target);
                         }))
-                .sub("next", s -> s.permission("customtrees.herbarium").playerOnly()
+                .sub("next", s -> gate(s, p, Feature.HERBARIUM).permission("customtrees.herbarium").playerOnly()
                         .arg(Arg.word("plant").optional().suggests((ctx, prefix) ->
                                 java.util.Arrays.stream(Herbarium.Plant.available()).map(Herbarium.Plant::id).toList()))
-                        .executes(ctx -> p.commandNext(ctx.player(), ctx.get("plant"))))
+                        .executes(ctx -> { if (!p.off(ctx.player(), Feature.HERBARIUM)) p.commandNext(ctx.player(), ctx.get("plant")); }))
                 .sub("status", s -> s.permission(TreeSettingsEditor.PERMISSION).executes(ctx -> p.commandStatus(ctx.sender())))
                 .sub("reload", s -> s.permission(TreeSettingsEditor.PERMISSION).executes(ctx -> p.commandReload(ctx.sender())))
                 .build();

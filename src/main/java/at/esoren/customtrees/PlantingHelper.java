@@ -85,7 +85,7 @@ final class PlantingHelper implements Listener {
     /** {@code /customtrees plant [2x2|3x3|5x5|10x10|hedgeN|off]}; without an argument the menu. */
     void command(CommandSender sender, String[] args) {
         if (!(sender instanceof Player player)) { lang.send(sender, "command.players-only"); return; }
-        if (!options.enabled()) { lang.send(player, "planting.disabled"); return; }
+        if (!options.enabled()) { lang.send(player, "feature-off"); return; }
         if (!player.hasPermission("customtrees.plant")) { lang.send(player, "command.no-permission"); return; }
         if (args.length == 1) { openMenu(player); return; }
         if (args.length != 2) { lang.send(player, "planting.usage"); return; }

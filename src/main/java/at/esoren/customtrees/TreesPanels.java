@@ -68,7 +68,7 @@ final class TreesPanels {
 
     private static Result herbariumCheck(CustomTreesPlugin plugin, Player player) {
         if (!plugin.isEnabled() || !player.isOnline() || !plugin.herbarium().enabled())
-            return Result.error(plugin.lang().plain(player, "herbarium.disabled"));
+            return Result.error(plugin.lang().plain(player, "feature-off"));
         if (!player.hasPermission("customtrees.herbarium"))
             return Result.error(plugin.lang().plain(player, "command.no-permission"));
         return Result.ok();
@@ -76,7 +76,7 @@ final class TreesPanels {
 
     private static Result plantingCheck(CustomTreesPlugin plugin, Player player) {
         if (!plugin.isEnabled() || !player.isOnline() || !plugin.planting().options().enabled())
-            return Result.error(plugin.lang().plain(player, "planting.disabled"));
+            return Result.error(plugin.lang().plain(player, "feature-off"));
         if (!player.hasPermission("customtrees.plant"))
             return Result.error(plugin.lang().plain(player, "command.no-permission"));
         return Result.ok();

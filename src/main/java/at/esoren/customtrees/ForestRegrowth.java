@@ -122,7 +122,7 @@ final class ForestRegrowth {
     }
 
     private void tick() {
-        if (pending.isEmpty()) return;
+        if (pending.isEmpty() || !options.enabled()) return; // regrowth.enabled off: pending plantings wait
         long now = System.currentTimeMillis();
         boolean changed = false;
         for (Iterator<Pending> it = pending.iterator(); it.hasNext(); ) {

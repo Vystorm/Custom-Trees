@@ -124,7 +124,7 @@ final class GiantSaplingListener implements Listener {
         Block clicked = event.getClickedBlock();
         ItemStack item = event.getItem();
         Player player = event.getPlayer();
-        if (settings != null && event.getAction() == Action.RIGHT_CLICK_BLOCK && clicked != null
+        if (settings != null && CustomTreesPlugin.enabled(plugin, Feature.PREVIEW) && event.getAction() == Action.RIGHT_CLICK_BLOCK && clicked != null
                 && event.getHand() == EquipmentSlot.HAND && player.isSneaking()
                 && isEmpty(item) && isEmpty(player.getInventory().getItemInOffHand())) {
             TreeSpecies previewSpecies = TreeSpecies.fromSapling(clicked.getType());

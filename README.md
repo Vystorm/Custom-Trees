@@ -51,11 +51,11 @@ Build with JDK 25; all source sets emit Java 21 bytecode. `check` includes `comp
 
 ## Installation
 
-This release requires **Vystorm Core 0.64.0 or newer**, including its compatibility helpers. The optional client mod has separate version requirements.
+This release requires **Vystorm Core 0.65.0 or newer** (placeholders), including its compatibility helpers. The optional client mod has separate version requirements.
 
 
-- Paper or Purpur **1.20.6 – 26.x** (plain Spigot is not supported), **Java 21 or newer**, subject to the Java requirement of your server version. See [compatibility checks](COMPATIBILITY.md).
-- [Vystorm Core](https://github.com/Vystorm/VystormCore) 0.64.0 or newer with `giant-world-trees`.
+- Paper or Purpur **1.20.6 – 26.x**, **Java 21 or newer**, subject to the Java requirement of your server version. Spigot and CraftBukkit 26.2 and 26.3 passed a start test with native gameplay checks of the Bukkit replacement paths (1.40.0, see below); other Spigot versions were not tested. See [compatibility checks](COMPATIBILITY.md).
+- [Vystorm Core](https://github.com/Vystorm/VystormCore) 0.65.0 or newer with `giant-world-trees`.
 - Optional: Iris (late-placed Iris trees get replaced too), CoreProtect (logging, rollback, trunk protection), SmoothTimber (respects protected trunks)
 
 Drop the jar into `plugins/` and start the server. Without the optional plugins everything still works except the part that needs them.
@@ -108,9 +108,43 @@ The settings most servers touch:
 - `timber.*`: the built-in timber: mode, trigger, sneaking, axe, worlds, player choice, modes per tree size, tool wear, drops, detection limits, displays and performance caps. See [Timber](#timber-1330). Since 1.33.0.
 - `biome-profiles`: optional groups that make trees in certain biomes taller, wider or a fixed crown form. See [docs/TECHNICAL.md](docs/TECHNICAL.md#biome-profiles).
 
-`language: auto` follows each player's Minecraft language. English, German and Simplified Chinese (`zh_cn`) ship in `plugins/CustomTrees/lang/`. To add a language, copy `en.yml` to e.g. `fr.yml`, translate it and run `/customtrees reload`; missing keys fall back to English.
+`language: auto` follows each player's Minecraft language. Seven languages ship in `plugins/CustomTrees/lang/`: English, German, French, Italian, Brazilian Portuguese, Russian and Simplified Chinese (`zh_cn`). To add a language, copy `en.yml` to e.g. `nl.yml`, translate it and run `/customtrees reload`; missing keys fall back to English.
 
 CustomTrees needs no database. Its data lives in the world (chunk and player data) plus a small `garden-trees.properties` and `herbarium.yml`, so back up world and player data together.
+
+## Switches
+
+Every feature has an on/off switch in `config.yml`. They are listed in Core's `/vadmin features` with a one-line
+description and apply at once, except `tutorial.enabled` (restart). A switched-off feature answers "This feature is
+switched off on this server.", its subcommands disappear from help and tab completion, its menu entries go and its
+placeholders are empty. Grown trees stay; herbarium entries, tagged saplings, fruit trees, pruned gardens and pending
+regrowth stay saved.
+
+- The whole plugin: `trees.enabled` (off: saplings, mushrooms and fungi grow as in vanilla and no feature acts;
+  `/customtrees status` and `reload` still work).
+- Growth (older keys, kept): `settings.custom-player-grown-trees`, `settings.connected-shrubs-and-hedges`,
+  `settings.mixed-hedges`, `settings.giant-3x3-saplings`, `settings.natural-3x3-growth`, `settings.bonemeal-3x3-growth`,
+  `settings.colossal-5x5-saplings`, `settings.natural-5x5-growth`, `settings.bonemeal-5x5-growth`,
+  `settings.glowstone-growth`, `settings.coal-growth`, `world-trees.enabled`.
+- World: `settings.replace-generated-trees`, `settings.spruce-ground`, `settings.spruce-snow`,
+  `settings.fire-protect-trunks`, `settings.fire-protect-crowns`, `settings.biome-profiles` (new: use the
+  `biome-profiles` section).
+- Around trees: `shaking.enabled`, `shaking.golden-apples`, `fruit-trees.enabled`, `timber.enabled`, `timber.replant`,
+  `timber.player-choice`, `regrowth.enabled` (needs timber), `herbarium.enabled`, `planting-helper.enabled`,
+  `breeding.enabled`.
+- New: `crown-choice.enabled` (`/customtrees sapling`), `garden.enabled` (`/customtrees prune` and regrowing leaves),
+  `preview.enabled` (sneak + right-click preview), `guide.enabled` (`/customtrees guide` and the web guide),
+  `tutorial.enabled` (restart).
+
+Protection and logging (grow events, refunds, CoreProtect, SmoothTimber) and the admin commands have no switch: they
+keep claims and logs correct and are needed to turn things back on.
+
+## Placeholders
+
+Namespace `trees`, listed by `/vadmin placeholders trees`: `%vystorm_trees_herbarium_found%`, `herbarium_total`,
+`herbarium_rank`, `herbarium_rank_id`, `herbarium_next_needed`, `herbarium_top_<n>_name` / `herbarium_top_<n>_found`,
+`herbarium_keepers`, `breed_cooldown`, and the counters since the start `trees_grown`, `giant_grown`, `colossal_grown`,
+`shrubs_grown`, `hedges_grown`. Short form in Vystorm texts: `{trees:herbarium_found}`.
 
 ## For developers
 

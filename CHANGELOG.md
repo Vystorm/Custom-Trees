@@ -1,3 +1,16 @@
+## 1.47.0-26.2 — 2026-11-18
+
+- Requires Vystorm Core 0.65.0 or newer. Update Core before you update this plugin.
+- Every feature can now be switched on and off in `config.yml`. The new keys are added to your existing `config.yml` with their comments and keep today's behaviour. Each switch is listed in Core's `/vadmin features` with a one-line description in seven languages and applies at once, without a restart (only `tutorial.enabled` needs one).
+  - The whole plugin: `trees.enabled`. Off: saplings, mushrooms and fungi grow as in vanilla, new chunks keep their vanilla trees and no CustomTrees feature acts; `/customtrees status` and `reload` still work.
+  - New switches: `crown-choice.enabled` (`/customtrees sapling`), `garden.enabled` (pruning; pruned leaves wait while it is off), `preview.enabled` (the sneak + right-click preview), `guide.enabled` (`/customtrees`, `/customtrees guide` and the web guide), `settings.biome-profiles` (off: the `biome-profiles` section is ignored), `tutorial.enabled` (needs a restart).
+  - Keys that already existed keep their names and are now listed as switches too: the growth switches `settings.custom-player-grown-trees`, `settings.connected-shrubs-and-hedges`, `settings.mixed-hedges`, `settings.giant-3x3-saplings`, `settings.natural-3x3-growth`, `settings.bonemeal-3x3-growth`, `settings.colossal-5x5-saplings`, `settings.natural-5x5-growth`, `settings.bonemeal-5x5-growth`, `settings.glowstone-growth`, `settings.coal-growth`, and `settings.replace-generated-trees`, `settings.spruce-ground`, `settings.spruce-snow`, `settings.fire-protect-trunks`, `settings.fire-protect-crowns`, `shaking.golden-apples`, `timber.replant`, `timber.player-choice`, plus the `enabled` keys of world trees, shaking, herbarium, planting helper, timber, regrowth, fruit trees and breeding.
+- A switched-off feature answers one shared message, "This feature is switched off on this server.", its subcommands are hidden from help and tab completion and its menu entries disappear. A feature that needs another switch (regrowth needs timber, everything needs `trees.enabled`) names it. Regrowth now also waits while `regrowth.enabled` is off instead of planting saplings that were already queued.
+- Tab completion and help follow a switch at once, without registering the command again.
+- Placeholders: the plugin registers its values with Vystorm Core under the namespace `trees`: herbarium forms found, total, rank name and id, forms to the next rank, top list places, keepers, the breeding cooldown and the grown counters. Examples: `%vystorm_trees_herbarium_found%` (forms the player found) and `{trees:herbarium_top:1:name}` (the collector on place 1). `/vadmin placeholders trees` lists them. A value of a switched-off feature is empty.
+- The off messages of the herbarium, the planting helper and breeding are now the shared message.
+- README: seven languages instead of three, and the Spigot and CraftBukkit 26.2 and 26.3 start test of 1.40.0 named in the requirements instead of "plain Spigot is not supported".
+
 ## 1.46.0-26.2 — 2026-11-17
 
 - Requires Vystorm Core 0.64.0 or newer. Update Core before you update this plugin.

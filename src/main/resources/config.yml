@@ -3,15 +3,29 @@
 # Texts are in plugins/CustomTrees/lang/<code>.yml.
 language: auto
 
+# Every feature has an on/off switch. They are listed in Vystorm Core's /vadmin features and apply at once without a
+# restart, except tutorial.enabled. A switched-off feature does nothing, its commands answer "This feature is switched
+# off on this server." and its placeholders are empty. Trees that already grew stay as they are; herbarium entries,
+# tagged saplings, fruit trees, pruned gardens and pending regrowth stay saved and are used again when it is back on.
+# The growth switches under settings: keep their names.
+
+# The whole plugin. Off: saplings, mushrooms and fungi grow as in vanilla, new chunks keep their vanilla trees, and
+# no CustomTrees feature acts (timber, shaking, fruit, herbarium, planting helper ...). /customtrees status and reload
+# still work.
+trees:
+  enabled: true
+
 settings:
   # Natural surface patches around 2x2/3x3/5x5 spruce growth and generated spruces.
   # Only grass/dirt/podzol/coarse dirt are replaced; existing snow is preserved.
   spruce-ground: true
+  # A thin snow layer around large spruces (see spruce-snow-cold-only).
   spruce-snow: true
   # Set false for decorative snow around spruces in warm biomes too.
   spruce-snow-cold-only: true
   # Exact markers are recorded only for newly generated custom trees.
   fire-protect-trunks: false
+  # Crowns of newly grown trees ignore fire aimed at them (the line above does the same for trunks).
   fire-protect-crowns: false
   # Registered profile saplings: crown pruning regrows after 10..86400 seconds.
   garden-regrowth-seconds: 300
@@ -28,6 +42,8 @@ settings:
   # Allows connected hedges (four or more saplings) to mix tree species.
   # The setting does not affect shrub groups or square tree formations.
   mixed-hedges: false
+  # Trees in newly generated chunks are replaced by custom shapes (also on Iris worlds). Off: new chunks keep their
+  # vanilla trees; chunks already processed stay as they are.
   replace-generated-trees: true
   replacement-chance: 1.0
   generated-tree-scan-depth: 80
@@ -56,6 +72,7 @@ settings:
   # regular 1x1 and large 2x2 growth with natural ticks. Bone meal grows every
   # configured sapling size immediately and consumes exactly one item.
   natural-3x3-growth: true
+  # Bone meal on a 3x3 square grows the giant at once.
   bonemeal-3x3-growth: true
 
   # A complete 5x5 square creates a colossal tree with a rounded trunk and a
@@ -65,7 +82,9 @@ settings:
   colossal-min-height: 52
   colossal-max-height: 68
   colossal-canopy-radius: 17
+  # A normal growth tick of one sapling grows the 5x5 colossus; bone meal does it at once (next line).
   natural-5x5-growth: true
+  # Bone meal on a 5x5 square grows the colossus at once.
   bonemeal-5x5-growth: true
 
   # Right-clicking a sapling with glowstone dust grows a protected luminous
@@ -95,6 +114,9 @@ settings:
   # Per-player controls; zero disables that control.
   coal-growth-cooldown-seconds: 0
   coal-growth-daily-limit: 0
+  # Use the biome-profiles section below (taller, wider or fixed-crown trees per biome group). Off: every biome grows
+  # the normal trees; the section stays in the file.
+  biome-profiles: true
 
 # Optional, explicit biome overrides. Empty by default, so existing tree
 # generation behavior is unchanged. Requires Vystorm Core 0.26.5+.
@@ -292,8 +314,34 @@ regrowth:
   # Also small trees (single and 2x2 trunks) that the player did not replant.
   small-trees: true
 
+# Sapling breeding (/customtrees breed): two tagged saplings give one offspring with inherited or mutated traits.
+# Off: the command is switched off.
 breeding:
   enabled: true
   cooldown-seconds: 30
   # Maximum accepted value is 0.25. Mutations stay within existing size/crown variants.
   mutation-chance: 0.1
+
+# Crown choice: /customtrees sapling <form> <size> tags a held sapling with a crown form and a size. Off: the command is
+# switched off; saplings that are already tagged keep their tag and grow as tagged.
+crown-choice:
+  enabled: true
+
+# Garden trees: the owner trims up to 16 leaves with /customtrees prune and they grow back. Off: the command is switched
+# off and pruned leaves wait; they grow back when it is on again.
+garden:
+  enabled: true
+
+# Preview: sneak and right-click a sapling with empty hands to see the formation and the space it needs as particles.
+# Off: the click does nothing special.
+preview:
+  enabled: true
+
+# Tree guide: /customtrees and /customtrees guide, and the illustrated guide page on Vystorm Core's web platform. Off:
+# the commands are switched off and the page is removed from Core's web server.
+guide:
+  enabled: true
+
+# Tutorial in the Vystorm Core main menu (/vmenu -> Tutorials). Needs a server restart to apply.
+tutorial:
+  enabled: true

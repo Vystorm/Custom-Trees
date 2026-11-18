@@ -91,7 +91,7 @@ class HerbariumSuggestionTest {
         config.set("herbarium.enabled", false);
         feature.apply(Herbarium.Options.read(config));
         feature.suggest(viewer, null);
-        verify(lang).send(viewer, "herbarium.disabled");
+        verify(lang).send(viewer, "feature-off");
         feature.apply(Herbarium.Options.read(new YamlConfiguration()));
         feature.suggest(viewer, "invalid");
         verify(lang).send(viewer, "herbarium.next-unknown", "plant", "invalid");

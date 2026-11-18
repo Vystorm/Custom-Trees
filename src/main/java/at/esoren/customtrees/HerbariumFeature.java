@@ -159,7 +159,7 @@ final class HerbariumFeature {
 
     /** {@code /customtrees herbarium [player|top]}. */
     void command(CommandSender sender, String[] args) {
-        if (!enabled()) { lang.send(sender, "herbarium.disabled"); return; }
+        if (!enabled()) { lang.send(sender, "feature-off"); return; }
         if (!sender.hasPermission("customtrees.herbarium")) { lang.send(sender, "command.no-permission"); return; }
         if (args.length > 2) { lang.send(sender, "herbarium.usage"); return; }
         if (args.length == 2 && args[1].equalsIgnoreCase("top")) { sendTop(sender); return; }
@@ -196,7 +196,7 @@ final class HerbariumFeature {
 
     void suggest(Player player, String input) {
         if (!player.hasPermission("customtrees.herbarium")) { lang.send(player, "command.no-permission"); return; }
-        if (!enabled()) { lang.send(player, "herbarium.disabled"); return; }
+        if (!enabled()) { lang.send(player, "feature-off"); return; }
         Herbarium.Plant plant = null;
         if (input != null) {
             for (Herbarium.Plant candidate : Herbarium.Plant.available())
@@ -215,12 +215,12 @@ final class HerbariumFeature {
 
     /** Opens the collection through Panels, with the original read-only chest as fallback. */
     void open(Player viewer, UUID target, String targetName) {
-        if (!usable(viewer)) { lang.send(viewer, enabled() ? "command.no-permission" : "herbarium.disabled"); return; }
+        if (!usable(viewer)) { lang.send(viewer, enabled() ? "command.no-permission" : "feature-off"); return; }
         if (!plugin.openHerbariumPanel(viewer, target, targetName)) openChest(viewer, target, targetName);
     }
 
     void openChest(Player viewer, UUID target, String targetName) {
-        if (!usable(viewer)) { lang.send(viewer, enabled() ? "command.no-permission" : "herbarium.disabled"); return; }
+        if (!usable(viewer)) { lang.send(viewer, enabled() ? "command.no-permission" : "feature-off"); return; }
         String name = targetName == null ? viewer.getName() : targetName;
         Inventory inventory = plugin.core().gui().createInventory(plugin, null, viewer.getUniqueId(), 54,
                 lang.text(viewer, "herbarium.title", "player", name), new GuiCallbacks() {

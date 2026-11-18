@@ -59,7 +59,7 @@ final class GardenTrees implements Listener {
         plugin.message(player,"garden.pruned","count",count,"seconds",(due-System.currentTimeMillis())/1000);
     }
     private void tick() {
-        if(!store.healthy()) return;
+        if(!store.healthy() || !CustomTreesPlugin.enabled(plugin, Feature.GARDEN)) return; // garden.enabled off: pruned leaves wait
         int budget=16; long now=System.currentTimeMillis();
         for(GardenState.Tree tree:store.trees()) {
             if(budget<=0) break;
