@@ -94,7 +94,7 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
         if (on(feature)) return false;
         Feature.Switches current = switches;
         Feature missing = current != null && !current.off().contains(feature) ? blocking(current, feature) : null;
-        if (missing != null) lang.send(sender, "feature-needs", "switch", missing.path);
+        if (missing != null) lang.send(sender, "feature-needs", "switch", missing.path, "name", lang.plain(sender, missing.label()));
         else lang.send(sender, "feature-off");
         return true;
     }
@@ -131,6 +131,7 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
         core.admin().updates().spigot(this, 139850);
         DebugMessages.mid("[CustomTreesPlugin 40] Vystorm Core structure generator and inventory-use API connected");
         saveDefaultConfig();
+        YamlCheck.readConfig(this, false);   // a broken config.yml: reported with line and column, jar defaults, never saved over
         lang = core.lang().register(this);
         applyLanguage();
         if (PaperCompat.material("PALE_OAK_SAPLING") == null)
@@ -144,7 +145,7 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
         // tutorial.enabled is read once: Core lists tutorials when a plugin starts
         tutorialRegistered = getConfig().getBoolean(Feature.TUTORIAL.path, true);
         if (tutorialRegistered) core.registerTutorial(this);
-        settingsEditor = new TreeSettingsEditor(this::getConfig, this::saveConfig, this::applySettings, lang,
+        settingsEditor = new TreeSettingsEditor(this::getConfig, this::saveCheckedConfig, this::applySettings, lang,
                 (player, message) -> core.compat().platform().sendMessage(player, message.append(Component.text(" "))
                         .append(core.message().chat().settings(lang.ref("action.settings"), SETTINGS_SECTION))));
         String startupError = settingsEditor.load();
@@ -341,11 +342,14 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
     }
 
     /** Every switch in /vadmin features with its one-line description in the admin's language. */
-    private void declareSwitches() {
-        var config = core.settings().config();
+    private void declareSwitches() { declareSwitches(core.settings().config(), this, lang); }
+
+    /** What Core receives for {@code /vadmin features}, after {@link TreesConfigEditor#register} (FeatureLabelsTest runs both). */
+    static void declareSwitches(Vystorm.vystorm_core._uiMethods.settings.ConfigEditorInterface config, org.bukkit.plugin.Plugin plugin, Vystorm.vystorm_core.lang.Lang lang) {
         for (Feature feature : Feature.values()) {
-            config.feature(this, feature.path, null, lang.ref(feature.description()));
-            if (feature.needsRestart()) config.activation(this, feature.path, Vystorm.vystorm_core._uiMethods.settings.SettingPolicy.Activation.RESTART);
+            // A null label would also drop the label TreesConfigEditor set: every switch gets its own name (1.47.1).
+            config.feature(plugin, feature.path, lang.ref(feature.label()), lang.ref(feature.description()));
+            if (feature.needsRestart()) config.activation(plugin, feature.path, Vystorm.vystorm_core._uiMethods.settings.SettingPolicy.Activation.RESTART);
         }
     }
 
@@ -454,6 +458,16 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
         return reload(null);
     }
 
+    /**
+     * The settings menu saves through here: a config.yml with a YAML error is never saved over (the in-memory config
+     * then holds only the jar defaults). The change stays active until the next restart and the error is reported.
+     */
+    void saveCheckedConfig() {
+        String problem = YamlCheck.problem(new java.io.File(getDataFolder(), "config.yml"));
+        if (problem == null) { saveConfig(); return; }
+        getLogger().severe("config.yml has a YAML error at " + problem + "; the change was not saved. Fix the file and reload.");
+    }
+
     /** Config editor hook: {@code /customtrees reload}; a rejected value keeps the previous settings active. */
     private void applyEditedConfig() {
         String error = reload();
@@ -461,7 +475,9 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
     }
 
     String reload(String language) {
-        reloadConfig();
+        // A config.yml with a YAML error is left as it is; the previous settings stay active (reported with line and column).
+        String problem = YamlCheck.readConfig(this, true);
+        if (problem != null) return lang == null ? "config.yml: " + problem : lang.plain(language == null ? lang.language(null) : language, "config-error", "problem", problem);
         applyLanguage();
         lang.reload();
         String error = settingsEditor.load(language == null ? lang.language(null) : language);

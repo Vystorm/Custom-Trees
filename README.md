@@ -45,7 +45,7 @@ Choose a row of 4, 8 or 16 saplings in `/customtrees plant`, or use `/customtree
 
 ## Compatibility (1.37.0)
 
-Runs on Paper 1.20.6 – 26.x. On 1.20.6, pale oak and newer vegetation do not exist: the herbarium offers 76 attainable forms instead of 83, and pale-oak shaking loot is omitted. Saved collection entries remain intact. Existing chest menus remain available; Core supplies its compatible settings and tutorial UI. Newer servers retain pale oak, newer vegetation and hanging-moss tip data.
+Tested on Paper and Purpur 26.2, Paper 1.20.6 and Spigot 26.2. On 1.20.6, pale oak and newer vegetation do not exist: the herbarium offers 76 attainable forms instead of 83, and pale-oak shaking loot is omitted. Saved collection entries remain intact. Existing chest menus remain available; Core supplies its compatible settings and tutorial UI. Newer servers retain pale oak, newer vegetation and hanging-moss tip data.
 
 Build with JDK 25; all source sets emit Java 21 bytecode. `check` includes `compat1206` (main sources compiled against local 1.20.6 libraries) and `test1206` (compatibility tests running the shipped classes against that API). Override the library directory with `-Ppaper1206Libraries=/path/to/libraries`. The modern block adapter is compiled separately and bundled in the same jar. These checks do not start a server.
 
@@ -54,7 +54,7 @@ Build with JDK 25; all source sets emit Java 21 bytecode. `check` includes `comp
 This release requires **Vystorm Core 0.65.0 or newer** (placeholders), including its compatibility helpers. The optional client mod has separate version requirements.
 
 
-- Paper or Purpur **1.20.6 – 26.x**, **Java 21 or newer**, subject to the Java requirement of your server version. Spigot and CraftBukkit 26.2 and 26.3 passed a start test with native gameplay checks of the Bukkit replacement paths (1.40.0, see below); other Spigot versions were not tested. See [compatibility checks](COMPATIBILITY.md).
+- Tested on Paper and Purpur 26.2, Paper 1.20.6 and Spigot 26.2. **Java 21 or newer**, subject to the Java requirement of your server version. See [compatibility checks](COMPATIBILITY.md).
 - [Vystorm Core](https://github.com/Vystorm/VystormCore) 0.65.0 or newer with `giant-world-trees`.
 - Optional: Iris (late-placed Iris trees get replaced too), CoreProtect (logging, rollback, trunk protection), SmoothTimber (respects protected trunks)
 
@@ -341,12 +341,6 @@ timber:
 
 Validation for 1.33.0: all 201 CustomTrees tests pass against Vystorm Core 0.44.0, 41 of them new for the timber. These cover tree detection (natural trees compared with player builds, leaves, roots, fungi), the percent trigger, fall direction and rotation, obstacles, proxy displays, durability and drop merging, region rules and display cleanup. On a local Purpur 26.2 server a protocol bot felled a natural oak in fall mode, a natural oak in drop mode and a 2x2 dark oak with the percent trigger (4 of 4 cuts). Drops were merged and landed where expected, no display entity was left behind, and a log pillar next to planks was not felled. Not tested: CoreProtect, claim plugins, SmoothTimber detection and real-client visuals.
 
-
-### Server compatibility (1.40.0-26.2)
-
-Native block-replacement checks and Bukkit-compatible durability/menu feedback through Core. Compatibility adapters target Spigot/CraftBukkit 26.2 and 26.3 while preserving the existing Paper paths. Bukkit means a Bukkit API server implementation such as CraftBukkit, not an additional server distribution. Install Vystorm Core 0.51.0 or newer.
-
-Validation for this release: full automated build and tests pass, including the existing Paper 1.20.6 compatibility compilation. Both plugins enabled successfully on official Spigot 26.2 and 26.3 with Core 0.51.0; native gameplay checks exercised the Bukkit replacement paths.
 
 ## License
 

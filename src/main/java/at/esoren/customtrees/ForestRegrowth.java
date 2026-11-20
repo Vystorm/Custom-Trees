@@ -162,7 +162,7 @@ final class ForestRegrowth {
     static List<Pending> load(Path file) {
         List<Pending> out = new ArrayList<>();
         if (!Files.exists(file)) return out;
-        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file.toFile());
+        YamlConfiguration yaml = YamlCheck.loadData(file, java.util.logging.Logger.getLogger("CustomTrees"));
         for (Object raw : yaml.getList("pending", List.of())) {
             if (!(raw instanceof java.util.Map<?, ?> map)) continue;
             try {

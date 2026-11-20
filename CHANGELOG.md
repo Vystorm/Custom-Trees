@@ -1,3 +1,11 @@
+## 1.47.1-26.2 — 2026-11-20
+
+- Fixed: a `config.yml` with a YAML mistake no longer resets the settings on `/customtrees reload`, and the settings menu no longer saves over it. The file is left as it is, the console and the reload answer name the line and column of the mistake, and the last working settings stay active (at start: the default settings).
+- Fixed: `regrowth.yml` and `fruittrees.yml` with a YAML mistake are copied to `<name>.broken-<date-time>` before the plugin writes them again, so pending regrowth and fruit trees are never lost to a typo.
+- `/vadmin features` names every switch of the plugin in seven languages ("Luminous trees", "Giant trees grow by themselves", "Forest regrowth") instead of the key path ("Settings › Glowstone growth"). Switches that had a name in `/vadmin config` (the growth switches under `settings.`, world trees and others) had lost it there as well; they show a name again.
+- A feature that needs another switch now names it in full: "This needs “Timber” (timber.enabled), which is switched off on this server." Before, the message only gave the key. A language file already on your server keeps its own text.
+- README: the supported servers are written as tested: Paper and Purpur 26.2, Paper 1.20.6 and Spigot 26.2. An outdated block from 1.40.0 that asked for Vystorm Core 0.51.0 is gone.
+
 ## 1.47.0-26.2 — 2026-11-18
 
 - Requires Vystorm Core 0.65.0 or newer. Update Core before you update this plugin.

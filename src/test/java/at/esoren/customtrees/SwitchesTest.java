@@ -57,6 +57,35 @@ class SwitchesTest {
         }
     }
 
+    /**
+     * 1.47.1: every boolean that Core's {@code /vadmin features} lists for config.yml (keys named {@code enabled},
+     * top-level booleans, declared switches) has a readable name and a description in all seven languages, so the
+     * screen never shows a raw key path such as "Settings › Glowstone growth".
+     */
+    @Test void givenEveryFeatureCoreListsFromConfigYml_whenDescribed_thenAllSevenLanguagesHaveNameAndDescription() {
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(CONFIG.toFile());
+        java.util.Set<String> housekeeping = java.util.Set.of("metrics", "debug", "verbose", "sound", "console-log", "placeholderapi", "update-check");
+        List<String> declared = java.util.Arrays.stream(Feature.values()).map(f -> f.path).toList();
+        int listed = 0;
+        for (String path : config.getKeys(true)) {
+            if (!config.isBoolean(path)) continue;
+            boolean feature = path.equals("enabled") || path.endsWith(".enabled") || (path.indexOf('.') < 0 && !housekeeping.contains(path));
+            if (!feature && !declared.contains(path)) continue;
+            assertTrue(declared.contains(path), "every listed switch is a Feature with name and description: " + path);
+            listed++;
+        }
+        assertEquals(Feature.values().length, listed);
+        for (String code : LANGUAGES) {
+            YamlConfiguration lang = YamlConfiguration.loadConfiguration(new File("src/main/resources/lang/" + code + ".yml"));
+            for (Feature feature : Feature.values()) {
+                assertFalse(lang.getString(feature.label(), "").isBlank(), code + " " + feature.label());
+                assertFalse(lang.getString(feature.description(), "").isBlank(), code + " " + feature.description());
+            }
+            String needs = lang.getString("feature-needs", "");
+            assertTrue(needs.contains("{name}") && needs.contains("{switch}"), code + " " + needs);
+        }
+    }
+
     @Test void givenAConfigFrom1_46_whenRead_thenEveryFeatureKeepsItsState() {
         YamlConfiguration old = YamlConfiguration.loadConfiguration(OLD.toFile());
         assertEquals(Set.of(Feature.MIXED_HEDGES, Feature.FIRE_TRUNKS, Feature.FIRE_CROWNS), Feature.Switches.read(old).off(),
@@ -147,12 +176,14 @@ class SwitchesTest {
         }
         CustomTreesPlugin noTrees = plugin(Feature.TREES);
         Player player = player();
+        when(langOf(noTrees).plain(player, Feature.TREES.label())).thenReturn("CustomTrees");
         assertTrue(noTrees.off(player, Feature.HERBARIUM));
-        verify(langOf(noTrees)).send(player, "feature-needs", "switch", "trees.enabled");
+        verify(langOf(noTrees)).send(player, "feature-needs", "switch", "trees.enabled", "name", "CustomTrees");
         CustomTreesPlugin noTimber = plugin(Feature.TIMBER);
         Player other = player();
+        when(langOf(noTimber).plain(other, Feature.TIMBER.label())).thenReturn("Timber");
         assertTrue(noTimber.off(other, Feature.REGROWTH));
-        verify(langOf(noTimber)).send(other, "feature-needs", "switch", "timber.enabled");
+        verify(langOf(noTimber)).send(other, "feature-needs", "switch", "timber.enabled", "name", "Timber");
     }
 
     @Test void givenEverythingOn_whenACommandRuns_thenNoOffMessage() throws Exception {

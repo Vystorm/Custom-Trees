@@ -231,7 +231,7 @@ final class FruitTrees implements Listener {
 
     private void load() {
         if (!Files.exists(file)) return;
-        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file.toFile());
+        YamlConfiguration yaml = YamlCheck.loadData(file, java.util.logging.Logger.getLogger("CustomTrees"));
         for (Map<?, ?> m : yaml.getMapList("trees")) {
             try {
                 Material fruit = Material.matchMaterial(String.valueOf(m.get("fruit")));
