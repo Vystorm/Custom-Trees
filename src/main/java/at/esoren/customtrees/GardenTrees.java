@@ -20,14 +20,30 @@ final class GardenTrees implements Listener {
         if (!store.healthy()) plugin.getLogger().warning("Garden tree records are invalid; pruning and regrowth are disabled, file preserved.");
         Bukkit.getScheduler().runTaskTimer(plugin,this::tick,20,20);
     }
+    /** {@code settings.garden-max-trees}: garden trees for the whole server (default 128, 16 to 1024). */
+    int maxTrees() { return GardenState.clampMaxTrees(plugin.getConfig().getLong("settings.garden-max-trees", GardenState.MAX_TREES)); }
+    /** Line of {@code /customtrees status}. */
+    String status() { return "gardens: trees=" + store.size() + "/" + maxTrees() + ", healthy=" + store.healthy(); }
+    private boolean fullReported;
+    /** One console line per run of full gardens; again after the count fell below the limit. */
+    private void reportFull(String reason) {
+        if (fullReported) return;
+        fullReported = true;
+        plugin.getLogger().warning("Garden trees are full (" + reason + "): newly grown profile trees are not registered for pruning."
+                + " Existing garden trees keep working.");
+    }
     void register(UUID owner,List<Block> committed) {
-        if (!store.healthy() || store.trees().size()>=128) return;
+        if (!store.healthy()) return;
+        int max=maxTrees();
+        if (store.size()>=max) { reportFull(store.size()+" of "+max+" trees; settings.garden-max-trees in config.yml allows up to "+GardenState.HARD_MAX_TREES); return; }
+        fullReported=false;
         Block root=committed.stream().filter(b->TreeSpecies.isLog(b.getType())).findFirst().orElse(null);
         if(root==null) return;
         List<GardenState.Leaf> leaves=committed.stream().filter(b->TreeSpecies.isLeaves(b.getType()))
                 .distinct().limit(512).map(b->new GardenState.Leaf(pos(b),b.getBlockData().getAsString(),0)).toList();
         if(leaves.isEmpty()) return;
-        try { store.put(new GardenState.Tree(UUID.randomUUID(),owner,root.getWorld().getUID(),pos(root),root.getType().name(),leaves)); }
+        try { store.put(new GardenState.Tree(UUID.randomUUID(),owner,root.getWorld().getUID(),pos(root),root.getType().name(),leaves),max); }
+        catch(GardenState.FullException full) { reportFull("garden-trees.properties would exceed " + GardenState.MAX_FILE_BYTES/1024/1024 + " MB with " + store.size() + " trees"); }
         catch(Exception failure) { report(failure); }
     }
     void prune(Player player) {

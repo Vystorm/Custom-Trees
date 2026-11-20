@@ -27,7 +27,17 @@ import java.util.UUID;
 /** Strict, bounded persistence for registered CustomTrees gardens. Never restores blocks. */
 final class GardenState {
     static final long MAX_FILE_BYTES = 8L * 1024 * 1024;
+    /** Default of {@code settings.garden-max-trees}; the fixed limit before 1.47.2. */
     static final int MAX_TREES = 128;
+    /** Range of {@code settings.garden-max-trees}; a file is read up to {@link #HARD_MAX_TREES} trees whatever the setting. */
+    static final int MIN_TREES = 16, HARD_MAX_TREES = 1024;
+
+    /** A new garden tree does not fit (tree limit or file size); the store stays healthy and unchanged. */
+    static final class FullException extends IOException {
+        FullException(String message) { super(message); }
+    }
+
+    static int clampMaxTrees(long value) { return (int) Math.max(MIN_TREES, Math.min(HARD_MAX_TREES, value)); }
     static final int MAX_LEAF_ROWS = 512;
     private static final int SCHEMA = 1;
 
@@ -102,13 +112,31 @@ final class GardenState {
         return List.copyOf(state.values());
     }
 
+    synchronized int size() {
+        return state.size();
+    }
+
     synchronized void put(Tree tree) throws IOException {
+        put(tree, MAX_TREES);
+    }
+
+    /**
+     * Stores a tree. A new tree beyond {@code maxTrees}, or a change that would make the file larger than
+     * {@link #MAX_FILE_BYTES}, is refused with {@link FullException} and leaves the store healthy and unchanged
+     * (before 1.47.2 the size limit switched pruning and regrowth off for the rest of the run).
+     */
+    synchronized void put(Tree tree, int maxTrees) throws IOException {
         Objects.requireNonNull(tree, "tree");
         ensureHealthy();
         Tree previous = state.get(tree.id());
-        if (previous == null && state.size() >= MAX_TREES) throw new IOException("Garden tree limit reached");
+        if (previous == null && state.size() >= clampMaxTrees(maxTrees)) throw new FullException("Garden tree limit reached");
         state.put(tree.id(), tree);
-        persistOrMarkUnhealthy();
+        try {
+            persistOrMarkUnhealthy();
+        } catch (FullException full) {
+            if (previous == null) state.remove(tree.id()); else state.put(tree.id(), previous);
+            throw full;
+        }
     }
 
     synchronized void remove(UUID id) throws IOException {
@@ -126,6 +154,8 @@ final class GardenState {
     private void persistOrMarkUnhealthy() throws IOException {
         try {
             persist();
+        } catch (FullException full) {
+            throw full;
         } catch (IOException | RuntimeException failure) {
             healthy = false;
             if (failure instanceof IOException io) throw io;
@@ -144,7 +174,7 @@ final class GardenState {
             throw new IOException("Garden state target is not a regular file");
         }
         byte[] bytes = encode(state).getBytes(StandardCharsets.UTF_8);
-        if (bytes.length > MAX_FILE_BYTES) throw new IOException("Garden state exceeds size limit");
+        if (bytes.length > MAX_FILE_BYTES) throw new FullException("Garden state exceeds size limit");
         Path temp = Files.createTempFile(parent, ".garden-state-", ".tmp");
         try {
             if (Files.isSymbolicLink(temp)) throw new IOException("Temporary state file is a symlink");
@@ -220,7 +250,7 @@ final class GardenState {
         }
         int schema = number(take(values, "schema"), "schema");
         if (schema != SCHEMA) throw new IOException("Unsupported garden-state schema");
-        int treeCount = boundedCount(take(values, "tree.count"), MAX_TREES, "tree count");
+        int treeCount = boundedCount(take(values, "tree.count"), HARD_MAX_TREES, "tree count");
         Map<UUID, Tree> trees = new LinkedHashMap<>();
         for (int index = 0; index < treeCount; index++) {
             String prefix = "tree." + index + ".";

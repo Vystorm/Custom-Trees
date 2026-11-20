@@ -239,6 +239,9 @@ settings:
   garden-regrowth-seconds:
     label: "Garten-Laubwachstum (Sekunden)"
     description: "Wartezeit bis erfolgreich geschnittenes, registriertes Laub nachwächst (10–86400 Sekunden)"
+  garden-max-trees:
+    label: "Gartenbäume (ganzer Server)"
+    description: "So viele Profilbäume behält der Server zum Schneiden; weitere neue Bäume werden nicht erfasst (16–1024)"
 
 # Webseite "trees" (optional, Vystorm Core 0.24.0+). web.ui.* sind die Texte der Seite in der Vystorm-Weboberfläche.
 web:

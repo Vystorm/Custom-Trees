@@ -240,6 +240,9 @@ settings:
   garden-regrowth-seconds:
     label: "Garden leaf regrowth (seconds)"
     description: "Delay before successfully pruned registered leaves regrow (10–86400 seconds)"
+  garden-max-trees:
+    label: "Garden trees (whole server)"
+    description: "How many profile trees the server keeps for pruning; new trees beyond it are not registered (16–1024)"
 
 # Web page "trees" (optional, Vystorm Core 0.24.0+). web.ui.* are the texts of the page in the Vystorm web UI.
 web:

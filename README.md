@@ -102,6 +102,7 @@ The settings most servers touch:
 - `settings.*-cooldown-seconds`, `*-daily-limit`: optional per-player limits for glowstone and coal growth. `0` turns them off.
 - `settings.fire-protect-trunks`, `fire-protect-crowns`: fire markers, off by default.
 - `settings.garden-regrowth-seconds`: leaf regrowth for garden trees, 10 to 86,400 seconds.
+- `settings.garden-max-trees`: garden trees for the whole server, 16 to 1,024 (default 128). When all places are taken, newly grown trees from tagged saplings are not registered and the console says so once; `/customtrees status` shows how many are used.
 - `shaking.*`: tree shaking on/off, rest time, drops per shake, minimum crown size, and `golden-apples` (default `true`; `false` keeps golden apples out of the loot). Labelled in `/vadmin config CustomTrees` since 1.31.0. `loot-table` (default empty): Vystorm Core loot table or category id for shaking (Core 0.44+); empty = `category:gathering_find` with the species list as own table `customtrees:shaking/<species>` (same odds), the player's luck counts.
 - `herbarium.*`: herbarium on/off, `announce-ranks` and optional console `rank-commands` per rank. Since 1.32.0.
 - `planting-helper.*`: planting helper on/off, largest square (`max-size`), `keep-active` and `timeout-seconds`. Since 1.32.0.

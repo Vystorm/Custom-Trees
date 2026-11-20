@@ -637,6 +637,7 @@ public final class CustomTreesPlugin extends JavaPlugin implements Listener {
         if (timber != null) core.compat().platform().sendMessage(sender, timber.status());
         if (regrowth != null) core.compat().platform().sendMessage(sender, "CustomTrees " + regrowth.status());
         if (fruitTrees != null) core.compat().platform().sendMessage(sender, "CustomTrees " + fruitTrees.status());
+        if (gardens != null) core.compat().platform().sendMessage(sender, "CustomTrees " + gardens.status());
         if (sender instanceof Player player) {
             Component buttons = core.message().chat().settings(lang.ref("action.settings"), SETTINGS_SECTION)
                     .append(Component.text(" ")).append(core.message().chat().menu(lang.ref("action.tutorial"), TUTORIAL_MENU));

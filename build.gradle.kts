@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "at.esoren"
-version = "1.47.1-26.2"
+version = "1.47.2-26.2"
 
 val coreJar = file(providers.gradleProperty("vystormCoreJar").getOrElse("libs/Vystorm_Core.jar"))
 

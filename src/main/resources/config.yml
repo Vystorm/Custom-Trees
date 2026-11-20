@@ -29,6 +29,10 @@ settings:
   fire-protect-crowns: false
   # Registered profile saplings: crown pruning regrows after 10..86400 seconds.
   garden-regrowth-seconds: 300
+  # Garden trees (pruning) for the whole server, 16..1024. Every tree grown from a tagged sapling takes one place; when
+  # all are taken, new trees are not registered and the console says so once. Before going back to a version older
+  # than 1.47.2, keep it at 128: older versions do not read a garden file with more trees.
+  garden-max-trees: 128
   # Empty means every NORMAL world, including Iris overworlds.
   enabled-worlds: []
   # Replaces trees grown by players or natural sapling ticks. This is the main

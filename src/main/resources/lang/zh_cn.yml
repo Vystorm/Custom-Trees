@@ -239,6 +239,9 @@ settings:
   garden-regrowth-seconds:
     label: "花园树叶再生（秒）"
     description: "成功修剪的已登记树叶重新长出前的延迟（10–86400 秒）"
+  garden-max-trees:
+    label: "花园树（全服）"
+    description: "服务器为修剪保留的配置树数量；超出后新长成的树不会登记（16–1024）"
 
 # 网页 "trees"（可选，Vystorm Core 0.24.0+）。web.ui.* 是 Vystorm 网页界面中该页面的文本。
 web:

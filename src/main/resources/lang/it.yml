@@ -241,6 +241,9 @@ settings:
   garden-regrowth-seconds:
     label: Ricrescita foglia di giardino (secondi)
     description: Ritardo prima della ricrescita delle foglie registrate (10–86400 secondi)
+  garden-max-trees:
+    label: "Alberi da giardino (tutto il server)"
+    description: "Quanti alberi di profilo il server conserva per la potatura; i nuovi alberi oltre il limite non vengono registrati (16–1024)"
 web:
   module:
     title: Guida all'albero

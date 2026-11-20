@@ -1,3 +1,9 @@
+## 1.47.2-26.2 — 2026-11-20
+
+- New setting `settings.garden-max-trees` (default 128, as before; 16 to 1,024): how many garden trees the whole server keeps for `/customtrees prune`. `/customtrees status` shows how many are used ("gardens: trees=97/128"), and when all are taken the console says so once instead of silently not registering new trees.
+- Fixed: when `garden-trees.properties` would have grown past its 8 MB limit (about 75 giant trees with 512 stored leaves each), pruning and leaf regrowth stopped for every garden tree until the next restart. Now only the new tree is not registered; all existing garden trees keep working, and the console says so once.
+- Going back to an older version: older versions read at most 128 garden trees. With more, they leave `garden-trees.properties` untouched and switch pruning off. If you may need to go back, keep the setting at 128; at 128 the file stays readable for older versions.
+
 ## 1.47.1-26.2 — 2026-11-20
 
 - Fixed: a `config.yml` with a YAML mistake no longer resets the settings on `/customtrees reload`, and the settings menu no longer saves over it. The file is left as it is, the console and the reload answer name the line and column of the mistake, and the last working settings stay active (at start: the default settings).

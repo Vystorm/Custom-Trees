@@ -239,6 +239,9 @@ settings:
   garden-regrowth-seconds:
     label: Rebrota de folhas de jardim (segundos)
     description: Atraso antes de podar com sucesso folhas registradas crescer (10-86400 segundos)
+  garden-max-trees:
+    label: "Árvores de jardim (servidor inteiro)"
+    description: "Quantas árvores de perfil o servidor guarda para poda; novas árvores além disso não são registradas (16–1024)"
 web:
   module:
     title: Guia da árvore

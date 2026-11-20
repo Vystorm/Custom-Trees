@@ -240,6 +240,9 @@ settings:
   garden-regrowth-seconds:
     label: Recroissance des feuilles du jardin (secondes)
     description: Retard avant la taille réussie des feuilles enregistrées regrow (10–86400 secondes)
+  garden-max-trees:
+    label: "Arbres de jardin (tout le serveur)"
+    description: "Nombre d'arbres de profil que le serveur garde pour la taille ; les nouveaux arbres au-delà ne sont pas enregistrés (16–1024)"
 web:
   module:
     title: Guide des arbres

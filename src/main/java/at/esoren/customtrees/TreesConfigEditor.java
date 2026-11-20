@@ -58,6 +58,7 @@ final class TreesConfigEditor {
             label("fire-protect-trunks"),
             label("fire-protect-crowns"),
             range("garden-regrowth-seconds", 10, 86_400, 1),
+            range("garden-max-trees", GardenState.MIN_TREES, GardenState.HARD_MAX_TREES, 1),
             new Entry("world-trees.enabled", Double.NaN, Double.NaN, Double.NaN),
             new Entry("world-trees.tree-height",32,192,1),
             new Entry("world-trees.mushroom-height",32,192,1),

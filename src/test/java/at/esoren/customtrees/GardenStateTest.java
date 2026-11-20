@@ -93,6 +93,64 @@ class GardenStateTest {
                         new GardenState.Leaf(new GardenState.Pos(0, 1, 0), "minecraft:oak_leaves", 0))));
     }
 
+    @Test
+    void raisedTreeLimitKeepsMoreThan128TreesAndLoadsThemAgain() throws Exception {
+        Path file = directory.resolve("garden.properties");
+        GardenState state = new GardenState(file);
+        for (int i = 0; i < 200; i++) state.put(smallTree(i), 300);
+        assertEquals(200, state.size());
+        GardenState loaded = new GardenState(file);
+        assertTrue(loaded.healthy());
+        assertEquals(200, loaded.size());
+        // the default limit refuses a new tree but keeps the loaded ones
+        assertThrows(GardenState.FullException.class, () -> loaded.put(smallTree(500)));
+        assertTrue(loaded.healthy());
+        assertEquals(200, new GardenState(file).size());
+    }
+
+    @Test
+    void treeLimitIsClampedAndDefaultIsTheOld128() throws Exception {
+        assertEquals(16, GardenState.clampMaxTrees(0));
+        assertEquals(1024, GardenState.clampMaxTrees(1_000_000));
+        GardenState state = new GardenState(directory.resolve("garden.properties"));
+        for (int i = 0; i < 128; i++) state.put(smallTree(i));
+        assertThrows(GardenState.FullException.class, () -> state.put(smallTree(128)));
+        assertTrue(state.healthy());
+    }
+
+    @Test
+    void fileSizeLimitRefusesTheNewTreeAndKeepsGardensWorking() throws Exception {
+        // Before 1.47.2 the 8 MB limit switched pruning and regrowth off for the rest of the run.
+        Path file = directory.resolve("garden.properties");
+        GardenState state = new GardenState(file);
+        int stored = 0;
+        GardenState.FullException refused = null;
+        for (int i = 0; i < 200 && refused == null; i++) {
+            try { state.put(bigTree(i), 1024); stored++; } catch (GardenState.FullException full) { refused = full; }
+        }
+        assertTrue(refused != null, "a full 8 MB file must be reached");
+        assertTrue(state.healthy());
+        assertEquals(stored, state.size());
+        assertEquals(stored, new GardenState(file).size());
+        assertTrue(Files.size(file) <= GardenState.MAX_FILE_BYTES);
+        state.remove(state.trees().getFirst().id());
+        assertEquals(stored - 1, new GardenState(file).size(), "writes still work after a refused tree");
+    }
+
+    private static GardenState.Tree smallTree(int index) {
+        return new GardenState.Tree(new UUID(1, index), new UUID(2, 1), new UUID(3, 1), new GardenState.Pos(index, 70, 0),
+                "OAK_LOG", List.of(new GardenState.Leaf(new GardenState.Pos(index, 75, 0), "minecraft:oak_leaves[distance=1,persistent=false,waterlogged=false]", 0)));
+    }
+
+    private static GardenState.Tree bigTree(int index) {
+        List<GardenState.Leaf> leaves = new java.util.ArrayList<>();
+        for (int i = 0; i < GardenState.MAX_LEAF_ROWS; i++)
+            leaves.add(new GardenState.Leaf(new GardenState.Pos(index * 100 + i % 10, 80 + i / 100, i / 10 % 10),
+                    "minecraft:dark_oak_leaves[distance=1,persistent=false,waterlogged=false]", 0));
+        return new GardenState.Tree(new UUID(1, index), new UUID(2, 1), new UUID(3, 1), new GardenState.Pos(index * 100, 70, 0),
+                "DARK_OAK_LOG", leaves);
+    }
+
     private static GardenState.Tree sampleTree() {
         return new GardenState.Tree(UUID.fromString("aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"),
                 UUID.fromString("bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"),
